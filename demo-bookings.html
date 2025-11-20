@@ -38,7 +38,7 @@
     .page {
       max-width: 960px;
       margin: 0 auto;
-      padding: 24px 16px 48px;
+      padding: 24px 16px 64px;
     }
 
     /* HEADER DEMO */
@@ -235,11 +235,6 @@
     .step.completed .step-badge {
       background:var(--success);
       color:#020617;
-    }
-
-    .step-label-aux {
-      font-size:11px;
-      opacity:.9;
     }
 
     /* LAYOUT PRINCIPAL */
@@ -464,29 +459,128 @@
       background:var(--accent);
     }
 
-    /* CTA FINAL */
+    /* CTA FINAL TIPO ANUNCIO */
     .cta-final {
-      margin-top:24px;
-      padding:18px 18px 16px;
-      border-radius:var(--radius-xl);
-      border:1px solid var(--border-subtle);
-      background:radial-gradient(circle at top, rgba(15,23,42,0.95), #020617);
+      margin-top:32px;
+      padding:20px 22px 18px;
+      border-radius:26px;
+      border:1px solid rgba(248,181,26,0.65);
+      background:
+        radial-gradient(circle at top, rgba(248,181,26,0.2), rgba(15,23,42,0.98)),
+        linear-gradient(135deg, #020617, #02030a);
       display:flex;
       flex-wrap:wrap;
       align-items:center;
       justify-content:space-between;
-      gap:12px;
+      gap:16px;
+      box-shadow:0 26px 60px rgba(0,0,0,0.7);
+    }
+
+    .cta-left {
+      max-width:520px;
+    }
+
+    .cta-badge {
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      font-size:11px;
+      padding:4px 10px;
+      border-radius:999px;
+      background:rgba(15,23,42,0.9);
+      border:1px solid rgba(248,181,26,0.8);
+      color:var(--accent);
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      margin-bottom:8px;
+    }
+
+    .cta-badge span {
+      width:8px;
+      height:8px;
+      border-radius:999px;
+      background:var(--accent);
+      box-shadow:0 0 10px rgba(248,181,26,0.9);
+    }
+
+    .cta-title {
+      font-size:20px;
+      font-weight:650;
+      letter-spacing:-0.02em;
+      margin-bottom:6px;
+    }
+
+    .cta-title strong {
+      color:var(--accent);
+    }
+
+    .cta-copy {
       font-size:13px;
+      color:var(--text-soft);
+      margin-bottom:8px;
+    }
+
+    .cta-copy strong {
+      color:var(--text);
+      font-weight:500;
+    }
+
+    .cta-bullets {
+      list-style:none;
+      padding:0;
+      margin:0;
+      font-size:12px;
       color:var(--text-soft);
     }
 
-    .cta-final strong {
-      color:var(--text);
+    .cta-bullets li {
+      margin-bottom:4px;
+      display:flex;
+      align-items:flex-start;
+      gap:6px;
     }
 
-    .cta-highlight {
+    .cta-bullets li::before {
+      content:"●";
+      font-size:10px;
+      margin-top:2px;
       color:var(--accent);
-      font-weight:500;
+    }
+
+    .cta-right {
+      display:flex;
+      flex-direction:column;
+      align-items:flex-end;
+      gap:6px;
+      min-width:200px;
+    }
+
+    .cta-price-tag {
+      font-size:11px;
+      padding:4px 10px;
+      border-radius:999px;
+      background:rgba(15,23,42,0.9);
+      border:1px solid rgba(148,163,184,0.6);
+      color:var(--text-soft);
+    }
+
+    .btn-cta-primary {
+      background:linear-gradient(135deg, #facc15, #fb923c);
+      color:#020617;
+      box-shadow:0 18px 40px rgba(248,181,26,0.6);
+      font-size:14px;
+      padding:9px 20px;
+    }
+
+    .btn-cta-primary:hover {
+      transform:translateY(-1px) scale(1.01);
+      box-shadow:0 26px 60px rgba(248,181,26,0.7);
+    }
+
+    .cta-note {
+      font-size:11px;
+      color:var(--text-soft);
+      text-align:right;
     }
 
     @media (max-width:840px){
@@ -494,6 +588,8 @@
       .demo-header-right{justify-content:flex-start;}
       .demo-grid{grid-template-columns:minmax(0,1fr);}
       .cta-final{flex-direction:column; align-items:flex-start;}
+      .cta-right{align-items:flex-start;}
+      .cta-note{text-align:left;}
     }
   </style>
 </head>
@@ -503,7 +599,7 @@
     <header class="demo-header">
       <div class="demo-logo">
         <div class="logo-mark">
-          <!-- Ajusta este src si cambias la ruta del logo -->
+          <!-- Logo circular -->
           <img src="https://github.com/addempirellc/add-systems-landing/raw/main/%F0%9F%A7%8A%20Estilo%20fri%CC%81o%20y%20digital%20(tech%3Afuturista)%20.png" alt="ADD Systems" />
         </div>
         <div>
@@ -540,7 +636,7 @@
         </div>
         <div class="step" data-step="3">
           <div class="step-badge" data-index="3">3</div>
-          Pago y confirmación
+          Pago confirmado
         </div>
       </div>
 
@@ -721,22 +817,37 @@ Cliente: (aquí verás el mensaje listo para enviar por WhatsApp cuando generes 
         </div>
       </div>
 
-      <!-- CTA FINAL -->
+      <!-- CTA FINAL TIPO ANUNCIO -->
       <div class="cta-final">
-        <div>
-          <strong>¿Te imaginas este flujo llenando tu agenda mientras tú duermes?</strong><br />
-          <span class="cta-highlight">Reservas 24/7, depósitos confirmados y cero “bro, ¿a qué hora era?”</span>:
-          transformamos tu barbería en un sistema que trabaja solo, recoge datos de tus clientes
-          y te deja a ti enfocado en lo que vende: la silla y la máquina.
+        <div class="cta-left">
+          <div class="cta-badge">
+            <span></span> Edición piloto 2026 · Cupos limitados
+          </div>
+          <h3 class="cta-title">
+            Convierte tu barbería en una <strong>máquina de reservas 24/7</strong>.
+          </h3>
+          <p class="cta-copy">
+            Mientras tú cortas (o duermes), el sistema:
+            <strong>agenda, cobra depósitos y filtra a los que solo preguntan por preguntar</strong>.
+          </p>
+          <ul class="cta-bullets">
+            <li>Bloqueo automático de horarios con depósito confirmado.</li>
+            <li>Recordatorios y mensajes listos para WhatsApp sin que tu equipo escriba nada.</li>
+            <li>Historial de clientes para saber quién realmente deja dinero en la silla.</li>
+          </ul>
         </div>
-        <a
-          href="https://tidycal.com/tu-enlace-de-demo?notes=Interesado%20en%20ADD%20Bookings%20(barber%C3%ADa)"
-          target="_blank"
-          rel="noopener"
-          class="btn btn-primary"
-        >
-          Quiero esto en mi negocio
-        </a>
+        <div class="cta-right">
+          <div class="cta-price-tag">Desde $199 setup · Sin compromiso inicial</div>
+          <a
+            href="https://tidycal.com/tu-enlace-de-demo?notes=Interesado%20en%20ADD%20Bookings%20(barber%C3%ADa)"
+            target="_blank"
+            rel="noopener"
+            class="btn btn-cta-primary btn"
+          >
+            Quiero esto en mi negocio
+          </a>
+          <div class="cta-note">Agenda una demo corta. Si no ves potencial real para tu barbería, no seguimos.</div>
+        </div>
       </div>
     </section>
   </main>
@@ -813,6 +924,9 @@ Cliente: (aquí verás el mensaje listo para enviar por WhatsApp cuando generes 
 
     var fechaInput = document.getElementById("fecha-input");
 
+    // indicador de pago confirmado
+    var pagoConfirmado = false;
+
     // --------- INICIALIZAR FECHA (bloquear pasadas) ----------
     if (fechaInput) {
       var hoy = new Date();
@@ -829,7 +943,6 @@ Cliente: (aquí verás el mensaje listo para enviar por WhatsApp cuando generes 
     var steps = stepsContainer ? stepsContainer.querySelectorAll(".step") : [];
 
     function setStepState(stepNumber, state) {
-      // state: "inactive" | "active" | "completed"
       steps.forEach(function(step) {
         if (step.dataset.step === String(stepNumber)) {
           var badge = step.querySelector(".step-badge");
@@ -852,36 +965,61 @@ Cliente: (aquí verás el mensaje listo para enviar por WhatsApp cuando generes 
       if (!form) return;
       var data = Object.fromEntries(new FormData(form).entries());
 
-      var step1Complete = (data.nombre || "").trim() !== "" && (data.servicio || "").trim() !== "";
-      var step2Complete = (data.fecha || "").trim() !== "" && (data.hora || "").trim() !== "";
-      var step3Complete = (data.pago || "").trim() !== "" && (data.deposito || "").trim() !== "";
+      var step1Complete =
+        (data.nombre || "").trim() !== "" &&
+        (data.servicio || "").trim() !== "";
 
-      // Por defecto, todo inactivo
+      var step2Complete =
+        step1Complete &&
+        (data.fecha || "").trim() !== "" &&
+        (data.hora || "").trim() !== "";
+
+      var step3Complete = step2Complete && pagoConfirmado;
+
+      // reset
       [1,2,3].forEach(function(n){
         setStepState(n, "inactive");
       });
 
-      // Compleciones
-      if (step1Complete) setStepState(1, "completed");
-      if (step2Complete) setStepState(2, "completed");
-      if (step3Complete) setStepState(3, "completed");
+      var activeSet = false;
 
-      // Paso activo = primer paso no completado
-      if (!step1Complete) {
-        setStepState(1, "active");
-      } else if (!step2Complete) {
-        setStepState(2, "active");
-      } else if (!step3Complete) {
-        setStepState(3, "active");
+      // step 1
+      if (step1Complete) {
+        setStepState(1, "completed");
       } else {
-        // todos completos, dejamos el 3 como activo-completado visualmente
+        setStepState(1, "active");
+        activeSet = true;
+      }
+
+      // step 2
+      if (step2Complete) {
+        setStepState(2, "completed");
+      } else if (!activeSet && step1Complete) {
+        setStepState(2, "active");
+        activeSet = true;
+      }
+
+      // step 3
+      if (step3Complete) {
         setStepState(3, "completed");
+      } else if (!activeSet && step2Complete) {
+        setStepState(3, "active");
+        activeSet = true;
       }
     }
 
     if (form) {
-      form.addEventListener("input", updateStepsFromForm);
-      form.addEventListener("change", updateStepsFromForm);
+      form.addEventListener("input", function () {
+        // si tocan cualquier campo, el pago deja de estar confirmado
+        pagoConfirmado = false;
+        pagoStatus.textContent = "";
+        updateStepsFromForm();
+      });
+      form.addEventListener("change", function () {
+        pagoConfirmado = false;
+        pagoStatus.textContent = "";
+        updateStepsFromForm();
+      });
     }
 
     // --------- LÓGICA SERVICIOS / PAGO ----------
@@ -942,29 +1080,42 @@ Cliente: (aquí verás el mensaje listo para enviar por WhatsApp cuando generes 
     if (servicioSelect) {
       servicioSelect.addEventListener("change", function () {
         actualizarServicio();
-        updateStepsFromForm();
       });
     }
 
     if (depositoSelect) {
       depositoSelect.addEventListener("change", function () {
         actualizarDepositoYRestante();
-        updateStepsFromForm();
       });
     }
 
     if (pagoSelect) {
       pagoSelect.addEventListener("change", function () {
         actualizarPago();
-        updateStepsFromForm();
       });
     }
 
     if (btnPagoDemo && pagoStatus) {
       btnPagoDemo.addEventListener("click", function () {
-        pagoStatus.style.color = "#22c55e";
-        pagoStatus.textContent =
-          "Pago de depósito simulado correctamente (solo modo demo). En producción aquí se conecta tu pasarela real.";
+        // solo tiene sentido simular pago si al menos fecha/hora están completos
+        var data = Object.fromEntries(new FormData(form).entries());
+        var okBasico =
+          (data.nombre || "").trim() !== "" &&
+          (data.servicio || "").trim() !== "" &&
+          (data.fecha || "").trim() !== "" &&
+          (data.hora || "").trim() !== "";
+
+        if (!okBasico) {
+          pagoStatus.style.color = "#f97373";
+          pagoStatus.textContent = "Completa servicio, nombre, fecha y hora antes de simular el pago.";
+          pagoConfirmado = false;
+        } else {
+          pagoStatus.style.color = "#22c55e";
+          pagoStatus.textContent =
+            "Pago de depósito simulado correctamente (solo modo demo). Aquí se conectaría tu pasarela real.";
+          pagoConfirmado = true;
+        }
+        updateStepsFromForm();
       });
     }
 
@@ -980,7 +1131,6 @@ Cliente: (aquí verás el mensaje listo para enviar por WhatsApp cuando generes 
         var deposito = (sData.precio * porcentaje) / 100;
         var resto = sData.precio - deposito;
 
-        // Actualizamos resumen
         summaryDatetime.textContent =
           (data.fecha || "—") + " · " + (data.hora || "—");
         summaryBarber.textContent =
