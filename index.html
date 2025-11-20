@@ -677,9 +677,432 @@
     </header>
 
     <!-- HERO -->
-    <!-- (todo el contenido intermedio se mantiene igual, lo que importa es el <script> final) -->
+    <section class="hero">
+      <div>
+        <div class="hero-eyebrow">
+          <span>●</span>
+          Convierte mensajes en citas, pedidos y pagos sin vivir pegado al celular.
+        </div>
+        <h1 class="hero-title">
+          Sistemas digitales <strong>ADD</strong> para negocios que ya no pueden
+          seguir atendiendo todo por WhatsApp.
+        </h1>
+        <p class="hero-subtitle">
+          ADD Bookings, ADD Orders y ADD Automations. Tres sistemas simples para dejar de perder
+          clientes por desorden, no-shows y mensajes sin responder.
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" data-scroll="#planes">
+            Ver planes ADD
+          </button>
+          <button class="btn btn-outline" data-scroll="#comparativa">
+            Comparar funciones
+          </button>
+        </div>
+        <div class="hero-note">
+          <span>Sin apps raras.</span> Todo funciona con links, página simple y tus pasarelas de pago.
+        </div>
+      </div>
 
-    <!-- ... TODAS LAS SECCIONES QUE YA TENÍAS ... -->
+      <aside class="hero-right" aria-label="Simulación impacto ADD Systems">
+        <div class="hero-panel-header">
+          <div class="hero-panel-title">Impacto mensual estimado</div>
+          <div class="hero-panel-pill">Ejemplo: barbería &amp; restaurante</div>
+        </div>
+        <div class="hero-sim-grid">
+          <div class="sim-card">
+            <div class="sim-title">Antes de ADD Systems</div>
+            <div class="sim-badge danger">
+              <span>–</span> Pérdida silenciosa
+            </div>
+            <div class="sim-row">
+              <span>Citas que no llegan</span><span>10–15 / mes</span>
+            </div>
+            <div class="sim-row">
+              <span>Pedidos olvidados</span><span>8–12 / mes</span>
+            </div>
+            <div class="sim-row">
+              <span>Tiempo en WhatsApp</span><span>2–3 h / día</span>
+            </div>
+          </div>
+          <div class="sim-card">
+            <div class="sim-title">Con ADD Bookings + Orders</div>
+            <div class="sim-badge success">
+              <span>+</span> Orden &amp; control
+            </div>
+            <div class="sim-row">
+              <span>No-shows</span><span>–60% con depósito</span>
+            </div>
+            <div class="sim-row">
+              <span>Pedidos claros</span><span>+30% efectivos</span>
+            </div>
+            <div class="sim-row">
+              <span>Tiempo al día</span><span>+1–2 h libres</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-panel-footer">
+          <span>Resultados aproximados según tipo de negocio.</span>
+          <span><strong>ADD Automations</strong> multiplica el efecto.</span>
+        </div>
+      </aside>
+    </section>
+
+    <!-- DOLOR -->
+    <section id="dolor">
+      <div class="section-label">El problema real</div>
+      <h2 class="section-title">Tu negocio no necesita más redes. Necesita orden.</h2>
+      <p class="section-subtitle">
+        La mayoría de los negocios locales no pierden dinero por falta de likes,
+        sino por desorden en citas, pedidos y cobros. ADD Systems ataca ese cuello de botella.
+      </p>
+      <div class="pain-grid">
+        <article class="pain-card">
+          <div class="pain-title">Sin ADD Systems</div>
+          <ul class="pain-list">
+            <li>Agenda en WhatsApp, cuaderno o memoria.</li>
+            <li>Clientes que no llegan porque nunca confirmaste la cita.</li>
+            <li>Pedidos que se pierden entre notas de voz.</li>
+            <li>Pagos que se hacen “después” y nunca llegan.</li>
+            <li>Tú o tu equipo pegados al celular todo el día.</li>
+          </ul>
+        </article>
+        <article class="pain-card">
+          <div class="pain-title">Con ADD Systems</div>
+          <ul class="pain-list">
+            <li>Cada cita o pedido entra por un sistema simple.</li>
+            <li>Depósitos y pagos antes de reservar o cocinar.</li>
+            <li>Recordatorios automáticos reducen los no-shows.</li>
+            <li>Mensajes post-venta que piden reseñas y repiten clientes.</li>
+            <li>Tu tiempo vuelve a enfocarse en el negocio, no en el chat.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- PLANES -->
+    <section id="planes">
+      <div class="section-label">Planes ADD</div>
+      <h2 class="section-title">Tres sistemas simples. Eliges uno, lo montamos y empieza a trabajar.</h2>
+      <p class="section-subtitle">
+        No vendemos “páginas bonitas”. Vendemos sistemas que convierten mensajes en citas, pedidos y pagos.
+        Cada plan incluye implementación inicial y soporte continuo.
+      </p>
+
+      <div class="plans-grid">
+        <!-- ADD Bookings -->
+        <article class="plan-card">
+          <h3 class="plan-name">ADD Bookings</h3>
+          <p class="plan-for">Para barberías, uñas, spa, peluquería, entrenadores personales.</p>
+          <div class="plan-price">
+            <div class="plan-price-main">$199 setup</div>
+            <div class="plan-price-sub">$39 / mes – sistema de reservas con pagos básicos.</div>
+          </div>
+          <div class="plan-separator"></div>
+          <ul class="plan-list">
+            <li>Página de reservas lista para usar.</li>
+            <li>Calendario configurado a tus horarios reales.</li>
+            <li>Confirmaciones automáticas simples.</li>
+            <li>Depósitos y pagos rápidos (Stripe / PayPal).</li>
+            <li>Panel básico para ver y gestionar citas.</li>
+            <li>Soporte básico por canal acordado.</li>
+          </ul>
+          <button class="btn btn-primary" data-plan="bookings" data-scroll="#demo">
+            Empieza con ADD Bookings
+          </button>
+          <p class="plan-footer-note">
+            Ideal si <span>tu dolor principal son las citas</span> y los clientes que no llegan.
+          </p>
+        </article>
+
+        <!-- ADD Orders (recomendado) -->
+        <article class="plan-card recommended">
+          <div class="plan-pill">Recomendado</div>
+          <h3 class="plan-name">ADD Orders</h3>
+          <p class="plan-for">Para restaurantes, food trucks, repostería, dark kitchens, talleres.</p>
+          <div class="plan-price">
+            <div class="plan-price-main">$399 setup</div>
+            <div class="plan-price-sub">$59 / mes – pedidos claros y pagos adelantados.</div>
+          </div>
+          <div class="plan-separator"></div>
+          <ul class="plan-list">
+            <li>Menú / catálogo digital en una sola página.</li>
+            <li>Botón de “Hacer pedido” con mensaje estructurado.</li>
+            <li>Opción de recogida o delivery en el mismo flujo.</li>
+            <li>Pagos rápidos (Stripe / PayPal) antes de iniciar el pedido.</li>
+            <li>Integración opcional con Square para quien ya lo usa.</li>
+            <li>Soporte prioritario y ajustes según la demanda.</li>
+          </ul>
+          <button class="btn btn-primary" data-plan="orders" data-scroll="#demo">
+            Activa ADD Orders
+          </button>
+          <p class="plan-footer-note">
+            Recomendado si <span>pierdes tiempo explicando el menú</span> o confirmando cada pedido.
+          </p>
+        </article>
+
+        <!-- ADD Automations -->
+        <article class="plan-card">
+          <h3 class="plan-name">ADD Automations</h3>
+          <p class="plan-for">Para negocios con volumen que quieren que el sistema trabaje solo.</p>
+          <div class="plan-price">
+            <div class="plan-price-main">$699 setup</div>
+            <div class="plan-price-sub">$149 / mes – automatizaciones completas y reportes.</div>
+          </div>
+          <div class="plan-separator"></div>
+          <ul class="plan-list">
+            <li>Incluye todo lo de ADD Bookings u ADD Orders (según el caso).</li>
+            <li>Recordatorios automáticos antes de la cita o entrega.</li>
+            <li>Mensajes post-venta para reseñas y próximas reservas.</li>
+            <li>Integraciones avanzadas con Square y otras herramientas.</li>
+            <li>Reportes mensuales básicos de uso y rendimiento.</li>
+            <li>Soporte premium y mejoras constantes del flujo.</li>
+          </ul>
+          <button class="btn btn-primary" data-plan="automations" data-scroll="#demo">
+            Potencia tu negocio con ADD Automations
+          </button>
+          <p class="plan-footer-note">
+            Pensado para <span>quien ya factura bien</span> pero quiere orden, datos y automatización.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- TABLA COMPARATIVA -->
+    <section id="comparativa">
+      <div class="section-label">Detalle de funciones</div>
+      <h2 class="section-title">Comparativa rápida entre ADD Bookings, Orders y Automations.</h2>
+      <p class="section-subtitle">
+        Mismo enfoque: menos desorden, más control. Cada plan suma una capa nueva: primero reservas,
+        luego pedidos, luego automatizaciones.
+      </p>
+
+      <div class="table-wrapper">
+        <table aria-label="Tabla comparativa de planes ADD Systems">
+          <thead>
+            <tr>
+              <th>Función</th>
+              <th>ADD Bookings</th>
+              <th>ADD Orders</th>
+              <th>ADD Automations</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="table-feature">Página personalizada</td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td class="table-feature">Reservas online</td>
+              <td><span class="check">✓</span></td>
+              <td><span class="dash">—</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td class="table-feature">Catálogo / Menú</td>
+              <td><span class="dash">—</span></td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td class="table-feature">Pagos rápidos</td>
+              <td>Stripe / PayPal</td>
+              <td>Stripe / PayPal</td>
+              <td>Stripe / PayPal / Square</td>
+            </tr>
+            <tr>
+              <td class="table-feature">Botón WhatsApp optimizado</td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td class="table-feature">Pedido estructurado</td>
+              <td><span class="dash">—</span></td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td class="table-feature">Recordatorios automáticos</td>
+              <td><span class="dash">—</span></td>
+              <td><span class="dash">—</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td class="table-feature">Seguimiento post-venta</td>
+              <td><span class="dash">—</span></td>
+              <td><span class="dash">—</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td class="table-feature">Integración Square</td>
+              <td><span class="dash">—</span></td>
+              <td>Opcional</td>
+              <td>Avanzada</td>
+            </tr>
+            <tr>
+              <td class="table-feature">Reportes mensuales</td>
+              <td><span class="dash">—</span></td>
+              <td><span class="dash">—</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td class="table-feature">Soporte</td>
+              <td><span class="tag-basic">Básico</span></td>
+              <td><span class="tag-prio">Prioritario</span></td>
+              <td><span class="tag-premium">Premium</span></td>
+            </tr>
+            <tr>
+              <td class="table-feature">Setup</td>
+              <td>$199</td>
+              <td>$399</td>
+              <td>$699</td>
+            </tr>
+            <tr>
+              <td class="table-feature">Mensualidad</td>
+              <td>$39</td>
+              <td>$59</td>
+              <td>$149</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- DIAGNÓSTICO ADD -->
+    <section id="diagnostico">
+      <div class="section-label">Diagnóstico ADD</div>
+      <h2 class="section-title">Solicita un diagnóstico rápido de tu negocio.</h2>
+      <p class="section-subtitle">
+        Cuéntanos cómo atiendes hoy a tus clientes y te diremos si ADD Bookings, ADD Orders
+        o ADD Automations tiene sentido para ti, sin compromiso.
+      </p>
+
+      <form id="diagnostico-form" class="pain-grid">
+        <div class="pain-card">
+          <div class="pain-title">Datos del negocio</div>
+          <div style="display:flex; flex-direction:column; gap:8px; font-size:12px; color:var(--text-soft);">
+            <label>
+              Nombre del negocio<br />
+              <input name="nombre" required
+                style="width:100%; margin-top:3px; padding:6px 8px; border-radius:8px; border:1px solid var(--border-subtle); background:#020617; color:var(--text);" />
+            </label>
+            <label>
+              Tipo de negocio (barbería, restaurante, taller, etc.)<br />
+              <input name="tipo" required
+                style="width:100%; margin-top:3px; padding:6px 8px; border-radius:8px; border:1px solid var(--border-subtle); background:#020617; color:var(--text);" />
+            </label>
+            <label>
+              Ciudad / zona<br />
+              <input name="ciudad"
+                style="width:100%; margin-top:3px; padding:6px 8px; border-radius:8px; border:1px solid var(--border-subtle); background:#020617; color:var(--text);" />
+            </label>
+            <label>
+              WhatsApp de contacto<br />
+              <input name="whatsapp" required
+                placeholder="+1 ..."
+                style="width:100%; margin-top:3px; padding:6px 8px; border-radius:8px; border:1px solid var(--border-subtle); background:#020617; color:var(--text);" />
+            </label>
+          </div>
+        </div>
+
+        <div class="pain-card">
+          <div class="pain-title">Cómo trabajas hoy</div>
+          <div style="display:flex; flex-direction:column; gap:8px; font-size:12px; color:var(--text-soft);">
+            <label>
+              ¿Cómo tomas citas / pedidos actualmente?<br />
+              <textarea name="como" rows="3" required
+                style="width:100%; margin-top:3px; padding:6px 8px; border-radius:8px; border:1px solid var(--border-subtle); background:#020617; color:var(--text);"></textarea>
+            </label>
+            <label>
+              ¿Cuál es tu mayor problema hoy? (no-shows, pedidos confundidos, pagos tardíos, etc.)<br />
+              <textarea name="dolor" rows="3" required
+                style="width:100%; margin-top:3px; padding:6px 8px; border-radius:8px; border:1px solid var(--border-subtle); background:#020617; color:var(--text);"></textarea>
+            </label>
+            <label>
+              Plan que más te interesa ahora mismo<br />
+              <select name="plan"
+                style="width:100%; margin-top:3px; padding:6px 8px; border-radius:8px; border:1px solid var(--border-subtle); background:#020617; color:var(--text);">
+                <option value="">Aún no lo sé</option>
+                <option value="bookings">ADD Bookings</option>
+                <option value="orders">ADD Orders</option>
+                <option value="automations">ADD Automations</option>
+              </select>
+            </label>
+
+            <button type="submit" class="btn btn-primary" style="margin-top:8px; align-self:flex-start;">
+              Enviar diagnóstico ADD
+            </button>
+            <small style="font-size:11px; color:var(--text-soft); margin-top:4px;">
+              Usaremos esta información solo para revisar tu caso y contactarte sobre ADD Systems.
+            </small>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <!-- DEMO / TIDYCAL HOOK -->
+    <section id="demo">
+      <div class="section-label">Próximo paso</div>
+      <h2 class="section-title">Ve una demo o agenda una llamada rápida.</h2>
+      <p class="section-subtitle">
+        Lo más eficiente: ver el flujo en vivo. Aquí solo conectas tu Tidycal, Calendly o el sistema
+        que uses para agendar.
+      </p>
+
+      <div class="demo-box">
+        <p class="demo-text">
+          <strong>¿Cómo funciona en la práctica?</strong><br />
+          En la demo te mostramos un flujo real de ADD Bookings y ADD Orders aplicado a un negocio
+          como el tuyo: desde que el cliente escribe hasta que paga y recibe confirmación.
+        </p>
+        <!-- Aquí luego pegas el embed de Tidycal / Calendly -->
+        <div>
+          <button class="btn btn-primary" id="btn-agendar">
+            Agendar demo (conectar Tidycal aquí)
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="section-label">Preguntas frecuentes</div>
+      <h2 class="section-title">Dudas típicas antes de activar ADD Systems.</h2>
+
+      <div class="faq-grid">
+        <article class="faq-item">
+          <div class="faq-q">¿Tengo que cambiar todo lo que ya uso?</div>
+          <div class="faq-a">
+            No. ADD Systems se monta encima de lo que ya tienes. Si ya usas WhatsApp, Instagram
+            o Square, simplemente los conectamos al flujo.
+          </div>
+        </article>
+        <article class="faq-item">
+          <div class="faq-q">¿En cuánto tiempo queda listo el sistema?</div>
+          <div class="faq-a">
+            Dependiendo del plan, el sistema puede estar funcionando en pocos días hábiles
+            una vez que tengamos tu información (horarios, servicios, precios, etc.).
+          </div>
+        </article>
+        <article class="faq-item">
+          <div class="faq-q">¿Qué pasa si no sé usar nada de esto?</div>
+          <div class="faq-a">
+            Precisamente para eso existe ADD Systems. Te dejamos todo lo más simple posible
+            y con un mini walkthrough para que tú o tu equipo sepan usarlo sin problemas.
+          </div>
+        </article>
+        <article class="faq-item">
+          <div class="faq-q">¿Puedo empezar con un plan y luego subir a otro?</div>
+          <div class="faq-a">
+            Sí. Puedes iniciar con ADD Bookings o ADD Orders y luego migrar a ADD Automations
+            cuando tu negocio esté listo para automatizar más procesos.
+          </div>
+        </article>
+      </div>
+    </section>
 
     <!-- CTA FINAL -->
     <section class="cta-final">
@@ -722,43 +1145,70 @@
     // Handler diagnóstico ADD → Netlify Function + Supabase
     var diagForm = document.getElementById("diagnostico-form");
     if (diagForm) {
+      // mensaje de estado debajo del formulario
+      var statusEl = document.createElement("p");
+      statusEl.id = "diag-status";
+      statusEl.style.fontSize = "11px";
+      statusEl.style.marginTop = "6px";
+      statusEl.style.color = "#9ca3af";
+      statusEl.textContent = "";
+      diagForm.appendChild(statusEl);
+
       diagForm.addEventListener("submit", async function (e) {
         e.preventDefault();
 
         var submitBtn = diagForm.querySelector('button[type="submit"]');
         var originalText = submitBtn ? submitBtn.textContent : null;
+
         if (submitBtn) {
           submitBtn.disabled = true;
           submitBtn.textContent = "Enviando...";
+        }
+        if (statusEl) {
+          statusEl.style.color = "#9ca3af";
+          statusEl.textContent = "Procesando diagnóstico...";
         }
 
         var formData = new FormData(diagForm);
         var data = Object.fromEntries(formData.entries());
 
         try {
-          const res = await fetch('/.netlify/functions/diagnostico', {
-            method: 'POST',
+          const res = await fetch("/.netlify/functions/diagnostico", {
+            method: "POST",
             headers: {
-              'Content-Type': 'application/json'
+              "Content-Type": "application/json",
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
           });
 
           if (!res.ok) {
-            console.error('Error respuesta', await res.text());
-            alert('Hubo un problema al enviar el diagnóstico. Intenta de nuevo.');
+            console.error("Error respuesta", await res.text());
+            if (statusEl) {
+              statusEl.style.color = "#f97373";
+              statusEl.textContent =
+                "Hubo un problema al enviar el diagnóstico. Intenta de nuevo.";
+            }
             return;
           }
 
-          alert('Gracias. Hemos recibido tu diagnóstico ADD. Te contactaremos pronto.');
+          if (statusEl) {
+            statusEl.style.color = "#22c55e";
+            statusEl.textContent =
+              "Diagnóstico enviado correctamente. Te contactaremos pronto por WhatsApp.";
+          }
           diagForm.reset();
         } catch (err) {
           console.error(err);
-          alert('Error de conexión. Intenta más tarde.');
+          if (statusEl) {
+            statusEl.style.color = "#f97373";
+            statusEl.textContent =
+              "Error de conexión con el servidor. Intenta más tarde.";
+          }
         } finally {
           if (submitBtn) {
             submitBtn.disabled = false;
-            submitBtn.textContent = originalText || "Enviar diagnóstico ADD";
+            submitBtn.textContent =
+              originalText || "Enviar diagnóstico ADD";
           }
         }
       });
