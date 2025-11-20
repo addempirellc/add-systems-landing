@@ -971,6 +971,78 @@
       </div>
     </section>
 
+    <!-- DIAGNÓSTICO ADD -->
+    <section id="diagnostico">
+      <div class="section-label">Diagnóstico ADD</div>
+      <h2 class="section-title">Solicita un diagnóstico rápido de tu negocio.</h2>
+      <p class="section-subtitle">
+        Cuéntanos cómo atiendes hoy a tus clientes y te diremos si ADD Bookings, ADD Orders
+        o ADD Automations tiene sentido para ti, sin compromiso.
+      </p>
+
+      <form id="diagnostico-form" class="pain-grid">
+        <div class="pain-card">
+          <div class="pain-title">Datos del negocio</div>
+          <div style="display:flex; flex-direction:column; gap:8px; font-size:12px; color:var(--text-soft);">
+            <label>
+              Nombre del negocio<br />
+              <input name="nombre" required
+                style="width:100%; margin-top:3px; padding:6px 8px; border-radius:8px; border:1px solid var(--border-subtle); background:#020617; color:var(--text);" />
+            </label>
+            <label>
+              Tipo de negocio (barbería, restaurante, taller, etc.)<br />
+              <input name="tipo" required
+                style="width:100%; margin-top:3px; padding:6px 8px; border-radius:8px; border:1px solid var(--border-subtle); background:#020617; color:var(--text);" />
+            </label>
+            <label>
+              Ciudad / zona<br />
+              <input name="ciudad"
+                style="width:100%; margin-top:3px; padding:6px 8px; border-radius:8px; border:1px solid var(--border-subtle); background:#020617; color:var(--text);" />
+            </label>
+            <label>
+              WhatsApp de contacto<br />
+              <input name="whatsapp" required
+                placeholder="+1 ..."
+                style="width:100%; margin-top:3px; padding:6px 8px; border-radius:8px; border:1px solid var(--border-subtle); background:#020617; color:var(--text);" />
+            </label>
+          </div>
+        </div>
+
+        <div class="pain-card">
+          <div class="pain-title">Cómo trabajas hoy</div>
+          <div style="display:flex; flex-direction:column; gap:8px; font-size:12px; color:var(--text-soft);">
+            <label>
+              ¿Cómo tomas citas / pedidos actualmente?<br />
+              <textarea name="como" rows="3" required
+                style="width:100%; margin-top:3px; padding:6px 8px; border-radius:8px; border:1px solid var(--border-subtle); background:#020617; color:var(--text);"></textarea>
+            </label>
+            <label>
+              ¿Cuál es tu mayor problema hoy? (no-shows, pedidos confundidos, pagos tardíos, etc.)<br />
+              <textarea name="dolor" rows="3" required
+                style="width:100%; margin-top:3px; padding:6px 8px; border-radius:8px; border:1px solid var(--border-subtle); background:#020617; color:var(--text);"></textarea>
+            </label>
+            <label>
+              Plan que más te interesa ahora mismo<br />
+              <select name="plan"
+                style="width:100%; margin-top:3px; padding:6px 8px; border-radius:8px; border:1px solid var(--border-subtle); background:#020617; color:var(--text);">
+                <option value="">Aún no lo sé</option>
+                <option value="bookings">ADD Bookings</option>
+                <option value="orders">ADD Orders</option>
+                <option value="automations">ADD Automations</option>
+              </select>
+            </label>
+
+            <button type="submit" class="btn btn-primary" style="margin-top:8px; align-self:flex-start;">
+              Enviar diagnóstico ADD
+            </button>
+            <small style="font-size:11px; color:var(--text-soft); margin-top:4px;">
+              Usaremos esta información solo para revisar tu caso y contactarte sobre ADD Systems.
+            </small>
+          </div>
+        </div>
+      </form>
+    </section>
+
     <!-- DEMO / TIDYCAL HOOK -->
     <section id="demo">
       <div class="section-label">Próximo paso</div>
@@ -1061,14 +1133,32 @@
       });
     });
 
-    // Hook para Tidycal / Supabase / etc.
-    // Aquí luego conectas tus integraciones reales.
-    document.getElementById("btn-agendar").addEventListener("click", function () {
-      // Ejemplo: abrir link de Tidycal en nueva pestaña
-      // Reemplaza esta URL con tu enlace real de Tidycal/Calendly.
-      var tidycalUrl = "https://tidycal.com/tu-enlace-de-demo";
-      window.open(tidycalUrl, "_blank");
-    });
+    // Hook para Tidycal / etc.
+    var btnAgendar = document.getElementById("btn-agendar");
+    if (btnAgendar) {
+      btnAgendar.addEventListener("click", function () {
+        var tidycalUrl = "https://tidycal.com/tu-enlace-de-demo"; // cambia esto por tu link real
+        window.open(tidycalUrl, "_blank");
+      });
+    }
+
+    // Handler diagnóstico ADD (luego lo conectas a Supabase / Netlify Functions)
+    var diagForm = document.getElementById("diagnostico-form");
+    if (diagForm) {
+      diagForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var formData = new FormData(diagForm);
+        var data = Object.fromEntries(formData.entries());
+        console.log("Diagnóstico enviado:", data);
+
+        // Aquí luego:
+        // fetch('/.netlify/functions/diagnostico', { method:'POST', body: JSON.stringify(data) })
+        //   .then(...)
+
+        alert("Gracias. Hemos recibido tu diagnóstico ADD. Te contactaremos pronto.");
+        diagForm.reset();
+      });
+    }
   </script>
 </body>
 </html>
