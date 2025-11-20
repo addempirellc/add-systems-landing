@@ -577,19 +577,12 @@
       box-shadow:0 26px 60px rgba(248,181,26,0.7);
     }
 
-    .cta-note {
-      font-size:11px;
-      color:var(--text-soft);
-      text-align:right;
-    }
-
     @media (max-width:840px){
       .demo-header{flex-direction:column; align-items:flex-start;}
       .demo-header-right{justify-content:flex-start;}
       .demo-grid{grid-template-columns:minmax(0,1fr);}
       .cta-final{flex-direction:column; align-items:flex-start;}
       .cta-right{align-items:flex-start;}
-      .cta-note{text-align:left;}
     }
   </style>
 </head>
@@ -649,7 +642,7 @@
             genera el resumen y crea un mensaje listo para enviar por WhatsApp.
           </p>
 
-          <form id="demo-booking-form" class="field-group">
+          <form id="demo-booking-form" class="field-group" novalidate>
             <label>
               Nombre del cliente
               <input name="nombre" required placeholder="Ej: Kevin Torres" />
@@ -657,7 +650,7 @@
 
             <label>
               Estilo de corte
-              <select name="servicio" id="servicio-select">
+              <select name="servicio" id="servicio-select" required>
                 <option value="classic">Corte clásico ejecutivo</option>
                 <option value="midfade">Mid Fade + Textured Crop</option>
                 <option value="highfade">High Fade + Pompadour</option>
@@ -702,7 +695,7 @@
               </label>
               <label>
                 WhatsApp de contacto
-                <input name="whatsapp" placeholder="+1 ..." />
+                <input name="whatsapp" placeholder="+1 ..." required />
               </label>
             </div>
 
@@ -714,7 +707,7 @@
             <div class="field-inline">
               <label>
                 Método de pago preferido (demo)
-                <select name="pago" id="pago-select">
+                <select name="pago" id="pago-select" required>
                   <option value="tarjeta">Tarjeta / pago online</option>
                   <option value="cashapp">Cash App / Zelle</option>
                   <option value="efectivo">Pago en efectivo en la barbería</option>
@@ -730,8 +723,9 @@
               </label>
             </div>
 
+            <!-- ÚNICO BOTÓN: genera reserva + simula pago -->
             <button type="submit" class="btn btn-primary" style="align-self:flex-start; margin-top:6px;">
-              Generar reserva demo
+              Confirmar reserva demo + pago
             </button>
             <p id="demo-status" class="status"></p>
           </form>
@@ -795,11 +789,6 @@
                 <div class="payment-tag">Efectivo</div>
               </div>
             </div>
-
-            <button type="button" class="btn btn-primary" style="margin-top:10px; width:100%; justify-content:center;" id="btn-pago-demo">
-              Simular “Pagar depósito ahora”
-            </button>
-            <p id="pago-status" class="status"></p>
           </article>
 
           <article class="card">
@@ -837,7 +826,7 @@ Cliente: (aquí verás el mensaje listo para enviar por WhatsApp cuando generes 
           </ul>
         </div>
         <div class="cta-right">
-          <div class="cta-price-tag">Desde $199 setup · Sin compromiso inicial</div>
+          <div class="cta-price-tag">Desde $199 setup + mensualidad</div>
           <a
             href="https://tidycal.com/tu-enlace-de-demo?notes=Interesado%20en%20ADD%20Bookings%20(barber%C3%ADa)"
             target="_blank"
@@ -846,7 +835,6 @@ Cliente: (aquí verás el mensaje listo para enviar por WhatsApp cuando generes 
           >
             Quiero esto en mi negocio
           </a>
-          <div class="cta-note">Agenda una demo corta. Si no ves potencial real para tu barbería, no seguimos.</div>
         </div>
       </div>
     </section>
@@ -919,12 +907,10 @@ Cliente: (aquí verás el mensaje listo para enviar por WhatsApp cuando generes 
     var summaryRest = document.getElementById("summary-rest");
     var depositText = document.getElementById("deposit-text");
     var summaryPayment = document.getElementById("summary-payment");
-    var pagoStatus = document.getElementById("pago-status");
-    var btnPagoDemo = document.getElementById("btn-pago-demo");
 
     var fechaInput = document.getElementById("fecha-input");
 
-    // indicador de pago confirmado
+    // indicador de pago confirmado (Paso 3)
     var pagoConfirmado = false;
 
     // --------- INICIALIZAR FECHA (bloquear pasadas) ----------
@@ -976,14 +962,12 @@ Cliente: (aquí verás el mensaje listo para enviar por WhatsApp cuando generes 
 
       var step3Complete = step2Complete && pagoConfirmado;
 
-      // reset
       [1,2,3].forEach(function(n){
         setStepState(n, "inactive");
       });
 
       var activeSet = false;
 
-      // step 1
       if (step1Complete) {
         setStepState(1, "completed");
       } else {
@@ -991,7 +975,6 @@ Cliente: (aquí verás el mensaje listo para enviar por WhatsApp cuando generes 
         activeSet = true;
       }
 
-      // step 2
       if (step2Complete) {
         setStepState(2, "completed");
       } else if (!activeSet && step1Complete) {
@@ -999,7 +982,6 @@ Cliente: (aquí verás el mensaje listo para enviar por WhatsApp cuando generes 
         activeSet = true;
       }
 
-      // step 3
       if (step3Complete) {
         setStepState(3, "completed");
       } else if (!activeSet && step2Complete) {
@@ -1010,14 +992,13 @@ Cliente: (aquí verás el mensaje listo para enviar por WhatsApp cuando generes 
 
     if (form) {
       form.addEventListener("input", function () {
-        // si tocan cualquier campo, el pago deja de estar confirmado
         pagoConfirmado = false;
-        pagoStatus.textContent = "";
+        statusEl.textContent = "";
         updateStepsFromForm();
       });
       form.addEventListener("change", function () {
         pagoConfirmado = false;
-        pagoStatus.textContent = "";
+        statusEl.textContent = "";
         updateStepsFromForm();
       });
     }
@@ -1032,7 +1013,6 @@ Cliente: (aquí verás el mensaje listo para enviar por WhatsApp cuando generes 
       summaryDuration.textContent = data.duracion + " min";
       summaryPrice.textContent = "$" + data.precio;
 
-      // chips
       chipsRow.innerHTML = "";
       (data.chips || []).forEach(function(ch, idx) {
         var div = document.createElement("div");
@@ -1078,50 +1058,25 @@ Cliente: (aquí verás el mensaje listo para enviar por WhatsApp cuando generes 
     }
 
     if (servicioSelect) {
-      servicioSelect.addEventListener("change", function () {
-        actualizarServicio();
-      });
+      servicioSelect.addEventListener("change", actualizarServicio);
     }
-
     if (depositoSelect) {
-      depositoSelect.addEventListener("change", function () {
-        actualizarDepositoYRestante();
-      });
+      depositoSelect.addEventListener("change", actualizarDepositoYRestante);
     }
-
     if (pagoSelect) {
-      pagoSelect.addEventListener("change", function () {
-        actualizarPago();
-      });
-    }
-
-    if (btnPagoDemo && pagoStatus) {
-      btnPagoDemo.addEventListener("click", function () {
-        // solo tiene sentido simular pago si al menos fecha/hora están completos
-        var data = Object.fromEntries(new FormData(form).entries());
-        var okBasico =
-          (data.nombre || "").trim() !== "" &&
-          (data.servicio || "").trim() !== "" &&
-          (data.fecha || "").trim() !== "" &&
-          (data.hora || "").trim() !== "";
-
-        if (!okBasico) {
-          pagoStatus.style.color = "#f97373";
-          pagoStatus.textContent = "Completa servicio, nombre, fecha y hora antes de simular el pago.";
-          pagoConfirmado = false;
-        } else {
-          pagoStatus.style.color = "#22c55e";
-          pagoStatus.textContent =
-            "Pago de depósito simulado correctamente (solo modo demo). Aquí se conectaría tu pasarela real.";
-          pagoConfirmado = true;
-        }
-        updateStepsFromForm();
-      });
+      pagoSelect.addEventListener("change", actualizarPago);
     }
 
     if (form && statusEl && preview) {
       form.addEventListener("submit", function(e){
         e.preventDefault();
+
+        // Validación HTML5
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
         var data = Object.fromEntries(new FormData(form).entries());
 
         var key = data.servicio || "classic";
@@ -1141,11 +1096,14 @@ Cliente: (aquí verás el mensaje listo para enviar por WhatsApp cuando generes 
         actualizarServicio();
         actualizarPago();
         actualizarDepositoYRestante();
+
+        // marcamos pago confirmado (paso 3)
+        pagoConfirmado = true;
         updateStepsFromForm();
 
         statusEl.style.color = "#22c55e";
         statusEl.textContent =
-          "Reserva demo generada. Mira el resumen y el mensaje de WhatsApp de ejemplo.";
+          "Reserva demo generada y pago de depósito simulado. Mira el resumen y el mensaje de WhatsApp de ejemplo.";
 
         var pagoTxt = summaryPayment.textContent || "";
         var nombre = data.nombre || "cliente";
