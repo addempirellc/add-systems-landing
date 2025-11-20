@@ -174,10 +174,12 @@
       gap:8px;
       font-size:11px;
       color:var(--text-soft);
-      padding:5px 9px;
+      padding:5px 14px;
       border-radius:999px;
       border:1px solid rgba(31,41,55,0.8);
       background:rgba(15,23,42,0.85);
+      cursor:pointer;
+      transition:background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
     }
 
     .step-badge {
@@ -190,11 +192,14 @@
       font-weight:600;
       background:#020617;
       color:var(--text-soft);
+      transition:background var(--transition-fast), color var(--transition-fast);
     }
 
     .step.active {
       border-color:var(--accent);
-      color:var(--accent);
+      color:#050816;
+      background:radial-gradient(circle at top, rgba(248,181,26,0.16), #020617);
+      transform:translateY(-1px);
     }
 
     .step.active .step-badge {
@@ -247,8 +252,8 @@
     .field-group input,
     .field-group select,
     .field-group textarea {
-      padding:6px 8px;
-      border-radius:8px;
+      padding:6px 10px;
+      border-radius:10px;
       border:1px solid var(--border-subtle);
       background:#020617;
       color:var(--text);
@@ -264,7 +269,42 @@
     }
 
     .field-inline > label {
-      flex:1 1 120px;
+      flex:1 1 140px;
+    }
+
+    /* WRAPPERS FECHA / HORA TIPO APP */
+    .input-shell {
+      position:relative;
+      display:flex;
+      align-items:center;
+      background:linear-gradient(135deg, rgba(15,23,42,0.95), #020617);
+      border-radius:12px;
+      border:1px solid var(--border-subtle);
+      padding:2px 10px;
+    }
+
+    .input-shell-icon {
+      font-size:13px;
+      margin-right:6px;
+      color:var(--text-soft);
+    }
+
+    .input-shell input {
+      border:none;
+      background:transparent;
+      padding:6px 2px;
+      width:100%;
+      color:var(--text);
+      font-size:12px;
+      outline:none;
+    }
+
+    /* intentamos mejorar indicador nativo donde se pueda */
+    .input-shell input[type="date"]::-webkit-calendar-picker-indicator,
+    .input-shell input[type="time"]::-webkit-calendar-picker-indicator {
+      filter: invert(0.8);
+      opacity:0.8;
+      cursor:pointer;
     }
 
     .service-meta {
@@ -442,16 +482,16 @@
         Desde tu lado: todo entra ordenado, con depósito y sin mensajes sueltos en WhatsApp.
       </p>
 
-      <div class="steps">
-        <div class="step active">
+      <div class="steps" id="steps">
+        <div class="step active" data-step="1">
           <div class="step-badge">1</div>
           Servicio y estilo
         </div>
-        <div class="step">
+        <div class="step" data-step="2">
           <div class="step-badge">2</div>
           Fecha y horario
         </div>
-        <div class="step">
+        <div class="step" data-step="3">
           <div class="step-badge">3</div>
           Pago y confirmación
         </div>
@@ -498,11 +538,17 @@
             <div class="field-inline">
               <label>
                 Día
-                <input type="date" name="fecha" required />
+                <div class="input-shell">
+                  <span class="input-shell-icon">📅</span>
+                  <input type="date" name="fecha" id="fecha-input" required />
+                </div>
               </label>
               <label>
                 Hora
-                <input type="time" name="hora" required />
+                <div class="input-shell">
+                  <span class="input-shell-icon">🕒</span>
+                  <input type="time" name="hora" id="hora-input" required />
+                </div>
               </label>
             </div>
 
@@ -524,9 +570,9 @@
 
             <div class="field-inline">
               <label>
-                Método de pago (demo)
+                Método de pago preferido (demo)
                 <select name="pago" id="pago-select">
-                  <option value="tarjeta">Tarjeta (Stripe / Apple Pay)</option>
+                  <option value="tarjeta">Tarjeta / pago online</option>
                   <option value="cashapp">Cash App / Zelle</option>
                   <option value="efectivo">Pago en efectivo en la barbería</option>
                 </select>
@@ -554,7 +600,7 @@
             <h2 class="card-title">Resumen y pago (modo demo)</h2>
             <p class="card-sub">
               Así verías tú la cita en tu panel: servicio, horario, depósito y saldo pendiente.
-              Nada de “bro, acuérdame la hora” en el chat.
+              En la implementación real se conecta al proveedor de pago que ya uses.
             </p>
 
             <div class="summary-row">
@@ -595,14 +641,15 @@
             <div class="payment-methods">
               Método de pago seleccionado:
               <div class="summary-row summary-row-muted">
-                <span id="summary-payment">Tarjeta (Stripe / Apple Pay)</span>
+                <span id="summary-payment">Tarjeta / pago online</span>
                 <span style="font-size:10px;">Vista demo</span>
               </div>
               <div class="payment-tags">
-                <div class="payment-tag">Stripe</div>
-                <div class="payment-tag">Apple Pay</div>
+                <div class="payment-tag">Tarjeta</div>
+                <div class="payment-tag">Online</div>
                 <div class="payment-tag">Cash App</div>
                 <div class="payment-tag">Zelle</div>
+                <div class="payment-tag">Efectivo</div>
               </div>
             </div>
 
@@ -647,7 +694,7 @@ Cliente: (aquí verás el mensaje listo para enviar por WhatsApp cuando generes 
   </main>
 
   <script>
-    // Datos de servicios: nombre, duración (min), precio USD, descripción/resumen
+    // --------- DATOS DE SERVICIOS ----------
     var serviciosData = {
       classic: {
         nombre: "Corte clásico ejecutivo",
@@ -716,6 +763,32 @@ Cliente: (aquí verás el mensaje listo para enviar por WhatsApp cuando generes 
     var pagoStatus = document.getElementById("pago-status");
     var btnPagoDemo = document.getElementById("btn-pago-demo");
 
+    var fechaInput = document.getElementById("fecha-input");
+
+    // --------- INICIALIZAR FECHA (bloquear pasadas) ----------
+    if (fechaInput) {
+      var hoy = new Date();
+      var yyyy = hoy.getFullYear();
+      var mm = String(hoy.getMonth() + 1).padStart(2, "0");
+      var dd = String(hoy.getDate()).padStart(2, "0");
+      var hoyStr = yyyy + "-" + mm + "-" + dd;
+      fechaInput.min = hoyStr;
+      fechaInput.value = hoyStr;
+    }
+
+    // --------- MENU DE PASOS DINÁMICO POR CURSOR ----------
+    var stepsContainer = document.getElementById("steps");
+    if (stepsContainer) {
+      var steps = stepsContainer.querySelectorAll(".step");
+      steps.forEach(function(step) {
+        step.addEventListener("mouseenter", function() {
+          steps.forEach(function(s) { s.classList.remove("active"); });
+          step.classList.add("active");
+        });
+      });
+    }
+
+    // --------- LÓGICA SERVICIOS / PAGO ----------
     function actualizarServicio() {
       var key = servicioSelect.value;
       var data = serviciosData[key] || serviciosData["classic"];
@@ -764,35 +837,29 @@ Cliente: (aquí verás el mensaje listo para enviar por WhatsApp cuando generes 
 
     function actualizarPago() {
       var value = pagoSelect.value;
-      var text = "Tarjeta (Stripe / Apple Pay)";
+      var text = "Tarjeta / pago online";
       if (value === "cashapp") text = "Cash App / Zelle";
       if (value === "efectivo") text = "Pago en efectivo en la barbería";
       summaryPayment.textContent = text;
     }
 
     if (servicioSelect) {
-      servicioSelect.addEventListener("change", function () {
-        actualizarServicio();
-      });
+      servicioSelect.addEventListener("change", actualizarServicio);
     }
 
     if (depositoSelect) {
-      depositoSelect.addEventListener("change", function () {
-        actualizarDepositoYRestante();
-      });
+      depositoSelect.addEventListener("change", actualizarDepositoYRestante);
     }
 
     if (pagoSelect) {
-      pagoSelect.addEventListener("change", function () {
-        actualizarPago();
-      });
+      pagoSelect.addEventListener("change", actualizarPago);
     }
 
     if (btnPagoDemo && pagoStatus) {
       btnPagoDemo.addEventListener("click", function () {
         pagoStatus.style.color = "#22c55e";
         pagoStatus.textContent =
-          "Pago de depósito simulado correctamente (solo modo demo). En producción aquí se conectaría Stripe / Cash App / etc.";
+          "Pago de depósito simulado correctamente (solo modo demo). En producción aquí se conecta tu pasarela real.";
       });
     }
 
@@ -824,9 +891,9 @@ Cliente: (aquí verás el mensaje listo para enviar por WhatsApp cuando generes 
         statusEl.textContent =
           "Reserva demo generada. Mira el resumen y el mensaje de WhatsApp de ejemplo.";
 
-        // Mensaje WhatsApp de ejemplo
-        var nombre = data.nombre || "cliente";
         var pagoTxt = summaryPayment.textContent || "";
+        var nombre = data.nombre || "cliente";
+
         var text =
           "✅ *Reserva confirmada – BARBERÍA DEMO*\n\n" +
           "Hola " + nombre + ", tu cita ha quedado agendada.\n\n" +
@@ -839,8 +906,7 @@ Cliente: (aquí verás el mensaje listo para enviar por WhatsApp cuando generes 
             ? data.barbero
             : "Asignado según disponibilidad") +
           "\n\n" +
-          "💵 Total: $" + sData.precio.toFixed(2) +
-          "\n" +
+          "💵 Total: $" + sData.precio.toFixed(2) + "\n" +
           (porcentaje > 0
             ? "🔐 Depósito (" + porcentaje + "%): $" + deposito.toFixed(2) + " (" + pagoTxt + ")\n" +
               "💳 Resto al llegar: $" + resto.toFixed(2) + "\n"
