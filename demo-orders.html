@@ -11,7 +11,6 @@
       --bg-alt: #0b0b12;
       --card: #11111a;
       --accent: #fbbf24;
-      --accent-soft: rgba(251,191,36,0.15);
       --accent-strong: #f59e0b;
       --text: #f9fafb;
       --text-soft: #9ca3af;
@@ -57,25 +56,26 @@
       gap:10px;
     }
 
-    .logo-mark {
-      width:40px; height:40px;
-      border-radius:20px;
-      background: radial-gradient(circle at 30% 0%, #facc15, #38bdf8 45%, #020617 100%);
-      display:flex; align-items:center; justify-content:center;
-      font-weight:800; font-size:20px;
+    .logo-img {
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      object-fit:cover;
       box-shadow:var(--shadow-soft);
+      flex-shrink:0;
     }
 
     .demo-logo-text-title {
       font-size:15px;
-      font-weight:650;
+      font-weight:700;
+      letter-spacing:-0.02em;
     }
 
     .demo-logo-text-sub {
       font-size:11px;
       color:var(--text-soft);
       text-transform:uppercase;
-      letter-spacing:.14em;
+      letter-spacing:.16em;
     }
 
     .demo-header-right {
@@ -93,14 +93,13 @@
       border:1px solid rgba(249,250,251,0.18);
       color:var(--text-soft);
       white-space:nowrap;
-      background:rgba(15,23,42,0.85);
     }
 
     .btn {
       border-radius: var(--radius-pill);
       border: none;
       font-size: 13px;
-      padding: 9px 18px;
+      padding: 8px 16px;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
@@ -108,18 +107,18 @@
       font-weight: 500;
       white-space: nowrap;
       text-decoration:none;
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast), opacity var(--transition-fast);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
     }
 
     .btn-primary {
       background: linear-gradient(135deg, var(--accent), var(--accent-strong));
       color:#020617;
-      box-shadow:0 14px 30px rgba(248,181,26,0.45);
+      box-shadow:0 14px 30px rgba(248,181,26,0.4);
     }
 
     .btn-primary:hover {
       transform: translateY(-1px);
-      box-shadow:0 20px 40px rgba(248,181,26,0.55);
+      box-shadow:0 20px 40px rgba(248,181,26,0.45);
     }
 
     .btn-outline {
@@ -151,7 +150,7 @@
     }
 
     .demo-title strong {
-      background: linear-gradient(to right, #facc15, #38bdf8);
+      background: linear-gradient(to right, #facc15, #fb923c);
       -webkit-background-clip:text;
       background-clip:text;
       color:transparent;
@@ -163,17 +162,12 @@
       max-width:620px;
     }
 
-    .demo-sub strong {
-      color:var(--accent);
-      font-weight:600;
-    }
-
     /* PASOS */
     .steps {
       display:flex;
       gap:10px;
-      margin-top:16px;
-      margin-bottom:8px;
+      margin-top:14px;
+      margin-bottom:6px;
       flex-wrap:wrap;
     }
 
@@ -183,21 +177,21 @@
       gap:8px;
       font-size:12px;
       color:var(--text-soft);
-      padding:6px 11px;
+      padding:6px 12px;
       border-radius:999px;
-      border:1px solid rgba(31,41,55,0.9);
-      background:rgba(15,23,42,0.85);
-      transition: border-color var(--transition-fast), background var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+      border:1px solid rgba(31,41,55,0.8);
+      background:rgba(15,23,42,0.9);
+      transition:background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
     }
 
     .step-badge {
-      width:20px; height:20px;
+      width:18px; height:18px;
       border-radius:999px;
       display:flex;
       align-items:center;
       justify-content:center;
-      font-size:12px;
-      font-weight:650;
+      font-size:11px;
+      font-weight:600;
       background:#020617;
       color:var(--text-soft);
     }
@@ -205,7 +199,7 @@
     .step.active {
       border-color:var(--accent);
       color:var(--accent);
-      box-shadow:0 0 0 1px rgba(248,181,26,0.25);
+      transform:translateY(-1px);
     }
 
     .step.active .step-badge {
@@ -213,17 +207,15 @@
       color:#020617;
     }
 
-    .step.done {
+    .step.completed {
       border-color:var(--success);
-      background:rgba(22,163,74,0.18);
       color:var(--success);
-      box-shadow:0 0 0 1px rgba(34,197,94,0.35);
-      transform:translateY(-1px);
     }
 
-    .step.done .step-badge {
+    .step.completed .step-badge {
       background:var(--success);
       color:#020617;
+      content:"✔";
     }
 
     /* LAYOUT PRINCIPAL */
@@ -245,7 +237,7 @@
     .card-title {
       font-size:15px;
       font-weight:600;
-      margin-bottom:8px;
+      margin-bottom:6px;
     }
 
     .card-sub {
@@ -257,38 +249,36 @@
     .field-group {
       display:flex;
       flex-direction:column;
-      gap:9px;
-      font-size:12px;
+      gap:8px;
+      font-size:13px;
       color:var(--text-soft);
     }
 
     .field-group label {
       display:flex;
       flex-direction:column;
-      gap:4px;
+      gap:3px;
     }
 
     .field-group input,
     .field-group select,
     .field-group textarea {
       padding:7px 9px;
-      border-radius:9px;
+      border-radius:8px;
       border:1px solid var(--border-subtle);
       background:#020617;
       color:var(--text);
-      font-size:13px;
+      font-size:12px;
       resize:vertical;
-      min-height:34px;
-      outline:none;
-      transition:border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+      min-height:32px;
     }
 
     .field-group input:focus,
     .field-group select:focus,
     .field-group textarea:focus {
+      outline:none;
       border-color:var(--accent);
-      box-shadow:0 0 0 1px rgba(248,181,26,0.35);
-      background:#020617;
+      box-shadow:0 0 0 1px rgba(251,191,36,0.35);
     }
 
     .field-inline {
@@ -307,18 +297,10 @@
       color:var(--text-soft);
     }
 
-    .status.success {
-      color:var(--success);
-    }
-
-    .status.error {
-      color:var(--danger);
-    }
-
     .product-meta {
       font-size:11px;
       color:var(--text-soft);
-      margin-top:3px;
+      margin-top:4px;
     }
 
     .product-meta strong {
@@ -330,7 +312,7 @@
       display:flex;
       flex-wrap:wrap;
       gap:6px;
-      margin-top:5px;
+      margin-top:4px;
       font-size:10px;
     }
 
@@ -349,7 +331,7 @@
     .extras-group {
       display:grid;
       grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:4px 10px;
+      gap:6px 12px;
       margin-top:4px;
       font-size:11px;
     }
@@ -445,16 +427,13 @@
       background:var(--accent);
     }
 
-    /* CTA FINAL ANUNCIO */
+    /* CTA FINAL */
     .cta-final {
       margin-top:26px;
       padding:18px 18px 16px;
-      border-radius:26px;
-      border:1px solid rgba(56,189,248,0.65);
-      background:
-        radial-gradient(circle at top left, rgba(56,189,248,0.16), transparent 55%),
-        radial-gradient(circle at top right, rgba(251,191,36,0.18), transparent 55%),
-        #020617;
+      border-radius:var(--radius-xl);
+      border:1px solid rgba(248,181,26,0.4);
+      background:radial-gradient(circle at top, rgba(251,191,36,0.22), #020617 70%);
       display:flex;
       flex-wrap:wrap;
       align-items:center;
@@ -462,69 +441,28 @@
       gap:14px;
       font-size:13px;
       color:var(--text-soft);
-      box-shadow:0 22px 55px rgba(0,0,0,0.75);
-      position:relative;
-      overflow:hidden;
+      box-shadow:0 22px 50px rgba(0,0,0,0.6);
     }
 
-    .cta-final::before {
-      content:"CENTRO DE CONTROL DE PEDIDOS";
-      position:absolute;
-      top:10px;
-      right:-40px;
-      font-size:10px;
-      letter-spacing:.22em;
-      text-transform:uppercase;
-      color:rgba(148,163,184,0.25);
-      transform:rotate(-12deg);
-    }
-
-    .cta-copy-strong {
-      font-size:15px;
-      font-weight:650;
+    .cta-final strong {
       color:var(--text);
-      margin-bottom:4px;
+    }
+
+    .cta-eyebrow {
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      color:rgba(15,23,42,0.9);
+      background:rgba(249,250,251,0.9);
+      padding:3px 8px;
+      border-radius:999px;
+      display:inline-block;
+      margin-bottom:6px;
     }
 
     .cta-highlight {
-      color:var(--accent);
+      color:var(--accent-strong);
       font-weight:600;
-    }
-
-    .cta-mini {
-      font-size:11px;
-      color:var(--text-soft);
-      margin-top:3px;
-    }
-
-    .cta-pill {
-      font-size:11px;
-      padding:4px 9px;
-      border-radius:999px;
-      border:1px solid rgba(56,189,248,0.6);
-      color:#bae6fd;
-      background:rgba(15,23,42,0.9);
-      margin-top:4px;
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-    }
-
-    .cta-pill-dot {
-      width:7px;
-      height:7px;
-      border-radius:999px;
-      background:#22c55e;
-    }
-
-    .cta-price {
-      font-size:11px;
-      color:var(--text-soft);
-      margin-top:2px;
-    }
-
-    .cta-price strong {
-      color:var(--accent);
     }
 
     @media (max-width:840px){
@@ -540,7 +478,11 @@
     <!-- HEADER DEMO -->
     <header class="demo-header">
       <div class="demo-logo">
-        <div class="logo-mark">A</div>
+        <img
+          src="https://raw.githubusercontent.com/addempirellc/add-systems-landing/refs/heads/main/%F0%9F%A7%8A%20Estilo%20fri%CC%81o%20y%20digital%20(tech%3Afuturista)%20.png"
+          alt="Logo ADD Systems"
+          class="logo-img"
+        />
         <div>
           <div class="demo-logo-text-title">ADD Systems</div>
           <div class="demo-logo-text-sub">Demo ADD Orders – Restaurante</div>
@@ -560,21 +502,21 @@
         Así se vería tu <strong>sistema de pedidos</strong> con ADD Orders.
       </h1>
       <p class="demo-sub">
-        Desde el punto de vista del cliente: elige plato, extras, modalidad y hora. Desde tu lado:
-        recibes un pedido <strong>estructurado y calculado</strong>, listo para cobrar y pasar a cocina
+        Tu propio centro de control de pedidos: el cliente elige plato, extras, modalidad y hora.
+        Tú recibes un pedido estructurado, con total calculado, delivery definido y listo para cobrar
         sin notas de voz ni mensajes rotos.
       </p>
 
       <div class="steps" id="steps">
-        <div class="step active" data-step="1">
+        <div class="step step-1 active">
           <div class="step-badge">1</div>
           Elige el pedido
         </div>
-        <div class="step" data-step="2">
+        <div class="step step-2">
           <div class="step-badge">2</div>
           Datos de entrega / recogida
         </div>
-        <div class="step" data-step="3">
+        <div class="step step-3">
           <div class="step-badge">3</div>
           Pago y confirmación
         </div>
@@ -592,7 +534,7 @@
           <form id="demo-order-form" class="field-group" novalidate>
             <label>
               Nombre del cliente
-              <input name="nombre" required placeholder="Ej: Laura Gómez" />
+              <input name="nombre" id="nombre-input" required placeholder="Ej: Laura Gómez" />
             </label>
 
             <label>
@@ -675,11 +617,11 @@
             <div class="field-inline">
               <label>
                 Hora aproximada
-                <input type="time" name="hora" />
+                <input type="time" name="hora" id="hora-input" required />
               </label>
               <label>
                 WhatsApp de contacto
-                <input name="whatsapp" required placeholder="+1 ..." />
+                <input name="whatsapp" id="whatsapp-input" required placeholder="+1 ..." />
               </label>
             </div>
 
@@ -708,8 +650,13 @@
               </label>
             </div>
 
-            <button type="submit" class="btn btn-primary" style="align-self:flex-start; margin-top:8px;">
-              Generar pedido demo completo
+            <button
+              type="submit"
+              class="btn btn-primary"
+              id="btn-confirmar"
+              style="align-self:flex-start; margin-top:8px;"
+            >
+              Confirmar pedido demo
             </button>
             <p id="demo-status" class="status"></p>
           </form>
@@ -772,6 +719,8 @@
                 <div class="payment-tag">Zelle</div>
               </div>
             </div>
+
+            <p id="pago-status" class="status"></p>
           </article>
 
           <article class="card">
@@ -790,25 +739,17 @@ Cliente: (aquí verás el pedido listo, sin notas de voz ni mensajes rotos, cuan
         </div>
       </div>
 
-      <!-- CTA FINAL ANUNCIO -->
+      <!-- CTA FINAL -->
       <div class="cta-final">
         <div>
-          <div class="cta-copy-strong">
-            ¿Te imaginas todos tus pedidos entrando así de claros cada noche?
-          </div>
-          ADD Orders se convierte en tu <span class="cta-highlight">centro de control de pedidos y entregas</span>:
-          un solo enlace, un solo QR y todos tus canales ordenados (pedido directo, pickup y delivery).
-          <div class="cta-mini">
-            Dejas de depender solo de las apps de delivery, impulsas pedidos directos y mantienes Uber / DoorDash / Grubhub
-            como apoyo, pero bajo tus reglas.
-          </div>
-          <div class="cta-pill">
-            <span class="cta-pill-dot"></span>
-            Menos caos en la cocina · Más margen por pedido · Pedidos listos para cobrar
-          </div>
-          <div class="cta-price">
-            Desde <strong>$399 setup + mensualidad</strong> · Enfocado en restaurantes reales, no en “apps bonitas”.
-          </div>
+          <div class="cta-eyebrow">Centro de control de pedidos</div>
+          <strong>¿Te imaginas todos tus pedidos entrando así de claros cada noche?</strong><br />
+          <span class="cta-highlight">ADD Orders</span> convierte tu menú, tus apps de delivery
+          y tu WhatsApp en un solo sistema: pedidos directos con más margen para ti, botones a
+          Uber / DoorDash / Grubhub si ya los usas y todo entrando a un solo flujo que tu equipo
+          sí puede manejar.
+          <br /><br />
+          Sin inventos raros, sin mil links distintos: un solo enlace, un solo QR, todo bajo tus reglas.
         </div>
         <a
           href="https://tidycal.com/tu-enlace-de-demo?notes=Interesado%20en%20ADD%20Orders%20(restaurante)"
@@ -816,7 +757,7 @@ Cliente: (aquí verás el pedido listo, sin notas de voz ni mensajes rotos, cuan
           rel="noopener"
           class="btn btn-primary"
         >
-          Quiero este centro de control en mi negocio
+          Quiero este sistema en mi restaurante
         </a>
       </div>
     </section>
@@ -877,6 +818,7 @@ Cliente: (aquí verás el pedido listo, sin notas de voz ni mensajes rotos, cuan
     var form = document.getElementById("demo-order-form");
     var statusEl = document.getElementById("demo-status");
     var preview = document.getElementById("whatsapp-preview");
+    var btnConfirmar = document.getElementById("btn-confirmar");
 
     var platoSelect = document.getElementById("plato-select");
     var cantidadInput = document.getElementById("cantidad-input");
@@ -884,6 +826,9 @@ Cliente: (aquí verás el pedido listo, sin notas de voz ni mensajes rotos, cuan
     var zonaSelect = document.getElementById("zona-select");
     var pagoSelect = document.getElementById("pago-select");
     var propinaSelect = document.getElementById("propina-select");
+    var nombreInput = document.getElementById("nombre-input");
+    var whatsappInput = document.getElementById("whatsapp-input");
+    var horaInput = document.getElementById("hora-input");
 
     var productMetaEl = document.getElementById("product-meta");
     var chipsRow = document.querySelector(".chip-row");
@@ -897,9 +842,11 @@ Cliente: (aquí verás el pedido listo, sin notas de voz ni mensajes rotos, cuan
     var summaryTotal = document.getElementById("summary-total");
     var summaryPayment = document.getElementById("summary-payment");
     var deliveryText = document.getElementById("delivery-text");
+    var pagoStatus = document.getElementById("pago-status");
 
-    var stepsEls = document.querySelectorAll(".step");
-    var step3Completed = false;
+    var step1El = document.querySelector(".step-1");
+    var step2El = document.querySelector(".step-2");
+    var step3El = document.querySelector(".step-3");
 
     function getSelectedExtras() {
       var extras = [];
@@ -1006,127 +953,85 @@ Cliente: (aquí verás el pedido listo, sin notas de voz ni mensajes rotos, cuan
       if (pagoValue === "contra") pagoText = "Pago en efectivo al recibir";
       summaryPayment.textContent = pagoText;
 
-      actualizarSteps();
+      validarSteps();
     }
 
-    function calcularEstadosSteps() {
-      var data = new FormData(form);
-      var nombre = (data.get("nombre") || "").trim();
-      var plato = data.get("plato") || "";
-      var cantidad = parseInt(data.get("cantidad") || "0", 10);
-
-      var modalidad = data.get("modalidad") || "";
-      var zona = data.get("zona") || "";
-      var hora = (data.get("hora") || "").trim();
-      var whatsapp = (data.get("whatsapp") || "").trim();
-
-      var step1Done = !!(nombre && plato && cantidad >= 1);
-      var step2Done = !!(
-        whatsapp &&
-        modalidad &&
-        hora &&
-        (modalidad !== "delivery" || zona)
-      );
-
-      return {
-        step1Done: step1Done,
-        step2Done: step2Done,
-        step3Done: step3Completed
-      };
+    function stepSetState(stepEl, isCompleted, isActive) {
+      if (!stepEl) return;
+      stepEl.classList.remove("active", "completed");
+      if (isCompleted) stepEl.classList.add("completed");
+      if (isActive) stepEl.classList.add("active");
     }
 
-    function actualizarSteps() {
-      var estados = calcularEstadosSteps();
+    function validarSteps() {
+      var nombreOk = nombreInput.value.trim().length > 1;
+      var cantidad = parseInt(cantidadInput.value || "0", 10);
+      var cantidadOk = !isNaN(cantidad) && cantidad >= 1;
 
-      stepsEls.forEach(function (stepEl) {
-        var n = parseInt(stepEl.getAttribute("data-step"), 10);
-        var badge = stepEl.querySelector(".step-badge");
-        var isDone =
-          (n === 1 && estados.step1Done) ||
-          (n === 2 && estados.step2Done) ||
-          (n === 3 && estados.step3Done);
+      var step1Valid = nombreOk && cantidadOk;
 
-        stepEl.classList.remove("active", "done");
-        if (badge) {
-          badge.textContent = String(n);
-        }
+      var horaOk = horaInput.value.trim() !== "";
+      var whatsappOk = whatsappInput.value.trim().length >= 5;
+      var modalidad = modalidadSelect.value;
+      var isDelivery = modalidad === "delivery";
+      var zonaOk = !isDelivery || (zonaSelect.value && zonaSelect.value !== "");
+      var step2Valid = horaOk && whatsappOk && zonaOk;
 
-        if (isDone) {
-          stepEl.classList.add("done");
-          if (badge) badge.textContent = "✓";
-        }
-      });
+      var hasPreview = preview && preview.textContent.indexOf("Nuevo pedido") !== -1;
+      var step3Valid = hasPreview;
 
-      // Step activo = primer paso no completado (si todos, el 3)
-      var activeStep = 1;
-      if (estados.step1Done && !estados.step2Done) activeStep = 2;
-      if (estados.step1Done && estados.step2Done && !estados.step3Done) activeStep = 3;
-      if (estados.step3Done) activeStep = 3;
+      // Definir activo
+      var active1 = !step1Valid;
+      var active2 = step1Valid && !step2Valid;
+      var active3 = step1Valid && step2Valid;
 
-      stepsEls.forEach(function (stepEl) {
-        var n = parseInt(stepEl.getAttribute("data-step"), 10);
-        if (n === activeStep && !stepEl.classList.contains("done")) {
-          stepEl.classList.add("active");
-        }
-      });
+      stepSetState(step1El, step1Valid, active1);
+      stepSetState(step2El, step2Valid, active2);
+      stepSetState(step3El, step3Valid, active3);
+
+      // Control botón
+      if (btnConfirmar) {
+        btnConfirmar.disabled = !(step1Valid && step2Valid);
+        btnConfirmar.style.opacity = btnConfirmar.disabled ? 0.6 : 1;
+        btnConfirmar.style.cursor = btnConfirmar.disabled ? "not-allowed" : "pointer";
+      }
     }
 
     // Eventos de actualización
-    if (platoSelect) {
-      platoSelect.addEventListener("change", function () {
-        actualizarPlato();
-      });
-    }
-
-    if (cantidadInput) {
-      cantidadInput.addEventListener("input", actualizarResumen);
-    }
-
+    if (platoSelect) platoSelect.addEventListener("change", actualizarPlato);
+    if (cantidadInput) cantidadInput.addEventListener("input", actualizarResumen);
     if (modalidadSelect) {
       modalidadSelect.addEventListener("change", function () {
         actualizarDeliveryVisibilidad();
         actualizarResumen();
       });
     }
+    if (zonaSelect) zonaSelect.addEventListener("change", actualizarResumen);
+    if (pagoSelect) pagoSelect.addEventListener("change", actualizarResumen);
+    if (propinaSelect) propinaSelect.addEventListener("change", actualizarResumen);
 
-    if (zonaSelect) {
-      zonaSelect.addEventListener("change", actualizarResumen);
-    }
-
-    if (pagoSelect) {
-      pagoSelect.addEventListener("change", actualizarResumen);
-    }
-
-    if (propinaSelect) {
-      propinaSelect.addEventListener("change", actualizarResumen);
-    }
-
-    // Extras
-    Object.keys(extrasPrices).forEach(function (key) {
-      var input = form.querySelector('input[name="' + key + '"]');
-      if (input) {
-        input.addEventListener("change", actualizarResumen);
-      }
+    // Inputs que afectan steps
+    [nombreInput, whatsappInput, horaInput].forEach(function (el) {
+      if (el) el.addEventListener("input", validarSteps);
     });
 
-    // Cualquier cambio en el formulario → revisar pasos
-    if (form) {
-      form.addEventListener("input", actualizarSteps);
-      form.addEventListener("change", actualizarSteps);
-    }
+    Object.keys(extrasPrices).forEach(function (key) {
+      var input = form.querySelector('input[name="' + key + '"]');
+      if (input) input.addEventListener("change", actualizarResumen);
+    });
 
-    // Submit → genera mensaje WhatsApp y marca paso 3
+    // Submit → genera mensaje WhatsApp + "simula pago"
     if (form && statusEl && preview) {
       form.addEventListener("submit", function (e) {
         e.preventDefault();
-        var data = Object.fromEntries(new FormData(form).entries());
-
-        // Validaciones mínimas
-        if (!data.nombre || !data.whatsapp) {
-          statusEl.className = "status error";
-          statusEl.textContent = "Completa al menos nombre y WhatsApp para generar el pedido demo.";
+        validarSteps();
+        if (btnConfirmar.disabled) {
+          statusEl.style.color = "#f97373";
+          statusEl.textContent = "Completa primero los datos del pedido y de entrega / WhatsApp.";
           return;
         }
+
+        var data = Object.fromEntries(new FormData(form).entries());
 
         var key = data.plato || "smash";
         var mData = menuData[key] || menuData["smash"];
@@ -1144,12 +1049,15 @@ Cliente: (aquí verás el pedido listo, sin notas de voz ni mensajes rotos, cuan
         var notas = (data.notas || "").trim() || "Sin notas adicionales.";
         var picante = data.picante || "Suave";
 
-        // Recalcular para asegurar coherencia en mensaje
         actualizarResumen();
 
-        statusEl.className = "status success";
+        statusEl.style.color = "#22c55e";
         statusEl.textContent =
-          "Pedido demo generado. Así verías este pedido en tu WhatsApp o panel interno (incluye total y método de pago).";
+          "Pedido demo generado y pago simulado. Así verías el pedido en tu sistema.";
+
+        pagoStatus.style.color = "#22c55e";
+        pagoStatus.textContent =
+          "Pago de pedido simulado correctamente (modo demo). En producción aquí se conecta Stripe / Cash App / etc.";
 
         var pagoTxt = summaryPayment.textContent || "";
         var text =
@@ -1170,13 +1078,12 @@ Cliente: (aquí verás el pedido listo, sin notas de voz ni mensajes rotos, cuan
           "✅ Total estimado: " + summaryTotal.textContent + "\n" +
           "💳 Método de pago: " + pagoTxt + "\n\n" +
           "📝 Notas del cliente: " + notas + "\n\n" +
-          "Este pedido llega estructurado desde *ADD Orders*: un solo mensaje claro para cobrar y pasar directo a cocina.";
+          "Este pedido llega estructurado desde *ADD Orders*, listo para cobrar y pasar a cocina sin notas de voz ni mensajes cortados.";
 
         preview.textContent = text;
 
-        // Paso 3 completado
-        step3Completed = true;
-        actualizarSteps();
+        // marcar paso 3 como completado
+        stepSetState(step3El, true, true);
       });
     }
 
