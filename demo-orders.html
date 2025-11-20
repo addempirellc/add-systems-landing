@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Demo ADD Orders – Restaurante / pedidos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Demo ADD Orders: así se ve un flujo de pedidos claros y pagos adelantados para restaurantes, food trucks y dark kitchens." />
+  <style>
+    :root {
+      --bg: #050509;
+      --bg-alt: #0b0b12;
+      --card: #11111a;
+      --accent: #fbbf24;
+      --accent-strong: #f59e0b;
+      --text: #f9fafb;
+      --text-soft: #9ca3af;
+      --border-subtle: #1f2933;
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 18px 40px rgba(0,0,0,0.55);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #02030a 45%, #02030a 100%);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    .demo-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      gap: 12px;
+    }
+
+    .demo-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 14px;
+      background: radial-gradient(circle at 30% 0%, #facc15, #f97316 40%, #111827 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .demo-tag {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(249,250,251,0.18);
+      color: var(--text-soft);
+    }
+
+    .btn {
+      border-radius: var(--radius-pill);
+      border: none;
+      font-size: 13px;
+      padding: 8px 16px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 500;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      color: #020617;
+      box-shadow: 0 14px 30px rgba(248,181,26,0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text-soft);
+      border: 1px solid rgba(148,163,184,0.4);
+    }
+
+    .demo-hero {
+      margin-bottom: 24px;
+    }
+
+    .demo-title {
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+
+    .demo-sub {
+      font-size: 13px;
+      color: var(--text-soft);
+      max-width: 520px;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: var(--bg-alt);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      padding: 16px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .card-sub {
+      font-size: 12px;
+      color: var(--text-soft);
+      margin-bottom: 10px;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+
+    .field-group label {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .field-group input,
+    .field-group select,
+    .field-group textarea {
+      padding: 6px 8px;
+      border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+      background: #020617;
+      color: var(--text);
+      font-size: 12px;
+      resize: vertical;
+      min-height: 32px;
+    }
+
+    .status {
+      font-size: 11px;
+      margin-top: 6px;
+      color: var(--text-soft);
+    }
+
+    .whatsapp-preview {
+      font-size: 12px;
+      background: #020617;
+      border-radius: 12px;
+      padding: 10px;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-soft);
+      white-space: pre-wrap;
+    }
+
+    .cta-final {
+      margin-top: 24px;
+      padding: 16px;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      background: radial-gradient(circle at top, rgba(15,23,42,0.9), #020617);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--text-soft);
+    }
+
+    @media (max-width: 840px) {
+      .demo-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .demo-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .cta-final {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="demo-header">
+      <div class="demo-logo">
+        <div class="logo-mark">A</div>
+        <div>
+          <div style="font-size:14px; font-weight:600;">ADD Systems</div>
+          <div style="font-size:11px; color:var(--text-soft); text-transform:uppercase; letter-spacing:.12em;">
+            Demo ADD Orders – Restaurante
+          </div>
+        </div>
+      </div>
+      <div class="demo-tag">Simulación de un pedido claro y completo</div>
+    </header>
+
+    <section class="demo-hero">
+      <h1 class="demo-title">Así se ve un pedido en tu restaurante con ADD Orders.</h1>
+      <p class="demo-sub">
+        El cliente elige qué quiere, cómo lo quiere y a qué hora. Tú recibes un pedido estructurado,
+        listo para cocinar y cobrar sin confusiones.
+      </p>
+
+      <div class="demo-grid">
+        <!-- Lado formulario -->
+        <article class="card">
+          <h2 class="card-title">1. Cliente hace su pedido</h2>
+          <p class="card-sub">
+            Completa este ejemplo como si fueras tu cliente. Verás cómo se arma el mensaje listo para WhatsApp.
+          </p>
+          <form id="demo-order-form" class="field-group">
+            <label>
+              Nombre
+              <input name="nombre" required placeholder="Laura" />
+            </label>
+            <label>
+              Plato principal
+              <select name="plato">
+                <option value="Hamburguesa clásica">Hamburguesa clásica</option>
+                <option value="Hamburguesa doble con queso">Hamburguesa doble con queso</option>
+                <option value="Combo wings + papas">Combo wings + papas</option>
+                <option value="Tacos mixtos">Tacos mixtos</option>
+              </select>
+            </label>
+            <label>
+              Cantidad
+              <input type="number" name="cantidad" min="1" value="1" />
+            </label>
+            <label>
+              ¿Para recoger o delivery?
+              <select name="modalidad">
+                <option value="Recoger en el local">Recoger en el local</option>
+                <option value="Delivery">Delivery</option>
+              </select>
+            </label>
+            <label>
+              Hora aproximada
+              <input type="time" name="hora" />
+            </label>
+            <label>
+              Notas (por ejemplo, sin cebolla, extra salsa...)
+              <textarea name="notas" rows="2" placeholder="Sin cebolla y con extra salsa."></textarea>
+            </label>
+
+            <button type="submit" class="btn btn-primary" style="align-self:flex-start; margin-top:6px;">
+              Generar pedido demo
+            </button>
+            <p id="demo-status" class="status"></p>
+          </form>
+        </article>
+
+        <!-- Lado preview -->
+        <article class="card">
+          <h2 class="card-title">2. Así se ve el pedido que recibes</h2>
+          <p class="card-sub">
+            Ejemplo del mensaje estructurado que te llegaría a WhatsApp o al panel de pedidos.
+          </p>
+          <div id="whatsapp-preview" class="whatsapp-preview">
+Cliente: (aquí verás el pedido listo, sin notas de voz ni mensajes cortados).
+          </div>
+        </article>
+      </div>
+
+      <div class="cta-final">
+        <div>
+          <strong>¿Quieres que tus pedidos lleguen así de claros todos los días?</strong><br />
+          Configuramos tu menú, zonas de delivery, horarios y método de pago para que ADD Orders funcione con tu cocina real.
+        </div>
+        <a
+          href="https://tidycal.com/tu-enlace-de-demo?notes=Interesado%20en%20ADD%20Orders"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-primary"
+        >
+          Quiero esto en mi negocio
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    var form = document.getElementById("demo-order-form");
+    var statusEl = document.getElementById("demo-status");
+    var preview = document.getElementById("whatsapp-preview");
+
+    if (form && statusEl && preview) {
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var data = Object.fromEntries(new FormData(form).entries());
+
+        var nombre = data.nombre || "cliente";
+        var plato = data.plato || "-";
+        var cantidad = data.cantidad || "1";
+        var modalidad = data.modalidad || "Recoger en el local";
+        var hora = data.hora || "-";
+        var notas = (data.notas || "").trim();
+
+        statusEl.textContent = "Pedido demo generado. Este sería el mensaje que recibes.";
+        statusEl.style.color = "#22c55e";
+
+        var text =
+          "🧾 *Nuevo pedido – ADD Orders*\n\n" +
+          "👤 Nombre: " + nombre + "\n" +
+          "🍽 Plato: " + cantidad + " x " + plato + "\n" +
+          "🚚 Modalidad: " + modalidad + "\n" +
+          "⏰ Hora aproximada: " + hora + "\n";
+
+        if (notas) {
+          text += "📝 Notas: " + notas + "\n";
+        }
+
+        text +=
+          "\n" +
+          "✅ Este pedido llega listo para cobrar y preparar, sin notas de voz ni mensajes rotos.";
+
+        preview.textContent = text;
+      });
+    }
+  </script>
+</body>
+</html>
