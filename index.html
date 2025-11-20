@@ -1142,21 +1142,48 @@
       });
     }
 
-    // Handler diagnóstico ADD (luego lo conectas a Supabase / Netlify Functions)
+    // Handler diagnóstico ADD → Netlify Function + Supabase
     var diagForm = document.getElementById("diagnostico-form");
     if (diagForm) {
-      diagForm.addEventListener("submit", function (e) {
+      diagForm.addEventListener("submit", async function (e) {
         e.preventDefault();
+
+        var submitBtn = diagForm.querySelector('button[type="submit"]');
+        var originalText = submitBtn ? submitBtn.textContent : null;
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Enviando...";
+        }
+
         var formData = new FormData(diagForm);
         var data = Object.fromEntries(formData.entries());
-        console.log("Diagnóstico enviado:", data);
 
-        // Aquí luego:
-        // fetch('/.netlify/functions/diagnostico', { method:'POST', body: JSON.stringify(data) })
-        //   .then(...)
+        try {
+          const res = await fetch('/.netlify/functions/diagnostico', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          });
 
-        alert("Gracias. Hemos recibido tu diagnóstico ADD. Te contactaremos pronto.");
-        diagForm.reset();
+          if (!res.ok) {
+            console.error('Error respuesta', await res.text());
+            alert('Hubo un problema al enviar el diagnóstico. Intenta de nuevo.');
+            return;
+          }
+
+          alert('Gracias. Hemos recibido tu diagnóstico ADD. Te contactaremos pronto.');
+          diagForm.reset();
+        } catch (err) {
+          console.error(err);
+          alert('Error de conexión. Intenta más tarde.');
+        } finally {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText || "Enviar diagnóstico ADD";
+          }
+        }
       });
     }
   </script>
