@@ -1049,20 +1049,24 @@
       <div class="section-label">Próximo paso</div>
       <h2 class="section-title">Ve una demo o agenda una llamada rápida.</h2>
       <p class="section-subtitle">
-        Lo más eficiente: ver el flujo en vivo. Aquí solo conectas tu Tidycal, Calendly o el sistema
-        que uses para agendar.
+        Lo más eficiente: ver el flujo en vivo aplicado a un negocio real como el tuyo.
       </p>
 
       <div class="demo-box">
         <p class="demo-text">
-          <strong>¿Cómo funciona en la práctica?</strong><br />
-          En la demo te mostramos un flujo real de ADD Bookings y ADD Orders aplicado a un negocio
-          como el tuyo: desde que el cliente escribe hasta que paga y recibe confirmación.
+          <strong>¿Qué quieres ver primero?</strong><br />
+          Puedes probar cómo se ve un sistema de reservas tipo barbería (ADD Bookings) o un
+          flujo de pedidos tipo restaurante / dark kitchen (ADD Orders).
         </p>
-        <!-- Aquí luego pegas el embed de Tidycal / Calendly -->
-        <div>
-          <button type="button" class="btn btn-primary" id="btn-agendar">
-            Agendar demo (conectar Tidycal aquí)
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <a href="demo-bookings.html" class="btn btn-primary">
+            Ver demo ADD Bookings (barbería)
+          </a>
+          <a href="demo-orders.html" class="btn btn-outline">
+            Ver demo ADD Orders (restaurante)
+          </a>
+          <button type="button" class="btn btn-outline" id="btn-agendar" style="margin-top:4px;">
+            Agendar llamada directa
           </button>
         </div>
       </div>
@@ -1109,7 +1113,8 @@
     <section class="cta-final">
       <h2 class="section-title">Tu negocio ya genera interés. Falta que ese interés se convierta en sistema.</h2>
       <p>
-        Elige un plan, agenda una demo corta y vemos si ADD Systems encaja en tu negocio sin promesas vacías.
+        Elige un plan, envíanos tu diagnóstico o mira una demo corta y vemos si ADD Systems encaja
+        en tu negocio sin promesas vacías.
       </p>
       <div style="margin-top: 14px;">
         <button type="button" class="btn btn-primary" data-scroll="#planes">
@@ -1150,7 +1155,7 @@
       });
     })();
 
-    // Hook para Tidycal / etc.
+    // Hook para Tidycal / llamada directa
     var btnAgendar = document.getElementById("btn-agendar");
     if (btnAgendar) {
       btnAgendar.addEventListener("click", function () {
@@ -1162,7 +1167,6 @@
     // Handler diagnóstico ADD → Netlify Function + Supabase
     var diagForm = document.getElementById("diagnostico-form");
     if (diagForm) {
-      // mensaje de estado debajo del formulario
       var statusEl = document.createElement("p");
       statusEl.id = "diag-status";
       statusEl.style.fontSize = "11px";
