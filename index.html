@@ -671,8 +671,8 @@
       </div>
       <div class="header-cta">
         <div class="badge-beta">Versión piloto para Louisville</div>
-        <button class="btn btn-outline" data-scroll="#planes">Ver planes</button>
-        <button class="btn btn-primary" data-scroll="#demo">Probar demo</button>
+        <button type="button" class="btn btn-outline" data-scroll="#planes">Ver planes</button>
+        <button type="button" class="btn btn-primary" data-scroll="#demo">Probar demo</button>
       </div>
     </header>
 
@@ -692,10 +692,10 @@
           clientes por desorden, no-shows y mensajes sin responder.
         </p>
         <div class="hero-actions">
-          <button class="btn btn-primary" data-scroll="#planes">
+          <button type="button" class="btn btn-primary" data-scroll="#planes">
             Ver planes ADD
           </button>
-          <button class="btn btn-outline" data-scroll="#comparativa">
+          <button type="button" class="btn btn-outline" data-scroll="#comparativa">
             Comparar funciones
           </button>
         </div>
@@ -807,7 +807,7 @@
             <li>Panel básico para ver y gestionar citas.</li>
             <li>Soporte básico por canal acordado.</li>
           </ul>
-          <button class="btn btn-primary" data-plan="bookings" data-scroll="#demo">
+          <button type="button" class="btn btn-primary" data-plan="bookings" data-scroll="#diagnostico">
             Empieza con ADD Bookings
           </button>
           <p class="plan-footer-note">
@@ -833,7 +833,7 @@
             <li>Integración opcional con Square para quien ya lo usa.</li>
             <li>Soporte prioritario y ajustes según la demanda.</li>
           </ul>
-          <button class="btn btn-primary" data-plan="orders" data-scroll="#demo">
+          <button type="button" class="btn btn-primary" data-plan="orders" data-scroll="#diagnostico">
             Activa ADD Orders
           </button>
           <p class="plan-footer-note">
@@ -858,7 +858,7 @@
             <li>Reportes mensuales básicos de uso y rendimiento.</li>
             <li>Soporte premium y mejoras constantes del flujo.</li>
           </ul>
-          <button class="btn btn-primary" data-plan="automations" data-scroll="#demo">
+          <button type="button" class="btn btn-primary" data-plan="automations" data-scroll="#diagnostico">
             Potencia tu negocio con ADD Automations
           </button>
           <p class="plan-footer-note">
@@ -980,13 +980,13 @@
         o ADD Automations tiene sentido para ti, sin compromiso.
       </p>
 
-      <form id="diagnostico-form" class="pain-grid">
+      <form id="diagnostico-form" class="pain-grid" novalidate>
         <div class="pain-card">
           <div class="pain-title">Datos del negocio</div>
           <div style="display:flex; flex-direction:column; gap:8px; font-size:12px; color:var(--text-soft);">
             <label>
               Nombre del negocio<br />
-              <input name="nombre" required
+              <input name="nombre" required autocomplete="organization"
                 style="width:100%; margin-top:3px; padding:6px 8px; border-radius:8px; border:1px solid var(--border-subtle); background:#020617; color:var(--text);" />
             </label>
             <label>
@@ -996,13 +996,14 @@
             </label>
             <label>
               Ciudad / zona<br />
-              <input name="ciudad"
+              <input name="ciudad" autocomplete="address-level2"
                 style="width:100%; margin-top:3px; padding:6px 8px; border-radius:8px; border:1px solid var(--border-subtle); background:#020617; color:var(--text);" />
             </label>
             <label>
               WhatsApp de contacto<br />
               <input name="whatsapp" required
                 placeholder="+1 ..."
+                autocomplete="tel"
                 style="width:100%; margin-top:3px; padding:6px 8px; border-radius:8px; border:1px solid var(--border-subtle); background:#020617; color:var(--text);" />
             </label>
           </div>
@@ -1060,7 +1061,7 @@
         </p>
         <!-- Aquí luego pegas el embed de Tidycal / Calendly -->
         <div>
-          <button class="btn btn-primary" id="btn-agendar">
+          <button type="button" class="btn btn-primary" id="btn-agendar">
             Agendar demo (conectar Tidycal aquí)
           </button>
         </div>
@@ -1111,7 +1112,7 @@
         Elige un plan, agenda una demo corta y vemos si ADD Systems encaja en tu negocio sin promesas vacías.
       </p>
       <div style="margin-top: 14px;">
-        <button class="btn btn-primary" data-scroll="#planes">
+        <button type="button" class="btn btn-primary" data-scroll="#planes">
           Ver planes ADD de nuevo
         </button>
       </div>
@@ -1132,6 +1133,22 @@
         });
       });
     });
+
+    // Cuando se hace clic en un plan, se rellena el select del formulario
+    (function () {
+      var planButtons = document.querySelectorAll("[data-plan]");
+      var planSelect = document.querySelector('select[name="plan"]');
+      if (!planButtons.length || !planSelect) return;
+
+      planButtons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var value = btn.getAttribute("data-plan");
+          if (value) {
+            planSelect.value = value;
+          }
+        });
+      });
+    })();
 
     // Hook para Tidycal / etc.
     var btnAgendar = document.getElementById("btn-agendar");
