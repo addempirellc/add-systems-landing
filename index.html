@@ -411,12 +411,23 @@
       position: relative;
       overflow: hidden;
       box-shadow: 0 16px 30px rgba(0,0,0,0.45);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .plan-card:hover {
+      transform: scale(1.025);
+      box-shadow: 0 26px 55px rgba(0,0,0,0.55);
     }
 
     .plan-card.recommended {
       border-color: var(--accent);
       box-shadow: 0 22px 45px rgba(248,181,26,0.35);
       transform: translateY(-2px);
+    }
+
+    .plan-card.recommended:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 30px 60px rgba(248,181,26,0.45);
     }
 
     .plan-pill {
@@ -807,9 +818,9 @@
             <li>Panel básico para ver y gestionar citas.</li>
             <li>Soporte básico por canal acordado.</li>
           </ul>
-          <button type="button" class="btn btn-primary" data-plan="bookings" data-scroll="#diagnostico">
+          <a href="checkout-bookings.html" class="btn btn-primary">
             Empieza con ADD Bookings
-          </button>
+          </a>
           <p class="plan-footer-note">
             Ideal si <span>tu dolor principal son las citas</span> y los clientes que no llegan.
           </p>
@@ -833,9 +844,9 @@
             <li>Integración opcional con Square para quien ya lo usa.</li>
             <li>Soporte prioritario y ajustes según la demanda.</li>
           </ul>
-          <button type="button" class="btn btn-primary" data-plan="orders" data-scroll="#diagnostico">
+          <a href="checkout-orders.html" class="btn btn-primary">
             Activa ADD Orders
-          </button>
+          </a>
           <p class="plan-footer-note">
             Recomendado si <span>pierdes tiempo explicando el menú</span> o confirmando cada pedido.
           </p>
@@ -858,9 +869,9 @@
             <li>Reportes mensuales básicos de uso y rendimiento.</li>
             <li>Soporte premium y mejoras constantes del flujo.</li>
           </ul>
-          <button type="button" class="btn btn-primary" data-plan="automations" data-scroll="#diagnostico">
+          <a href="checkout-automations.html" class="btn btn-primary">
             Potencia tu negocio con ADD Automations
-          </button>
+          </a>
           <p class="plan-footer-note">
             Pensado para <span>quien ya factura bien</span> pero quiere orden, datos y automatización.
           </p>
@@ -1062,7 +1073,7 @@
           <a href="demo-bookings.html" class="btn btn-primary">
             Ver demo ADD Bookings (barbería)
           </a>
-          <a href="demo-orders.html" class="btn btn-outline">
+          <a href="demo-orders.html" class="btn btn-primary">
             Ver demo ADD Orders (restaurante)
           </a>
           <button type="button" class="btn btn-outline" id="btn-agendar" style="margin-top:4px;">
@@ -1138,22 +1149,6 @@
         });
       });
     });
-
-    // Cuando se hace clic en un plan, se rellena el select del formulario
-    (function () {
-      var planButtons = document.querySelectorAll("[data-plan]");
-      var planSelect = document.querySelector('select[name="plan"]');
-      if (!planButtons.length || !planSelect) return;
-
-      planButtons.forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          var value = btn.getAttribute("data-plan");
-          if (value) {
-            planSelect.value = value;
-          }
-        });
-      });
-    })();
 
     // Hook para Tidycal / llamada directa
     var btnAgendar = document.getElementById("btn-agendar");
