@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Demo ADD Bookings – Barbería</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    /* Puedes copiar exactamente las mismas variables y estilos base de index.html
+       y quitar lo que no uses para que se vea idéntico al branding de ADD Systems. */
+    :root {
+      --bg: #050509;
+      --bg-alt: #0b0b12;
+      --card: #11111a;
+      --accent: #fbbf24;
+      --accent-strong: #f59e0b;
+      --text: #f9fafb;
+      --text-soft: #9ca3af;
+      --border-subtle: #1f2933;
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 18px 40px rgba(0,0,0,0.55);
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #02030a 45%, #02030a 100%);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .page { max-width: 960px; margin: 0 auto; padding: 24px 16px 48px; }
+
+    .demo-header {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:24px;
+      gap:12px;
+    }
+    .demo-logo {
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .logo-mark {
+      width:32px; height:32px;
+      border-radius:14px;
+      background: radial-gradient(circle at 30% 0%, #facc15, #f97316 40%, #111827 100%);
+      display:flex; align-items:center; justify-content:center;
+      font-weight:700; font-size:18px;
+      box-shadow:var(--shadow-soft);
+    }
+    .demo-tag {
+      font-size:11px;
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid rgba(249,250,251,0.18);
+      color:var(--text-soft);
+    }
+    .btn {
+      border-radius: var(--radius-pill);
+      border: none;
+      font-size: 13px;
+      padding: 8px 16px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      color:#020617;
+      box-shadow:0 14px 30px rgba(248,181,26,0.4);
+    }
+    .btn-outline {
+      background:transparent;
+      color:var(--text-soft);
+      border:1px solid rgba(148,163,184,0.4);
+    }
+
+    .demo-hero {
+      margin-bottom:24px;
+    }
+    .demo-title {
+      font-size:24px;
+      margin-bottom:6px;
+    }
+    .demo-sub {
+      font-size:13px;
+      color:var(--text-soft);
+      max-width:520px;
+    }
+
+    .demo-grid {
+      display:grid;
+      grid-template-columns: minmax(0,1.1fr) minmax(0,1fr);
+      gap:16px;
+      margin-top:20px;
+    }
+    .card {
+      background:var(--bg-alt);
+      border-radius:var(--radius-xl);
+      border:1px solid var(--border-subtle);
+      padding:16px;
+      box-shadow:var(--shadow-soft);
+    }
+    .card-title {
+      font-size:14px;
+      font-weight:600;
+      margin-bottom:8px;
+    }
+    .field-group {
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      font-size:12px;
+      color:var(--text-soft);
+    }
+    .field-group label {
+      display:flex;
+      flex-direction:column;
+      gap:3px;
+    }
+    .field-group input,
+    .field-group select {
+      padding:6px 8px;
+      border-radius:8px;
+      border:1px solid var(--border-subtle);
+      background:#020617;
+      color:var(--text);
+      font-size:12px;
+    }
+    .status {
+      font-size:11px;
+      margin-top:6px;
+      color:var(--text-soft);
+    }
+    .whatsapp-preview {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size:12px;
+      background:#020617;
+      border-radius:12px;
+      padding:10px;
+      border:1px solid var(--border-subtle);
+      color:var(--text-soft);
+      white-space:pre-wrap;
+    }
+    .cta-final {
+      margin-top:24px;
+      padding:16px;
+      border-radius:var(--radius-xl);
+      border:1px solid var(--border-subtle);
+      background:radial-gradient(circle at top, rgba(15,23,42,0.9), #020617);
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      font-size:13px;
+      color:var(--text-soft);
+    }
+    @media (max-width:840px){
+      .demo-header{flex-direction:column; align-items:flex-start;}
+      .demo-grid{grid-template-columns:minmax(0,1fr);}
+      .cta-final{flex-direction:column; align-items:flex-start;}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="demo-header">
+      <div class="demo-logo">
+        <div class="logo-mark">A</div>
+        <div>
+          <div style="font-size:14px; font-weight:600;">ADD Systems</div>
+          <div style="font-size:11px; color:var(--text-soft); text-transform:uppercase; letter-spacing:.12em;">
+            Demo ADD Bookings – Barbería
+          </div>
+        </div>
+      </div>
+      <div class="demo-tag">Simulación de cómo reservaría un cliente</div>
+    </header>
+
+    <section class="demo-hero">
+      <h1 class="demo-title">Así se ve una reserva en tu barbería con ADD Bookings.</h1>
+      <p class="demo-sub">
+        Este es el tipo de flujo que verían tus clientes: eligen servicio, horario y confirman.
+        Tú recibes todo ordenado, con depósito si quieres, y recordatorios automáticos.
+      </p>
+
+      <div class="demo-grid">
+        <!-- Lado formulario -->
+        <article class="card">
+          <h2 class="card-title">1. Cliente reserva su cita</h2>
+          <form id="demo-booking-form" class="field-group">
+            <label>
+              Nombre
+              <input name="nombre" required placeholder="Kevin" />
+            </label>
+            <label>
+              Servicio
+              <select name="servicio">
+                <option value="Corte clásico">Corte clásico</option>
+                <option value="Corte + barba">Corte + barba</option>
+                <option value="Afeitado completo">Afeitado completo</option>
+              </select>
+            </label>
+            <label>
+              Día
+              <input type="date" name="fecha" required />
+            </label>
+            <label>
+              Hora
+              <input type="time" name="hora" required />
+            </label>
+
+            <button type="submit" class="btn btn-primary" style="align-self:flex-start; margin-top:6px;">
+              Confirmar reserva demo
+            </button>
+            <p id="demo-status" class="status"></p>
+          </form>
+        </article>
+
+        <!-- Lado preview -->
+        <article class="card">
+          <h2 class="card-title">2. Así se ve el mensaje automático</h2>
+          <div id="whatsapp-preview" class="whatsapp-preview">
+Cliente: (aquí se verá el mensaje listo para enviar por WhatsApp)
+          </div>
+        </article>
+      </div>
+
+      <div class="cta-final">
+        <div>
+          <strong>¿Te imaginas esto trabajando para tu barbería?</strong><br />
+          Configuramos horarios, servicios, depósitos y recordatorios según tu negocio.
+        </div>
+        <a
+          href="https://tidycal.com/tu-enlace-de-demo?notes=Interesado%20en%20ADD%20Bookings"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-primary"
+        >
+          Quiero esto en mi negocio
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    var form = document.getElementById("demo-booking-form");
+    var statusEl = document.getElementById("demo-status");
+    var preview = document.getElementById("whatsapp-preview");
+
+    if (form && statusEl && preview) {
+      form.addEventListener("submit", function(e){
+        e.preventDefault();
+        var data = Object.fromEntries(new FormData(form).entries());
+        statusEl.textContent = "Reserva demo generada. Mira el ejemplo de mensaje.";
+        statusEl.style.color = "#22c55e";
+
+        var text =
+          "✅ Reserva confirmada\n\n" +
+          "Hola " + (data.nombre || "cliente") + ", tu cita en *BARBERÍA DEMO* está confirmada.\n\n" +
+          "🧔 Servicio: " + (data.servicio || "-") + "\n" +
+          "📅 Día: " + (data.fecha || "-") + "\n" +
+          "⏰ Hora: " + (data.hora || "-") + "\n\n" +
+          "Si necesitas reprogramar, responde a este mensaje con al menos 4 horas de anticipación.";
+
+        preview.textContent = text;
+      });
+    }
+  </script>
+</body>
+</html>
