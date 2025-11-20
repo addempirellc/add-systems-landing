@@ -15,17 +15,16 @@
       --text: #f9fafb;
       --text-soft: #9ca3af;
       --border-subtle: #1f2933;
+      --danger: #f97373;
+      --success: #22c55e;
       --radius-xl: 24px;
       --radius-lg: 18px;
       --radius-pill: 999px;
       --shadow-soft: 0 18px 40px rgba(0,0,0,0.55);
+      --transition-fast: 0.18s ease-out;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing:border-box; margin:0; padding:0; }
 
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -34,45 +33,65 @@
       line-height: 1.5;
     }
 
+    a { color: inherit; text-decoration: none; }
+
     .page {
       max-width: 960px;
       margin: 0 auto;
       padding: 24px 16px 48px;
     }
 
+    /* HEADER DEMO */
     .demo-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-      gap: 12px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:24px;
+      gap:12px;
     }
 
     .demo-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      display:flex;
+      align-items:center;
+      gap:10px;
     }
 
     .logo-mark {
-      width: 32px;
-      height: 32px;
-      border-radius: 14px;
+      width:32px; height:32px;
+      border-radius:14px;
       background: radial-gradient(circle at 30% 0%, #facc15, #f97316 40%, #111827 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 18px;
-      box-shadow: var(--shadow-soft);
+      display:flex; align-items:center; justify-content:center;
+      font-weight:700; font-size:18px;
+      box-shadow:var(--shadow-soft);
+    }
+
+    .demo-logo-text-title {
+      font-size:14px;
+      font-weight:600;
+    }
+
+    .demo-logo-text-sub {
+      font-size:11px;
+      color:var(--text-soft);
+      text-transform:uppercase;
+      letter-spacing:.12em;
+    }
+
+    .demo-header-right {
+      display:flex;
+      align-items:center;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
     }
 
     .demo-tag {
-      font-size: 11px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(249,250,251,0.18);
-      color: var(--text-soft);
+      font-size:11px;
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid rgba(249,250,251,0.18);
+      color:var(--text-soft);
+      white-space:nowrap;
     }
 
     .btn {
@@ -86,198 +105,504 @@
       gap: 6px;
       font-weight: 500;
       white-space: nowrap;
-      text-decoration: none;
+      text-decoration:none;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
     }
 
     .btn-primary {
       background: linear-gradient(135deg, var(--accent), var(--accent-strong));
-      color: #020617;
-      box-shadow: 0 14px 30px rgba(248,181,26,0.4);
+      color:#020617;
+      box-shadow:0 14px 30px rgba(248,181,26,0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow:0 20px 40px rgba(248,181,26,0.45);
     }
 
     .btn-outline {
-      background: transparent;
-      color: var(--text-soft);
-      border: 1px solid rgba(148,163,184,0.4);
+      background:transparent;
+      color:var(--text-soft);
+      border:1px solid rgba(148,163,184,0.4);
     }
 
+    .btn-outline:hover {
+      border-color:var(--accent);
+      color:var(--accent);
+      transform:translateY(-1px);
+    }
+
+    .btn-back span {
+      font-size:14px;
+      margin-right:2px;
+    }
+
+    /* HERO */
     .demo-hero {
-      margin-bottom: 24px;
+      margin-bottom:24px;
     }
 
     .demo-title {
-      font-size: 24px;
-      margin-bottom: 6px;
+      font-size:24px;
+      margin-bottom:6px;
+      letter-spacing:-0.02em;
+    }
+
+    .demo-title strong {
+      background: linear-gradient(to right, #facc15, #fb923c);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
     }
 
     .demo-sub {
-      font-size: 13px;
-      color: var(--text-soft);
-      max-width: 520px;
+      font-size:13px;
+      color:var(--text-soft);
+      max-width:580px;
     }
 
+    /* PASOS */
+    .steps {
+      display:flex;
+      gap:10px;
+      margin-top:14px;
+      margin-bottom:6px;
+      flex-wrap:wrap;
+    }
+
+    .step {
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:11px;
+      color:var(--text-soft);
+      padding:5px 9px;
+      border-radius:999px;
+      border:1px solid rgba(31,41,55,0.8);
+      background:rgba(15,23,42,0.85);
+    }
+
+    .step-badge {
+      width:18px; height:18px;
+      border-radius:999px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:11px;
+      font-weight:600;
+      background:#020617;
+      color:var(--text-soft);
+    }
+
+    .step.active {
+      border-color:var(--accent);
+      color:var(--accent);
+    }
+
+    .step.active .step-badge {
+      background:var(--accent);
+      color:#020617;
+    }
+
+    /* LAYOUT PRINCIPAL */
     .demo-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: 16px;
-      margin-top: 20px;
+      display:grid;
+      grid-template-columns: minmax(0,1.2fr) minmax(0,1fr);
+      gap:16px;
+      margin-top:18px;
     }
 
     .card {
-      background: var(--bg-alt);
-      border-radius: var(--radius-xl);
-      border: 1px solid var(--border-subtle);
-      padding: 16px;
-      box-shadow: var(--shadow-soft);
+      background:var(--bg-alt);
+      border-radius:var(--radius-xl);
+      border:1px solid var(--border-subtle);
+      padding:16px;
+      box-shadow:var(--shadow-soft);
     }
 
     .card-title {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 8px;
+      font-size:14px;
+      font-weight:600;
+      margin-bottom:8px;
     }
 
     .card-sub {
-      font-size: 12px;
-      color: var(--text-soft);
-      margin-bottom: 10px;
+      font-size:12px;
+      color:var(--text-soft);
+      margin-bottom:10px;
     }
 
     .field-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      font-size: 12px;
-      color: var(--text-soft);
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      font-size:12px;
+      color:var(--text-soft);
     }
 
     .field-group label {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
+      display:flex;
+      flex-direction:column;
+      gap:3px;
     }
 
     .field-group input,
     .field-group select,
     .field-group textarea {
-      padding: 6px 8px;
-      border-radius: 8px;
-      border: 1px solid var(--border-subtle);
-      background: #020617;
-      color: var(--text);
-      font-size: 12px;
-      resize: vertical;
-      min-height: 32px;
+      padding:6px 8px;
+      border-radius:8px;
+      border:1px solid var(--border-subtle);
+      background:#020617;
+      color:var(--text);
+      font-size:12px;
+      resize:vertical;
+      min-height:32px;
+    }
+
+    .field-inline {
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .field-inline > label {
+      flex:1 1 140px;
     }
 
     .status {
-      font-size: 11px;
-      margin-top: 6px;
-      color: var(--text-soft);
+      font-size:11px;
+      margin-top:6px;
+      color:var(--text-soft);
+    }
+
+    .product-meta {
+      font-size:11px;
+      color:var(--text-soft);
+      margin-top:4px;
+    }
+
+    .product-meta strong {
+      color:var(--accent);
+      font-weight:500;
+    }
+
+    .chip-row {
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      margin-top:4px;
+      font-size:10px;
+    }
+
+    .chip {
+      padding:3px 8px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.5);
+      color:var(--text-soft);
+    }
+
+    .chip.special {
+      border-color:rgba(248,181,26,0.7);
+      color:var(--accent);
+    }
+
+    .extras-group {
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      margin-top:4px;
+      font-size:11px;
+    }
+
+    .extra-item {
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+
+    .extra-item input {
+      width:auto;
+      min-height:auto;
+    }
+
+    /* COLUMNA DERECHA */
+    .side-column {
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .summary-row {
+      display:flex;
+      justify-content:space-between;
+      font-size:12px;
+      margin-bottom:4px;
+    }
+
+    .summary-row span:last-child {
+      font-weight:600;
+    }
+
+    .summary-row-muted {
+      font-size:11px;
+      color:var(--text-soft);
+    }
+
+    .price-highlight {
+      font-size:20px;
+      font-weight:700;
+    }
+
+    .delivery-text {
+      font-size:11px;
+      color:var(--accent);
+      margin-top:2px;
+    }
+
+    .payment-methods {
+      margin-top:10px;
+      font-size:11px;
+      color:var(--text-soft);
+    }
+
+    .payment-tags {
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      margin-top:4px;
+    }
+
+    .payment-tag {
+      padding:3px 8px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.5);
+      font-size:10px;
     }
 
     .whatsapp-preview {
-      font-size: 12px;
-      background: #020617;
-      border-radius: 12px;
-      padding: 10px;
-      border: 1px solid var(--border-subtle);
-      color: var(--text-soft);
-      white-space: pre-wrap;
+      font-size:12px;
+      background:#020617;
+      border-radius:12px;
+      padding:10px;
+      border:1px solid var(--border-subtle);
+      color:var(--text-soft);
+      white-space:pre-wrap;
     }
 
+    .badge-demo {
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+      font-size:10px;
+      color:var(--text-soft);
+      margin-bottom:6px;
+    }
+
+    .badge-demo span {
+      width:8px;
+      height:8px;
+      border-radius:999px;
+      background:var(--accent);
+    }
+
+    /* CTA FINAL */
     .cta-final {
-      margin-top: 24px;
-      padding: 16px;
-      border-radius: var(--radius-xl);
-      border: 1px solid var(--border-subtle);
-      background: radial-gradient(circle at top, rgba(15,23,42,0.9), #020617);
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      font-size: 13px;
-      color: var(--text-soft);
+      margin-top:24px;
+      padding:16px;
+      border-radius:var(--radius-xl);
+      border:1px solid var(--border-subtle);
+      background:radial-gradient(circle at top, rgba(15,23,42,0.9), #020617);
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      font-size:13px;
+      color:var(--text-soft);
     }
 
-    @media (max-width: 840px) {
-      .demo-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .demo-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      .cta-final {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+    .cta-final strong {
+      color:var(--text);
+    }
+
+    @media (max-width:840px){
+      .demo-header{flex-direction:column; align-items:flex-start;}
+      .demo-header-right{justify-content:flex-start;}
+      .demo-grid{grid-template-columns:minmax(0,1fr);}
+      .cta-final{flex-direction:column; align-items:flex-start;}
     }
   </style>
 </head>
 <body>
   <main class="page">
+    <!-- HEADER DEMO -->
     <header class="demo-header">
       <div class="demo-logo">
         <div class="logo-mark">A</div>
         <div>
-          <div style="font-size:14px; font-weight:600;">ADD Systems</div>
-          <div style="font-size:11px; color:var(--text-soft); text-transform:uppercase; letter-spacing:.12em;">
-            Demo ADD Orders – Restaurante
-          </div>
+          <div class="demo-logo-text-title">ADD Systems</div>
+          <div class="demo-logo-text-sub">Demo ADD Orders – Restaurante</div>
         </div>
       </div>
-      <div class="demo-tag">Simulación de un pedido claro y completo</div>
+      <div class="demo-header-right">
+        <div class="demo-tag">Simulación real de pedido + pago (modo demo)</div>
+        <a href="index.html" class="btn btn-outline btn-back">
+          <span>←</span> Volver a la página anterior
+        </a>
+      </div>
     </header>
 
+    <!-- HERO / PASOS -->
     <section class="demo-hero">
-      <h1 class="demo-title">Así se ve un pedido en tu restaurante con ADD Orders.</h1>
+      <h1 class="demo-title">
+        Así se vería tu <strong>sistema de pedidos</strong> con ADD Orders.
+      </h1>
       <p class="demo-sub">
-        El cliente elige qué quiere, cómo lo quiere y a qué hora. Tú recibes un pedido estructurado,
-        listo para cocinar y cobrar sin confusiones.
+        Desde el punto de vista del cliente: elige plato, extras, modalidad y hora. Desde tu lado:
+        recibes un pedido estructurado, con total calculado, delivery definido y listo para cobrar.
       </p>
 
+      <div class="steps">
+        <div class="step active">
+          <div class="step-badge">1</div>
+          Elige el pedido
+        </div>
+        <div class="step">
+          <div class="step-badge">2</div>
+          Datos de entrega / recogida
+        </div>
+        <div class="step">
+          <div class="step-badge">3</div>
+          Pago y confirmación
+        </div>
+      </div>
+
       <div class="demo-grid">
-        <!-- Lado formulario -->
+        <!-- IZQUIERDA: FORM -->
         <article class="card">
-          <h2 class="card-title">1. Cliente hace su pedido</h2>
+          <h2 class="card-title">Configura un pedido demo</h2>
           <p class="card-sub">
-            Completa este ejemplo como si fueras tu cliente. Verás cómo se arma el mensaje listo para WhatsApp.
+            Completa este ejemplo como si fueras tu cliente. ADD Orders calcula subtotal, delivery
+            y genera un mensaje listo para WhatsApp o tu panel interno.
           </p>
+
           <form id="demo-order-form" class="field-group">
             <label>
-              Nombre
-              <input name="nombre" required placeholder="Laura" />
+              Nombre del cliente
+              <input name="nombre" required placeholder="Ej: Laura Gómez" />
             </label>
+
             <label>
               Plato principal
-              <select name="plato">
-                <option value="Hamburguesa clásica">Hamburguesa clásica</option>
-                <option value="Hamburguesa doble con queso">Hamburguesa doble con queso</option>
-                <option value="Combo wings + papas">Combo wings + papas</option>
-                <option value="Tacos mixtos">Tacos mixtos</option>
+              <select name="plato" id="plato-select">
+                <option value="smash">Smash Burger Doble – “House Signature”</option>
+                <option value="wings">Combo Wings + Papas – Salsa Signature</option>
+                <option value="tacos">Tacos Mixtos – 3 unidades</option>
+                <option value="bowl">Urban Chicken Bowl – Fit / High Protein</option>
               </select>
             </label>
+
+            <div id="product-meta" class="product-meta">
+              Tiempo aprox.: <strong>15–18 min</strong> · Nivel: Smash burger callejera ·
+              Incluye: doble carne, queso americano, pan brioche tostado.
+            </div>
+
+            <div class="chip-row">
+              <div class="chip">Pan brioche</div>
+              <div class="chip">Carne smash 80/20</div>
+              <div class="chip special">Salsa de la casa</div>
+            </div>
+
+            <div class="field-inline">
+              <label>
+                Cantidad
+                <input type="number" name="cantidad" id="cantidad-input" min="1" value="1" />
+              </label>
+              <label>
+                Nivel de picante
+                <select name="picante">
+                  <option value="Suave">Suave</option>
+                  <option value="Medio">Medio</option>
+                  <option value="Alto">Alto</option>
+                </select>
+              </label>
+            </div>
+
             <label>
-              Cantidad
-              <input type="number" name="cantidad" min="1" value="1" />
+              Extras (demo)
+              <div class="extras-group">
+                <label class="extra-item">
+                  <input type="checkbox" name="extra_queso" value="1" />
+                  Queso extra (+$1.50)
+                </label>
+                <label class="extra-item">
+                  <input type="checkbox" name="extra_bacon" value="1" />
+                  Bacon crispy (+$2.00)
+                </label>
+                <label class="extra-item">
+                  <input type="checkbox" name="extra_papas" value="1" />
+                  Papas grandes upgrade (+$2.50)
+                </label>
+                <label class="extra-item">
+                  <input type="checkbox" name="extra_drink" value="1" />
+                  Bebida premium (+$2.00)
+                </label>
+              </div>
             </label>
+
+            <div class="field-inline">
+              <label>
+                Modalidad
+                <select name="modalidad" id="modalidad-select">
+                  <option value="pickup">Recoger en el local</option>
+                  <option value="delivery">Delivery</option>
+                </select>
+              </label>
+              <label id="zona-wrapper">
+                Zona de entrega (demo)
+                <select name="zona" id="zona-select">
+                  <option value="cerca">Zona cercana (hasta 3 mi)</option>
+                  <option value="media">Zona media (3–7 mi)</option>
+                  <option value="lejos">Zona extendida (7–10 mi)</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="field-inline">
+              <label>
+                Hora aproximada
+                <input type="time" name="hora" />
+              </label>
+              <label>
+                WhatsApp de contacto
+                <input name="whatsapp" placeholder="+1 ..." />
+              </label>
+            </div>
+
             <label>
-              ¿Para recoger o delivery?
-              <select name="modalidad">
-                <option value="Recoger en el local">Recoger en el local</option>
-                <option value="Delivery">Delivery</option>
-              </select>
+              Notas (sin cebolla, extra salsa, indicaciones delivery...)
+              <textarea name="notas" rows="2" placeholder="Ej: Sin cebolla, extra salsa de la casa, timbrar al llegar."></textarea>
             </label>
-            <label>
-              Hora aproximada
-              <input type="time" name="hora" />
-            </label>
-            <label>
-              Notas (por ejemplo, sin cebolla, extra salsa...)
-              <textarea name="notas" rows="2" placeholder="Sin cebolla y con extra salsa."></textarea>
-            </label>
+
+            <div class="field-inline">
+              <label>
+                Método de pago (demo)
+                <select name="pago" id="pago-select">
+                  <option value="tarjeta">Tarjeta online (Stripe / Apple Pay)</option>
+                  <option value="cashapp">Cash App / Zelle</option>
+                  <option value="contra">Pago en efectivo al recibir</option>
+                </select>
+              </label>
+              <label>
+                ¿Propina estimada?
+                <select name="propina" id="propina-select">
+                  <option value="0">Sin propina</option>
+                  <option value="10">10%</option>
+                  <option value="15">15%</option>
+                  <option value="20">20%</option>
+                </select>
+              </label>
+            </div>
 
             <button type="submit" class="btn btn-primary" style="align-self:flex-start; margin-top:6px;">
               Generar pedido demo
@@ -286,25 +611,95 @@
           </form>
         </article>
 
-        <!-- Lado preview -->
-        <article class="card">
-          <h2 class="card-title">2. Así se ve el pedido que recibes</h2>
-          <p class="card-sub">
-            Ejemplo del mensaje estructurado que te llegaría a WhatsApp o al panel de pedidos.
-          </p>
-          <div id="whatsapp-preview" class="whatsapp-preview">
-Cliente: (aquí verás el pedido listo, sin notas de voz ni mensajes cortados).
-          </div>
-        </article>
+        <!-- DERECHA: RESUMEN + WHATSAPP -->
+        <div class="side-column">
+          <article class="card">
+            <h2 class="card-title">Resumen y total (modo demo)</h2>
+            <p class="card-sub">
+              Así verías tú el pedido en tu panel: detalle de platos, extras, delivery, propina y
+              método de pago. Nada de notas de voz imposibles de revisar.
+            </p>
+
+            <div class="summary-row">
+              <span>Plato:</span>
+              <span id="summary-plato">Smash Burger Doble – “House Signature”</span>
+            </div>
+            <div class="summary-row">
+              <span>Cantidad:</span>
+              <span id="summary-cantidad">1</span>
+            </div>
+            <div class="summary-row">
+              <span>Extras:</span>
+              <span id="summary-extras">Sin extras</span>
+            </div>
+
+            <hr style="border:none; border-top:1px dashed rgba(55,65,81,0.8); margin:10px 0;" />
+
+            <div class="summary-row">
+              <span>Subtotal comida:</span>
+              <span id="summary-subtotal">$14.00</span>
+            </div>
+            <div class="summary-row">
+              <span>Delivery (demo):</span>
+              <span id="summary-delivery">$0.00</span>
+            </div>
+            <div class="summary-row">
+              <span>Propina estimada:</span>
+              <span id="summary-tip">$0.00</span>
+            </div>
+            <div class="summary-row">
+              <span>Total estimado:</span>
+              <span class="price-highlight" id="summary-total">$14.00</span>
+            </div>
+            <div class="delivery-text" id="delivery-text">
+              Modalidad: recoger en el local. En delivery se agrega una tarifa según zona.
+            </div>
+
+            <div class="payment-methods">
+              Método de pago seleccionado:
+              <div class="summary-row summary-row-muted">
+                <span id="summary-payment">Tarjeta online (Stripe / Apple Pay)</span>
+                <span style="font-size:10px;">Vista demo</span>
+              </div>
+              <div class="payment-tags">
+                <div class="payment-tag">Stripe</div>
+                <div class="payment-tag">Apple Pay</div>
+                <div class="payment-tag">Cash App</div>
+                <div class="payment-tag">Zelle</div>
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-primary" style="margin-top:10px; width:100%; justify-content:center;" id="btn-pago-demo">
+              Simular “Pagar pedido ahora”
+            </button>
+            <p id="pago-status" class="status"></p>
+          </article>
+
+          <article class="card">
+            <h2 class="card-title">Cómo te llega el pedido por WhatsApp</h2>
+            <p class="card-sub">
+              Este es el tipo de mensaje estructurado que recibirías: todo claro en un solo bloque,
+              listo para aceptar, cobrar y pasar a cocina.
+            </p>
+            <div class="badge-demo">
+              <span></span> Mensaje generado automáticamente por ADD Orders (demo)
+            </div>
+            <div id="whatsapp-preview" class="whatsapp-preview">
+Cliente: (aquí verás el pedido listo, sin notas de voz ni mensajes rotos, cuando generes el pedido demo).
+            </div>
+          </article>
+        </div>
       </div>
 
+      <!-- CTA FINAL -->
       <div class="cta-final">
         <div>
-          <strong>¿Quieres que tus pedidos lleguen así de claros todos los días?</strong><br />
-          Configuramos tu menú, zonas de delivery, horarios y método de pago para que ADD Orders funcione con tu cocina real.
+          <strong>¿Te imaginas todos tus pedidos entrando así de claros cada noche?</strong><br />
+          Configuramos tu menú real, zonas de delivery, horarios y pagos para que ADD Orders
+          trabaje con tu cocina sin inventos raros.
         </div>
         <a
-          href="https://tidycal.com/tu-enlace-de-demo?notes=Interesado%20en%20ADD%20Orders"
+          href="https://tidycal.com/tu-enlace-de-demo?notes=Interesado%20en%20ADD%20Orders%20(restaurante)"
           target="_blank"
           rel="noopener"
           class="btn btn-primary"
@@ -316,43 +711,294 @@ Cliente: (aquí verás el pedido listo, sin notas de voz ni mensajes cortados).
   </main>
 
   <script>
+    // Datos de menú: nombre, precio base, meta, chips
+    var menuData = {
+      smash: {
+        nombre: "Smash Burger Doble – “House Signature”",
+        precio: 14,
+        meta:
+          'Tiempo aprox.: <strong>15–18 min</strong> · Nivel: Smash callejera · ' +
+          "Incluye: doble carne, queso americano, pan brioche tostado.",
+        chips: ["Pan brioche", "Carne smash 80/20", "Cebolla caramelizada", "Salsa de la casa (signature)"]
+      },
+      wings: {
+        nombre: "Combo Wings + Papas – Salsa Signature",
+        precio: 16,
+        meta:
+          'Tiempo aprox.: <strong>18–22 min</strong> · 10 wings + papas · ' +
+          "Salsas a elegir (BBQ, Buffalo, Honey Garlic, Spicy).",
+        chips: ["10 wings crujientes", "Papas sazonadas", "Salsa a elección", "Perfecto para compartir"]
+      },
+      tacos: {
+        nombre: "Tacos Mixtos – 3 unidades",
+        precio: 12,
+        meta:
+          'Tiempo aprox.: <strong>12–15 min</strong> · Tortilla maíz / harina · ' +
+          "Mix de carne asada, pollo y pastor.",
+        chips: ["Tortilla maíz / harina", "Cilantro + cebolla", "Salsas caseras", "Opción sin queso"]
+      },
+      bowl: {
+        nombre: "Urban Chicken Bowl – Fit / High Protein",
+        precio: 13,
+        meta:
+          'Tiempo aprox.: <strong>14–18 min</strong> · Base arroz / quinoa · ' +
+          "Pollo grill, vegetales y toppings.",
+        chips: ["Opción fit", "High protein", "Personalizable", "Ideal post-entreno"]
+      }
+    };
+
+    // Precios extras
+    var extrasPrices = {
+      extra_queso: 1.5,
+      extra_bacon: 2.0,
+      extra_papas: 2.5,
+      extra_drink: 2.0
+    };
+
+    // Precios delivery por zona
+    var deliveryFees = {
+      cerca: 3.0,
+      media: 5.0,
+      lejos: 7.0
+    };
+
     var form = document.getElementById("demo-order-form");
     var statusEl = document.getElementById("demo-status");
     var preview = document.getElementById("whatsapp-preview");
 
+    var platoSelect = document.getElementById("plato-select");
+    var cantidadInput = document.getElementById("cantidad-input");
+    var modalidadSelect = document.getElementById("modalidad-select");
+    var zonaSelect = document.getElementById("zona-select");
+    var pagoSelect = document.getElementById("pago-select");
+    var propinaSelect = document.getElementById("propina-select");
+
+    var productMetaEl = document.getElementById("product-meta");
+    var chipsRow = document.querySelector(".chip-row");
+
+    var summaryPlato = document.getElementById("summary-plato");
+    var summaryCantidad = document.getElementById("summary-cantidad");
+    var summaryExtras = document.getElementById("summary-extras");
+    var summarySubtotal = document.getElementById("summary-subtotal");
+    var summaryDelivery = document.getElementById("summary-delivery");
+    var summaryTip = document.getElementById("summary-tip");
+    var summaryTotal = document.getElementById("summary-total");
+    var summaryPayment = document.getElementById("summary-payment");
+    var deliveryText = document.getElementById("delivery-text");
+    var pagoStatus = document.getElementById("pago-status");
+    var btnPagoDemo = document.getElementById("btn-pago-demo");
+
+    function getSelectedExtras() {
+      var extras = [];
+      var totalExtras = 0;
+      Object.keys(extrasPrices).forEach(function (key) {
+        var input = form.querySelector('input[name="' + key + '"]');
+        if (input && input.checked) {
+          extras.push(key);
+          totalExtras += extrasPrices[key];
+        }
+      });
+      return { extras: extras, totalExtras: totalExtras };
+    }
+
+    function formateaExtrasLista(extrasArr) {
+      if (!extrasArr.length) return "Sin extras";
+      var etiquetas = {
+        extra_queso: "Queso extra",
+        extra_bacon: "Bacon crispy",
+        extra_papas: "Papas grandes",
+        extra_drink: "Bebida premium"
+      };
+      return extrasArr.map(function (key) { return etiquetas[key] || key; }).join(", ");
+    }
+
+    function actualizarPlato() {
+      var key = platoSelect.value;
+      var data = menuData[key] || menuData["smash"];
+
+      productMetaEl.innerHTML = data.meta;
+      summaryPlato.textContent = data.nombre;
+
+      // chips
+      chipsRow.innerHTML = "";
+      (data.chips || []).forEach(function (ch, idx) {
+        var div = document.createElement("div");
+        div.className = "chip" + (idx === data.chips.length - 1 ? " special" : "");
+        div.textContent = ch;
+        chipsRow.appendChild(div);
+      });
+
+      actualizarResumen();
+    }
+
+    function actualizarDeliveryVisibilidad() {
+      var isDelivery = modalidadSelect.value === "delivery";
+      var zonaWrapper = document.getElementById("zona-wrapper");
+      if (zonaWrapper) {
+        zonaWrapper.style.opacity = isDelivery ? "1" : "0.4";
+      }
+    }
+
+    function actualizarResumen() {
+      var key = platoSelect.value;
+      var data = menuData[key] || menuData["smash"];
+      var cantidad = parseInt(cantidadInput.value || "1", 10);
+      if (isNaN(cantidad) || cantidad < 1) cantidad = 1;
+
+      var extrasInfo = getSelectedExtras();
+      var extrasArr = extrasInfo.extras;
+      var extrasPorUnidad = extrasInfo.totalExtras;
+
+      var subtotal = (data.precio + extrasPorUnidad) * cantidad;
+
+      var delivery = 0;
+      var modalidad = modalidadSelect.value;
+      var zona = zonaSelect.value || "cerca";
+
+      if (modalidad === "delivery") {
+        delivery = deliveryFees[zona] || deliveryFees["cerca"];
+      }
+
+      var propinaPct = parseInt(propinaSelect.value || "0", 10);
+      if (isNaN(propinaPct)) propinaPct = 0;
+      var tip = (subtotal * propinaPct) / 100;
+
+      var total = subtotal + delivery + tip;
+
+      summaryCantidad.textContent = cantidad.toString();
+      summaryExtras.textContent = formateaExtrasLista(extrasArr);
+      summarySubtotal.textContent = "$" + subtotal.toFixed(2);
+      summaryDelivery.textContent = "$" + delivery.toFixed(2);
+      summaryTip.textContent = "$" + tip.toFixed(2);
+      summaryTotal.textContent = "$" + total.toFixed(2);
+
+      if (modalidad === "delivery") {
+        var zonaTxt = "zona cercana";
+        if (zona === "media") zonaTxt = "zona media";
+        if (zona === "lejos") zonaTxt = "zona extendida";
+        deliveryText.textContent =
+          "Delivery activo: tarifa demo según " +
+          zonaTxt +
+          ". Estos valores se ajustan a tu radio real de entrega.";
+        deliveryText.style.color = "#fbbf24";
+      } else {
+        deliveryText.textContent =
+          "Modalidad: recoger en el local. En delivery se agrega una tarifa según zona.";
+        deliveryText.style.color = "#9ca3af";
+      }
+
+      var pagoValue = pagoSelect.value;
+      var pagoText = "Tarjeta online (Stripe / Apple Pay)";
+      if (pagoValue === "cashapp") pagoText = "Cash App / Zelle";
+      if (pagoValue === "contra") pagoText = "Pago en efectivo al recibir";
+      summaryPayment.textContent = pagoText;
+    }
+
+    // Eventos de actualización
+    if (platoSelect) {
+      platoSelect.addEventListener("change", function () {
+        actualizarPlato();
+      });
+    }
+
+    if (cantidadInput) {
+      cantidadInput.addEventListener("input", actualizarResumen);
+    }
+
+    if (modalidadSelect) {
+      modalidadSelect.addEventListener("change", function () {
+        actualizarDeliveryVisibilidad();
+        actualizarResumen();
+      });
+    }
+
+    if (zonaSelect) {
+      zonaSelect.addEventListener("change", actualizarResumen);
+    }
+
+    if (pagoSelect) {
+      pagoSelect.addEventListener("change", actualizarResumen);
+    }
+
+    if (propinaSelect) {
+      propinaSelect.addEventListener("change", actualizarResumen);
+    }
+
+    // Extras
+    Object.keys(extrasPrices).forEach(function (key) {
+      var input = form.querySelector('input[name="' + key + '"]');
+      if (input) {
+        input.addEventListener("change", actualizarResumen);
+      }
+    });
+
+    // Botón de pago demo
+    if (btnPagoDemo && pagoStatus) {
+      btnPagoDemo.addEventListener("click", function () {
+        pagoStatus.style.color = "#22c55e";
+        pagoStatus.textContent =
+          "Pago de pedido simulado correctamente (solo modo demo). En producción aquí se conecta Stripe / Cash App / etc.";
+      });
+    }
+
+    // Submit → genera mensaje WhatsApp
     if (form && statusEl && preview) {
       form.addEventListener("submit", function (e) {
         e.preventDefault();
         var data = Object.fromEntries(new FormData(form).entries());
 
+        var key = data.plato || "smash";
+        var mData = menuData[key] || menuData["smash"];
+        var cantidad = parseInt(data.cantidad || "1", 10);
+        if (isNaN(cantidad) || cantidad < 1) cantidad = 1;
+
+        var extrasInfo = getSelectedExtras();
+        var extrasArr = extrasInfo.extras;
+        var extrasText = formateaExtrasLista(extrasArr);
+
+        var modalidad = data.modalidad === "delivery" ? "Delivery" : "Recoger en el local";
+        var zona = data.zona || "Zona cercana (demo)";
+        var hora = data.hora || "Lo antes posible";
         var nombre = data.nombre || "cliente";
-        var plato = data.plato || "-";
-        var cantidad = data.cantidad || "1";
-        var modalidad = data.modalidad || "Recoger en el local";
-        var hora = data.hora || "-";
-        var notas = (data.notas || "").trim();
+        var notas = (data.notas || "").trim() || "Sin notas adicionales.";
+        var picante = data.picante || "Suave";
 
-        statusEl.textContent = "Pedido demo generado. Este sería el mensaje que recibes.";
+        // Recalcular para asegurar coherencia en mensaje
+        actualizarResumen();
+
         statusEl.style.color = "#22c55e";
+        statusEl.textContent =
+          "Pedido demo generado. Este sería el mensaje que ves en WhatsApp / panel de pedidos.";
 
+        var pagoTxt = summaryPayment.textContent || "";
         var text =
-          "🧾 *Nuevo pedido – ADD Orders*\n\n" +
+          "🧾 *Nuevo pedido – RESTAURANTE DEMO (ADD Orders)*\n\n" +
           "👤 Nombre: " + nombre + "\n" +
-          "🍽 Plato: " + cantidad + " x " + plato + "\n" +
+          "🍽 Pedido: " + cantidad + " x " + mData.nombre + "\n" +
+          "🌶 Picante: " + picante + "\n" +
+          "➕ Extras: " + extrasText + "\n\n" +
           "🚚 Modalidad: " + modalidad + "\n" +
-          "⏰ Hora aproximada: " + hora + "\n";
-
-        if (notas) {
-          text += "📝 Notas: " + notas + "\n";
-        }
-
-        text +=
-          "\n" +
-          "✅ Este pedido llega listo para cobrar y preparar, sin notas de voz ni mensajes rotos.";
+          (data.modalidad === "delivery" ? "📍 Zona: " + zona + " (demo)\n" : "") +
+          "⏰ Hora aproximada: " + hora + "\n" +
+          "📱 WhatsApp contacto: " +
+          (data.whatsapp && data.whatsapp.trim() ? data.whatsapp.trim() : "No especificado") +
+          "\n\n" +
+          "💵 Subtotal comida: " + summarySubtotal.textContent + "\n" +
+          "🚚 Delivery: " + summaryDelivery.textContent + "\n" +
+          "💁 Propina estimada: " + summaryTip.textContent + "\n" +
+          "✅ Total estimado: " + summaryTotal.textContent + "\n" +
+          "💳 Método de pago: " + pagoTxt + "\n\n" +
+          "📝 Notas del cliente: " + notas + "\n\n" +
+          "Este pedido llega estructurado desde *ADD Orders*, listo para cobrar y pasar a cocina sin notas de voz ni mensajes cortados.";
 
         preview.textContent = text;
       });
     }
+
+    // Inicializar estado
+    actualizarPlato();
+    actualizarDeliveryVisibilidad();
+    actualizarResumen();
   </script>
 </body>
 </html>
