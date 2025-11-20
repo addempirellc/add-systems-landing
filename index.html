@@ -65,16 +65,24 @@
     }
 
     .logo-mark {
-      width: 32px;
-      height: 32px;
-      border-radius: 14px;
-      background: radial-gradient(circle at 30% 0%, #facc15, #f97316 40%, #111827 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 18px;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0%, #0ea5e9, #1d4ed8 40%, #020617 100%);
+      position: relative;
+      overflow: hidden;
       box-shadow: var(--shadow-soft);
+      flex-shrink: 0;
+    }
+
+    .logo-mark::before {
+      content: "";
+      position: absolute;
+      inset: 2px;
+      border-radius: inherit;
+      background-image: url("https://raw.githubusercontent.com/addempirellc/add-systems-landing/refs/heads/main/%F0%9F%A7%8A%20Estilo%20fri%CC%81o%20y%20digital%20(tech%3Afuturista)%20.png");
+      background-size: cover;
+      background-position: center;
     }
 
     .logo-text {
@@ -85,7 +93,7 @@
     .logo-title {
       font-weight: 700;
       letter-spacing: 0.06em;
-      font-size: 14px;
+      font-size: 15px;
       text-transform: uppercase;
     }
 
@@ -100,6 +108,8 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     .badge-beta {
@@ -108,6 +118,7 @@
       border-radius: 999px;
       border: 1px solid rgba(249,250,251,0.12);
       color: var(--text-soft);
+      background: rgba(15,23,42,0.9);
     }
 
     .btn {
@@ -121,7 +132,12 @@
       gap: 6px;
       font-weight: 500;
       white-space: nowrap;
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+      transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background var(--transition-fast),
+        color var(--transition-fast),
+        border-color var(--transition-fast);
     }
 
     .btn-primary {
@@ -182,7 +198,7 @@
     }
 
     .hero-title {
-      font-size: clamp(28px, 4vw, 38px);
+      font-size: clamp(30px, 4.4vw, 40px);
       font-weight: 700;
       letter-spacing: -0.03em;
       margin-bottom: 10px;
@@ -198,7 +214,7 @@
     .hero-subtitle {
       font-size: 15px;
       color: var(--text-soft);
-      max-width: 520px;
+      max-width: 540px;
       margin-bottom: 18px;
     }
 
@@ -344,7 +360,7 @@
     }
 
     .section-title {
-      font-size: 20px;
+      font-size: 21px;
       font-weight: 600;
       margin-bottom: 10px;
     }
@@ -352,7 +368,7 @@
     .section-subtitle {
       font-size: 13px;
       color: var(--text-soft);
-      max-width: 520px;
+      max-width: 540px;
       margin-bottom: 18px;
     }
 
@@ -626,6 +642,7 @@
 
     .faq-a {
       color: var(--text-soft);
+      font-size: 12px;
     }
 
     .cta-final {
@@ -662,6 +679,10 @@
         align-items: flex-start;
       }
 
+      .header-cta {
+        justify-content: flex-start;
+      }
+
       .demo-box {
         flex-direction: column;
         align-items: flex-start;
@@ -674,7 +695,7 @@
     <!-- HEADER -->
     <header class="header">
       <div class="logo">
-        <div class="logo-mark">A</div>
+        <div class="logo-mark"></div>
         <div class="logo-text">
           <div class="logo-title">ADD Systems</div>
           <div class="logo-sub">Sistemas para negocios locales</div>
@@ -1093,28 +1114,31 @@
           <div class="faq-q">¿Tengo que cambiar todo lo que ya uso?</div>
           <div class="faq-a">
             No. ADD Systems se monta encima de lo que ya tienes. Si ya usas WhatsApp, Instagram
-            o Square, simplemente los conectamos al flujo.
+            o Square, simplemente los conectamos al flujo y los usamos a tu favor.
+          </div>
+        </article>
+        <article class="faq-item">
+          <div class="faq-q">¿Qué incluye cada plan de forma práctica?</div>
+          <div class="faq-a">
+            Bookings se enfoca en agenda y depósitos; Orders en menú, tickets altos y delivery;
+            Automations suma recordatorios, mensajes post-venta e integraciones avanzadas. Siempre
+            incluimos implementación inicial y ajustes hasta que el flujo quede estable.
           </div>
         </article>
         <article class="faq-item">
           <div class="faq-q">¿En cuánto tiempo queda listo el sistema?</div>
           <div class="faq-a">
-            Dependiendo del plan, el sistema puede estar funcionando en pocos días hábiles
-            una vez que tengamos tu información (horarios, servicios, precios, etc.).
+            ADD Bookings suele estar listo en 3–7 días hábiles una vez que entregas horarios,
+            servicios y precios. ADD Orders va de 5–10 días según el tamaño del menú. Automations
+            se trabaja por fases, normalmente varias semanas.
           </div>
         </article>
         <article class="faq-item">
-          <div class="faq-q">¿Qué pasa si no sé usar nada de esto?</div>
+          <div class="faq-q">¿Qué no hacemos para no generar falsas expectativas?</div>
           <div class="faq-a">
-            Precisamente para eso existe ADD Systems. Te dejamos todo lo más simple posible
-            y con un mini walkthrough para que tú o tu equipo sepan usarlo sin problemas.
-          </div>
-        </article>
-        <article class="faq-item">
-          <div class="faq-q">¿Puedo empezar con un plan y luego subir a otro?</div>
-          <div class="faq-a">
-            Sí. Puedes iniciar con ADD Bookings o ADD Orders y luego migrar a ADD Automations
-            cuando tu negocio esté listo para automatizar más procesos.
+            No gestionamos tus redes ni campañas de anuncios, no respondemos mensajes por ti,
+            no garantizamos ventas (sí orden para atenderlas) y no desarrollamos apps móviles
+            a medida. Nuestro foco es que tu sistema funcione simple y estable.
           </div>
         </article>
       </div>
@@ -1180,10 +1204,8 @@
           submitBtn.disabled = true;
           submitBtn.textContent = "Enviando...";
         }
-        if (statusEl) {
-          statusEl.style.color = "#9ca3af";
-          statusEl.textContent = "Procesando diagnóstico...";
-        }
+        statusEl.style.color = "#9ca3af";
+        statusEl.textContent = "Procesando diagnóstico...";
 
         var formData = new FormData(diagForm);
         var data = Object.fromEntries(formData.entries());
@@ -1199,27 +1221,21 @@
 
           if (!res.ok) {
             console.error("Error respuesta", await res.text());
-            if (statusEl) {
-              statusEl.style.color = "#f97373";
-              statusEl.textContent =
-                "Hubo un problema al enviar el diagnóstico. Intenta de nuevo.";
-            }
+            statusEl.style.color = "#f97373";
+            statusEl.textContent =
+              "Hubo un problema al enviar el diagnóstico. Intenta de nuevo.";
             return;
           }
 
-          if (statusEl) {
-            statusEl.style.color = "#22c55e";
-            statusEl.textContent =
-              "Diagnóstico enviado correctamente. Te contactaremos pronto por WhatsApp.";
-          }
+          statusEl.style.color = "#22c55e";
+          statusEl.textContent =
+            "Diagnóstico enviado correctamente. Te contactaremos pronto por WhatsApp.";
           diagForm.reset();
         } catch (err) {
           console.error(err);
-          if (statusEl) {
-            statusEl.style.color = "#f97373";
-            statusEl.textContent =
-              "Error de conexión con el servidor. Intenta más tarde.";
-          }
+          statusEl.style.color = "#f97373";
+          statusEl.textContent =
+            "Error de conexión con el servidor. Intenta más tarde.";
         } finally {
           if (submitBtn) {
             submitBtn.disabled = false;
