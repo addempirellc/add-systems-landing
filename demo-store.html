@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Demo ADD Store – Tienda online simple</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Demo ADD Store: simulación visual de una tienda online simple usando Square Online como base." />
+  <link rel="stylesheet" href="css/main.css" />
+  <style>
+    .store-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+      gap: 14px;
+    }
+
+    .store-products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .store-product-card {
+      background: var(--bg-alt);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .store-product-image {
+      border-radius: 12px;
+      background: radial-gradient(circle at top, rgba(148,163,184,0.4), rgba(15,23,42,1));
+      height: 90px;
+      margin-bottom: 4px;
+    }
+
+    .store-product-name {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .store-product-desc {
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    .store-product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 4px;
+    }
+
+    .store-product-price {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .store-tag {
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      color: var(--text-soft);
+    }
+
+    .store-cart {
+      background: radial-gradient(circle at top, rgba(15,23,42,0.9), #020617);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      padding: 14px;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 12px;
+    }
+
+    .store-cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    .store-cart-title {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .store-cart-pill {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      color: var(--text-soft);
+    }
+
+    .store-cart-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+      color: var(--text-soft);
+    }
+
+    .store-cart-line strong {
+      color: var(--text);
+    }
+
+    .store-cart-total {
+      border-top: 1px dashed rgba(75,85,99,0.9);
+      padding-top: 6px;
+      margin-top: 6px;
+    }
+
+    .store-cart-note {
+      font-size: 11px;
+      color: var(--text-soft);
+      margin-top: 4px;
+    }
+
+    @media (max-width: 840px) {
+      .store-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .store-products-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <!-- HEADER -->
+    <header class="header">
+      <div class="logo">
+        <div class="logo-mark"></div>
+        <div class="logo-text">
+          <div class="logo-title">ADD Systems</div>
+          <div class="logo-sub">Demo ADD Store</div>
+        </div>
+      </div>
+
+      <div class="header-cta">
+        <a href="index.html" class="btn btn-outline">← Volver a la página principal</a>
+        <a href="https://tidycal.com/add-systems/add-automations"
+           class="btn btn-primary"
+           target="_blank"
+           rel="noopener">
+          Quiero esta tienda en mi negocio
+        </a>
+      </div>
+    </header>
+
+    <!-- HERO DEMO STORE -->
+    <section class="hero">
+      <div>
+        <div class="section-label">Demo en vivo</div>
+        <h1 class="section-title">
+          Cómo se vería una tienda online simple usando Square Online como base.
+        </h1>
+        <p class="section-subtitle">
+          Esta demo es solo visual: simula una tienda típica de Square Online con productos,
+          carrito y resumen de pedido. El diseño final se adapta a tu marca, fotos reales y reglas de envío.
+        </p>
+
+        <div class="hero-actions">
+          <a href="https://tidycal.com/add-systems/add-automations"
+             class="btn btn-primary"
+             target="_blank"
+             rel="noopener">
+            Quiero un sistema de tienda como este
+          </a>
+          <a href="index.html#planes" class="btn btn-outline">
+            Ver planes ADD completos
+          </a>
+        </div>
+
+        <div class="hero-note">
+          <span>Importante:</span> aquí no hay pagos reales. Es una maqueta para que veas el flujo
+          que tus clientes tendrían antes de pasar al checkout de Square.
+        </div>
+      </div>
+
+      <!-- Simulación visual estilo Square Online -->
+      <aside class="hero-right" aria-label="Vista demo tienda online">
+        <div class="hero-panel-header">
+          <div class="hero-panel-title">Demo · Tienda La Esquina Market</div>
+          <div class="hero-panel-pill">Vista cliente</div>
+        </div>
+
+        <div class="store-layout">
+          <!-- Productos -->
+          <div class="store-products-grid">
+            <article class="store-product-card">
+              <div class="store-product-image"></div>
+              <div class="store-product-name">Pack Desayuno Local</div>
+              <div class="store-product-desc">
+                Café + pan artesanal + mermelada casera. Ideal para recoger por la mañana.
+              </div>
+              <div class="store-product-footer">
+                <span class="store-product-price">$19.90</span>
+                <span class="store-tag">Más vendido</span>
+              </div>
+            </article>
+
+            <article class="store-product-card">
+              <div class="store-product-image"></div>
+              <div class="store-product-name">Caja Snacks de la Casa</div>
+              <div class="store-product-desc">
+                Selección de snacks locales para reuniones pequeñas o regalo rápido.
+              </div>
+              <div class="store-product-footer">
+                <span class="store-product-price">$29.50</span>
+                <span class="store-tag">Nuevo</span>
+              </div>
+            </article>
+
+            <article class="store-product-card">
+              <div class="store-product-image"></div>
+              <div class="store-product-name">Combo Almuerzo Express</div>
+              <div class="store-product-desc">
+                Plato principal + bebida. Pedido pensado para recogida o delivery cercano.
+              </div>
+              <div class="store-product-footer">
+                <span class="store-product-price">$14.90</span>
+                <span class="store-tag">Recogida</span>
+              </div>
+            </article>
+
+            <article class="store-product-card">
+              <div class="store-product-image"></div>
+              <div class="store-product-name">Suscripción Mensual Café</div>
+              <div class="store-product-desc">
+                Bolsa de café cada semana, cobro automático y pick-up en tienda.
+              </div>
+              <div class="store-product-footer">
+                <span class="store-product-price">$39.00</span>
+                <span class="store-tag">Suscripción</span>
+              </div>
+            </article>
+          </div>
+
+          <!-- Carrito / Resumen -->
+          <aside class="store-cart">
+            <div class="store-cart-header">
+              <div class="store-cart-title">Tu carrito</div>
+              <div class="store-cart-pill">2 artículos</div>
+            </div>
+
+            <div class="store-cart-line">
+              <span>1× Pack Desayuno Local</span>
+              <span>$19.90</span>
+            </div>
+            <div class="store-cart-line">
+              <span>1× Caja Snacks de la Casa</span>
+              <span>$29.50</span>
+            </div>
+
+            <div class="store-cart-total">
+              <div class="store-cart-line">
+                <span>Subtotal</span>
+                <span>$49.40</span>
+              </div>
+              <div class="store-cart-line">
+                <span>Envío estimado</span>
+                <span>$4.99</span>
+              </div>
+              <div class="store-cart-line">
+                <strong>Total estimado</strong>
+                <strong>$54.39</strong>
+              </div>
+            </div>
+
+            <button class="btn btn-primary" type="button" style="width:100%; justify-content:center; margin-top:4px;">
+              Proceder al pago (simulado)
+            </button>
+
+            <p class="store-cart-note">
+              En la versión real, este botón lleva al checkout de Square Online con tus propias
+              opciones de envío, impuestos y métodos de pago.
+            </p>
+          </aside>
+        </div>
+      </aside>
+    </section>
+  </main>
+</body>
+</html>
