@@ -5,651 +5,7 @@
   <title>ADD Systems – Sistemas digitales para negocios locales</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="ADD Systems: reservas, pedidos, pagos y automatizaciones para negocios locales. ADD Bookings, ADD Orders y ADD Automations. Deja de perder clientes por desorden." />
-  <style>
-    :root {
-      --bg: #050509;
-      --bg-alt: #0b0b12;
-      --card: #11111a;
-      --accent: #fbbf24;
-      --accent-soft: rgba(251,191,36,0.16);
-      --accent-strong: #f59e0b;
-      --text: #f9fafb;
-      --text-soft: #9ca3af;
-      --border-subtle: #1f2933;
-      --danger: #f97373;
-      --success: #22c55e;
-      --shadow-soft: 0 18px 40px rgba(0,0,0,0.55);
-      --radius-lg: 18px;
-      --radius-xl: 24px;
-      --radius-pill: 999px;
-      --transition-fast: 0.18s ease-out;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #111827 0, #02030a 45%, #02030a 100%);
-      color: var(--text);
-      line-height: 1.5;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .page {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 24px 16px 64px;
-    }
-
-    /* HEADER */
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 32px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo-mark {
-      width: 40px;
-      height: 40px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 0%, #0ea5e9, #1d4ed8 40%, #020617 100%);
-      position: relative;
-      overflow: hidden;
-      box-shadow: var(--shadow-soft);
-      flex-shrink: 0;
-    }
-
-    .logo-mark::before {
-      content: "";
-      position: absolute;
-      inset: 2px;
-      border-radius: inherit;
-      background-image: url("https://raw.githubusercontent.com/addempirellc/add-systems-landing/refs/heads/main/%F0%9F%A7%8A%20Estilo%20fri%CC%81o%20y%20digital%20(tech%3Afuturista)%20.png");
-      background-size: cover;
-      background-position: center;
-    }
-
-    .logo-text {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .logo-title {
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      font-size: 15px;
-      text-transform: uppercase;
-    }
-
-    .logo-sub {
-      font-size: 11px;
-      color: var(--text-soft);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    .header-cta {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .badge-beta {
-      font-size: 11px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(249,250,251,0.12);
-      color: var(--text-soft);
-      background: rgba(15,23,42,0.9);
-    }
-
-    .btn {
-      border-radius: var(--radius-pill);
-      border: none;
-      font-size: 13px;
-      padding: 9px 18px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-weight: 500;
-      white-space: nowrap;
-      transition:
-        transform var(--transition-fast),
-        box-shadow var(--transition-fast),
-        background var(--transition-fast),
-        color var(--transition-fast),
-        border-color var(--transition-fast);
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
-      color: #020617;
-      box-shadow: 0 14px 30px rgba(248,181,26,0.4);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 20px 40px rgba(248,181,26,0.45);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--text-soft);
-      border: 1px solid rgba(148,163,184,0.4);
-    }
-
-    .btn-outline:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      transform: translateY(-1px);
-    }
-
-    /* HERO */
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0,1.4fr) minmax(0,1.1fr);
-      gap: 32px;
-      margin-bottom: 40px;
-    }
-
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(15,23,42,0.9);
-      border: 1px solid rgba(148,163,184,0.5);
-      color: var(--text-soft);
-      margin-bottom: 14px;
-    }
-
-    .hero-eyebrow span {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 16px;
-      height: 16px;
-      border-radius: 999px;
-      background: var(--accent);
-      font-size: 10px;
-      color: #020617;
-      font-weight: 700;
-    }
-
-    .hero-title {
-      font-size: clamp(30px, 4.4vw, 40px);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin-bottom: 10px;
-    }
-
-    .hero-title strong {
-      background: linear-gradient(to right, #facc15, #fb923c);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .hero-subtitle {
-      font-size: 15px;
-      color: var(--text-soft);
-      max-width: 540px;
-      margin-bottom: 18px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-
-    .hero-note {
-      font-size: 12px;
-      color: var(--text-soft);
-    }
-
-    .hero-note span {
-      color: var(--accent);
-      font-weight: 500;
-    }
-
-    .hero-right {
-      background: rgba(15,23,42,0.95);
-      border-radius: var(--radius-xl);
-      padding: 16px 16px 18px;
-      border: 1px solid rgba(31,41,55,0.9);
-      box-shadow: var(--shadow-soft);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .hero-panel-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 6px;
-    }
-
-    .hero-panel-title {
-      font-size: 13px;
-      color: var(--text-soft);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    .hero-panel-pill {
-      font-size: 11px;
-      padding: 4px 9px;
-      border-radius: 999px;
-      background: rgba(15,23,42,0.9);
-      border: 1px solid rgba(55,65,81,0.8);
-      color: var(--accent);
-    }
-
-    .hero-sim-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 10px;
-    }
-
-    .sim-card {
-      background: radial-gradient(circle at top, rgba(15,23,42,0.9), #020617);
-      border-radius: var(--radius-lg);
-      padding: 12px;
-      border: 1px solid rgba(55,65,81,0.9);
-    }
-
-    .sim-title {
-      font-size: 13px;
-      margin-bottom: 6px;
-      font-weight: 600;
-    }
-
-    .sim-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      color: var(--text-soft);
-      margin-bottom: 8px;
-    }
-
-    .sim-badge span {
-      width: 18px;
-      height: 18px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      color: #020617;
-      font-weight: 700;
-    }
-
-    .sim-badge.danger span {
-      background: var(--danger);
-    }
-
-    .sim-badge.success span {
-      background: var(--success);
-    }
-
-    .sim-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 11px;
-      margin-bottom: 4px;
-      color: var(--text-soft);
-    }
-
-    .sim-row span:last-child {
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .hero-panel-footer {
-      margin-top: 4px;
-      padding-top: 8px;
-      border-top: 1px dashed rgba(75,85,99,0.8);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 11px;
-      color: var(--text-soft);
-    }
-
-    .hero-panel-footer strong {
-      color: var(--accent);
-    }
-
-    /* SECCIONES GENERALES */
-    section {
-      margin-bottom: 40px;
-    }
-
-    .section-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-soft);
-      margin-bottom: 4px;
-    }
-
-    .section-title {
-      font-size: 21px;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-
-    .section-subtitle {
-      font-size: 13px;
-      color: var(--text-soft);
-      max-width: 540px;
-      margin-bottom: 18px;
-    }
-
-    /* DOLOR */
-    .pain-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 16px;
-    }
-
-    .pain-card {
-      background: var(--bg-alt);
-      border-radius: var(--radius-lg);
-      padding: 14px 14px 12px;
-      border: 1px solid var(--border-subtle);
-    }
-
-    .pain-title {
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-
-    .pain-list {
-      list-style: none;
-      font-size: 12px;
-      color: var(--text-soft);
-    }
-
-    .pain-list li {
-      margin-bottom: 4px;
-      display: flex;
-      align-items: flex-start;
-      gap: 6px;
-    }
-
-    .pain-list li::before {
-      content: "•";
-      color: var(--accent);
-      margin-top: 1px;
-      font-size: 14px;
-    }
-
-    /* PLANES */
-    .plans-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 16px;
-    }
-
-    .plan-card {
-      background: radial-gradient(circle at top, rgba(15,23,42,0.9), #020617);
-      border-radius: var(--radius-xl);
-      padding: 16px 16px 14px;
-      border: 1px solid var(--border-subtle);
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 16px 30px rgba(0,0,0,0.45);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .plan-card:hover {
-      transform: scale(1.025);
-      box-shadow: 0 26px 55px rgba(0,0,0,0.55);
-    }
-
-    .plan-card.recommended {
-      border-color: var(--accent);
-      box-shadow: 0 22px 45px rgba(248,181,26,0.35);
-      transform: translateY(-2px);
-    }
-
-    .plan-card.recommended:hover {
-      transform: translateY(-2px) scale(1.03);
-      box-shadow: 0 30px 60px rgba(248,181,26,0.45);
-    }
-
-    .plan-pill {
-      position: absolute;
-      top: 10px;
-      right: 12px;
-      font-size: 10px;
-      padding: 4px 9px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      border: 1px solid rgba(248,181,26,0.6);
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-    }
-
-    .plan-name {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 2px;
-    }
-
-    .plan-for {
-      font-size: 11px;
-      color: var(--text-soft);
-      margin-bottom: 8px;
-    }
-
-    .plan-price {
-      margin-bottom: 10px;
-    }
-
-    .plan-price-main {
-      font-size: 18px;
-      font-weight: 700;
-    }
-
-    .plan-price-sub {
-      font-size: 11px;
-      color: var(--text-soft);
-    }
-
-    .plan-separator {
-      border-top: 1px dashed rgba(55,65,81,0.8);
-      margin: 10px 0;
-    }
-
-    .plan-list {
-      list-style: none;
-      font-size: 12px;
-      color: var(--text-soft);
-      margin-bottom: 12px;
-    }
-
-    .plan-list li {
-      display: flex;
-      gap: 6px;
-      margin-bottom: 4px;
-    }
-
-    .plan-list li::before {
-      content: "✓";
-      font-size: 11px;
-      margin-top: 1px;
-      color: var(--accent);
-    }
-
-    .plan-footer-note {
-      font-size: 11px;
-      color: var(--text-soft);
-      margin-top: 6px;
-    }
-
-    .plan-footer-note span {
-      color: var(--accent);
-    }
-
-    /* TABLA COMPARATIVA */
-    .table-wrapper {
-      background: var(--bg-alt);
-      border-radius: var(--radius-xl);
-      border: 1px solid var(--border-subtle);
-      padding: 14px;
-      overflow-x: auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 11px;
-      min-width: 600px;
-    }
-
-    th, td {
-      padding: 8px 10px;
-      text-align: left;
-      border-bottom: 1px solid rgba(31,41,55,0.8);
-      white-space: nowrap;
-    }
-
-    th {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--text-soft);
-    }
-
-    tbody tr:last-child td {
-      border-bottom: none;
-    }
-
-    tbody tr:nth-child(even) {
-      background: rgba(15,23,42,0.6);
-    }
-
-    /* DEMO + FAQ + CTA FINAL */
-    .demo-box {
-      background: radial-gradient(circle at top, rgba(15,23,42,0.9), #020617);
-      border-radius: var(--radius-xl);
-      border: 1px solid var(--border-subtle);
-      padding: 16px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 12px;
-      justify-content: space-between;
-    }
-
-    .demo-text {
-      font-size: 13px;
-      color: var(--text-soft);
-      max-width: 520px;
-    }
-
-    .demo-text strong {
-      color: var(--text);
-    }
-
-    .faq-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 14px;
-    }
-
-    .faq-item {
-      background: var(--bg-alt);
-      border-radius: var(--radius-lg);
-      padding: 12px 14px;
-      border: 1px solid var(--border-subtle);
-      font-size: 12px;
-    }
-
-    .faq-q {
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .faq-a {
-      color: var(--text-soft);
-      font-size: 12px;
-    }
-
-    .cta-final {
-      text-align: center;
-      margin-top: 24px;
-    }
-
-    .cta-final p {
-      font-size: 13px;
-      color: var(--text-soft);
-      margin-top: 6px;
-    }
-
-    @media (max-width: 840px) {
-      .hero {
-        grid-template-columns: minmax(0,1fr);
-      }
-
-      .hero-right {
-        order: -1;
-      }
-
-      .plans-grid {
-        grid-template-columns: minmax(0,1fr);
-      }
-
-      .pain-grid,
-      .faq-grid {
-        grid-template-columns: minmax(0,1fr);
-      }
-
-      .header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .header-cta {
-        justify-content: flex-start;
-      }
-
-      .demo-box {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="css/main.css" />
 </head>
 <body>
   <main class="page">
@@ -658,84 +14,109 @@
       <div class="logo">
         <div class="logo-mark"></div>
         <div class="logo-text">
-          <div class="logo-title">ADD Systems</div>
-          <div class="logo-sub">Sistemas para negocios locales</div>
+          <div class="logo-title" data-i18n="header.logoTitle">ADD Systems</div>
+          <div class="logo-sub" data-i18n="header.logoSub">Sistemas para negocios locales</div>
         </div>
       </div>
       <div class="header-cta">
-        <div class="badge-beta">Versión piloto para Louisville</div>
-        <a href="faq.html" class="btn btn-outline">FAQ</a>
-        <button type="button" class="btn btn-outline" data-scroll="#planes">Ver planes</button>
-        <button type="button" class="btn btn-primary" data-scroll="#demo">Probar demo</button>
+        <div class="badge-beta" data-i18n="header.badge">Versión piloto para Louisville</div>
+
+        <a href="faq.html" class="btn btn-outline" data-i18n="header.faq">FAQ</a>
+
+        <button type="button" class="btn btn-outline" data-scroll="#planes" data-i18n="header.viewPlans">
+          Ver planes
+        </button>
+
+        <button type="button" class="btn btn-primary" data-scroll="#demo" data-i18n="header.tryDemo">
+          Probar demo
+        </button>
+
+        <!-- Toggle idioma -->
+        <button type="button" id="lang-toggle" class="btn btn-outline" data-lang-next="en">
+          EN
+        </button>
       </div>
     </header>
 
     <!-- HERO -->
     <section class="hero">
       <div>
-        <div class="hero-eyebrow">
+        <div class="hero-eyebrow" data-i18n="hero.eyebrow">
           <span>●</span>
           Convierte mensajes en citas, pedidos y pagos sin vivir pegado al celular.
         </div>
-        <h1 class="hero-title">
+
+        <h1 class="hero-title" data-i18n="hero.title">
           Sistemas digitales <strong>ADD</strong> para negocios que ya no pueden
           seguir atendiendo todo por WhatsApp.
         </h1>
-        <p class="hero-subtitle">
+
+        <p class="hero-subtitle" data-i18n="hero.subtitle">
           ADD Bookings, ADD Orders y ADD Automations. Tres sistemas simples para dejar de perder
           clientes por desorden, no-shows y mensajes sin responder.
         </p>
+
         <div class="hero-actions">
-          <button type="button" class="btn btn-primary" data-scroll="#planes">
+          <button type="button" class="btn btn-primary" data-scroll="#planes" data-i18n="hero.ctaPlans">
             Ver planes ADD
           </button>
-          <button type="button" class="btn btn-outline" data-scroll="#comparativa">
+          <button type="button" class="btn btn-outline" data-scroll="#comparativa" data-i18n="hero.ctaCompare">
             Comparar funciones
           </button>
         </div>
-        <div class="hero-note">
+
+        <div class="hero-note" data-i18n="hero.note">
           <span>Sin apps raras.</span> Todo funciona con links, página simple y tus pasarelas de pago.
         </div>
       </div>
 
       <aside class="hero-right" aria-label="Simulación impacto ADD Systems">
         <div class="hero-panel-header">
-          <div class="hero-panel-title">Impacto mensual estimado</div>
-          <div class="hero-panel-pill">Ejemplo: barbería &amp; restaurante</div>
+          <div class="hero-panel-title" data-i18n="hero.panelTitle">Impacto mensual estimado</div>
+          <div class="hero-panel-pill" data-i18n="hero.panelPill">Ejemplo: barbería &amp; restaurante</div>
         </div>
+
         <div class="hero-sim-grid">
           <div class="sim-card">
-            <div class="sim-title">Antes de ADD Systems</div>
-            <div class="sim-badge danger">
+            <div class="sim-title" data-i18n="hero.beforeTitle">Antes de ADD Systems</div>
+            <div class="sim-badge danger" data-i18n="hero.beforeBadge">
               <span>–</span> Pérdida silenciosa
             </div>
             <div class="sim-row">
-              <span>Citas que no llegan</span><span>10–15 / mes</span>
+              <span data-i18n="hero.beforeRow1Label">Citas que no llegan</span>
+              <span data-i18n="hero.beforeRow1Value">10–15 / mes</span>
             </div>
             <div class="sim-row">
-              <span>Pedidos olvidados</span><span>8–12 / mes</span>
+              <span data-i18n="hero.beforeRow2Label">Pedidos olvidados</span>
+              <span data-i18n="hero.beforeRow2Value">8–12 / mes</span>
             </div>
             <div class="sim-row">
-              <span>Tiempo en WhatsApp</span><span>2–3 h / día</span>
+              <span data-i18n="hero.beforeRow3Label">Tiempo en WhatsApp</span>
+              <span data-i18n="hero.beforeRow3Value">2–3 h / día</span>
             </div>
           </div>
+
           <div class="sim-card">
-            <div class="sim-title">Con ADD Bookings + Orders</div>
-            <div class="sim-badge success">
+            <div class="sim-title" data-i18n="hero.afterTitle">Con ADD Bookings + Orders</div>
+            <div class="sim-badge success" data-i18n="hero.afterBadge">
               <span>+</span> Orden &amp; control
             </div>
             <div class="sim-row">
-              <span>No-shows</span><span>–60% con depósito</span>
+              <span data-i18n="hero.afterRow1Label">No-shows</span>
+              <span data-i18n="hero.afterRow1Value">–60% con depósito</span>
             </div>
             <div class="sim-row">
-              <span>Pedidos claros</span><span>+30% efectivos</span>
+              <span data-i18n="hero.afterRow2Label">Pedidos claros</span>
+              <span data-i18n="hero.afterRow2Value">+30% efectivos</span>
             </div>
             <div class="sim-row">
-              <span>Tiempo al día</span><span>+1–2 h libres</span>
+              <span data-i18n="hero.afterRow3Label">Tiempo al día</span>
+              <span data-i18n="hero.afterRow3Value">+1–2 h libres</span>
             </div>
           </div>
         </div>
-        <div class="hero-panel-footer">
+
+        <div class="hero-panel-footer" data-i18n="hero.panelFooter">
           <span>Resultados aproximados según tipo de negocio.</span>
           <span><strong>ADD Automations</strong> multiplica el efecto.</span>
         </div>
@@ -744,31 +125,33 @@
 
     <!-- DOLOR -->
     <section id="dolor">
-      <div class="section-label">El problema real</div>
-      <h2 class="section-title">Tu negocio no necesita más redes. Necesita orden.</h2>
-      <p class="section-subtitle">
+      <div class="section-label" data-i18n="pain.label">El problema real</div>
+      <h2 class="section-title" data-i18n="pain.title">Tu negocio no necesita más redes. Necesita orden.</h2>
+      <p class="section-subtitle" data-i18n="pain.subtitle">
         La mayoría de los negocios locales no pierden dinero por falta de likes,
         sino por desorden en citas, pedidos y cobros. ADD Systems ataca ese cuello de botella.
       </p>
+
       <div class="pain-grid">
         <article class="pain-card">
-          <div class="pain-title">Sin ADD Systems</div>
+          <div class="pain-title" data-i18n="pain.withoutTitle">Sin ADD Systems</div>
           <ul class="pain-list">
-            <li>Agenda en WhatsApp, cuaderno o memoria.</li>
-            <li>Clientes que no llegan porque nunca confirmaste la cita.</li>
-            <li>Pedidos que se pierden entre notas de voz.</li>
-            <li>Pagos que se hacen “después” y nunca llegan.</li>
-            <li>Tú o tu equipo pegados al celular todo el día.</li>
+            <li data-i18n="pain.without1">Agenda en WhatsApp, cuaderno o memoria.</li>
+            <li data-i18n="pain.without2">Clientes que no llegan porque nunca confirmaste la cita.</li>
+            <li data-i18n="pain.without3">Pedidos que se pierden entre notas de voz.</li>
+            <li data-i18n="pain.without4">Pagos que se hacen “después” y nunca llegan.</li>
+            <li data-i18n="pain.without5">Tú o tu equipo pegados al celular todo el día.</li>
           </ul>
         </article>
+
         <article class="pain-card">
-          <div class="pain-title">Con ADD Systems</div>
+          <div class="pain-title" data-i18n="pain.withTitle">Con ADD Systems</div>
           <ul class="pain-list">
-            <li>Cada cita o pedido entra por un sistema simple.</li>
-            <li>Depósitos y pagos antes de reservar o cocinar.</li>
-            <li>Recordatorios automáticos reducen los no-shows.</li>
-            <li>Mensajes post-venta que piden reseñas y repiten clientes.</li>
-            <li>Tu tiempo vuelve a enfocarse en el negocio, no en el chat.</li>
+            <li data-i18n="pain.with1">Cada cita o pedido entra por un sistema simple.</li>
+            <li data-i18n="pain.with2">Depósitos y pagos antes de reservar o cocinar.</li>
+            <li data-i18n="pain.with3">Recordatorios automáticos reducen los no-shows.</li>
+            <li data-i18n="pain.with4">Mensajes post-venta que piden reseñas y repiten clientes.</li>
+            <li data-i18n="pain.with5">Tu tiempo vuelve a enfocarse en el negocio, no en el chat.</li>
           </ul>
         </article>
       </div>
@@ -776,9 +159,11 @@
 
     <!-- PLANES -->
     <section id="planes">
-      <div class="section-label">Planes ADD</div>
-      <h2 class="section-title">Tres sistemas simples. Eliges uno, lo montamos y empieza a trabajar.</h2>
-      <p class="section-subtitle">
+      <div class="section-label" data-i18n="plans.label">Planes ADD</div>
+      <h2 class="section-title" data-i18n="plans.title">
+        Tres sistemas simples. Eliges uno, lo montamos y empieza a trabajar.
+      </h2>
+      <p class="section-subtitle" data-i18n="plans.subtitle">
         No vendemos “páginas bonitas”. Vendemos sistemas que convierten mensajes en citas, pedidos y pagos.
         Cada plan incluye implementación inicial y soporte continuo.
       </p>
@@ -786,76 +171,112 @@
       <div class="plans-grid">
         <!-- ADD Bookings -->
         <article class="plan-card">
-          <h3 class="plan-name">ADD Bookings</h3>
-          <p class="plan-for">Para barberías, uñas, spa, peluquería, entrenadores personales.</p>
+          <h3 class="plan-name" data-i18n="plans.bookings.name">ADD Bookings</h3>
+          <p class="plan-for" data-i18n="plans.bookings.for">
+            Para barberías, uñas, spa, peluquería, entrenadores personales.
+          </p>
           <div class="plan-price">
-            <div class="plan-price-main">$199 setup</div>
-            <div class="plan-price-sub">$39 / mes – sistema de reservas con pagos básicos.</div>
+            <div class="plan-price-main" data-i18n="plans.bookings.setup">$199 setup</div>
+            <div class="plan-price-sub" data-i18n="plans.bookings.month">
+              $39 / mes – sistema de reservas con pagos básicos.
+            </div>
           </div>
           <div class="plan-separator"></div>
           <ul class="plan-list">
-            <li>Página de reservas lista para usar.</li>
-            <li>Calendario configurado a tus horarios reales.</li>
-            <li>Confirmaciones automáticas simples.</li>
-            <li>Depósitos y pagos rápidos (Stripe / PayPal).</li>
-            <li>Panel básico para ver y gestionar citas.</li>
-            <li>Soporte básico por canal acordado.</li>
+            <li data-i18n="plans.bookings.li1">Página de reservas lista para usar.</li>
+            <li data-i18n="plans.bookings.li2">Calendario configurado a tus horarios reales.</li>
+            <li data-i18n="plans.bookings.li3">Confirmaciones automáticas simples.</li>
+            <li data-i18n="plans.bookings.li4">Depósitos y pagos rápidos (Stripe / PayPal).</li>
+            <li data-i18n="plans.bookings.li5">Panel básico para ver y gestionar citas.</li>
+            <li data-i18n="plans.bookings.li6">Soporte básico por canal acordado.</li>
           </ul>
-          <a href="https://tidycal.com/add-systems/add-bookings" class="btn btn-primary" target="_blank" rel="noopener">
+          <a href="https://tidycal.com/add-systems/add-bookings"
+             class="btn btn-primary"
+             target="_blank"
+             rel="noopener"
+             data-i18n="plans.bookings.cta">
             Empieza con ADD Bookings
           </a>
-          <p class="plan-footer-note">
+          <p class="plan-footer-note" data-i18n="plans.bookings.note">
             Ideal si <span>tu dolor principal son las citas</span> y los clientes que no llegan.
           </p>
         </article>
 
-        <!-- ADD Orders (recomendado) -->
+        <!-- ADD Orders -->
         <article class="plan-card recommended">
-          <div class="plan-pill">Recomendado</div>
-          <h3 class="plan-name">ADD Orders</h3>
-          <p class="plan-for">Para restaurantes, food trucks, repostería, dark kitchens, talleres.</p>
+          <div class="plan-pill" data-i18n="plans.orders.pill">Recomendado</div>
+          <h3 class="plan-name" data-i18n="plans.orders.name">ADD Orders</h3>
+          <p class="plan-for" data-i18n="plans.orders.for">
+            Para restaurantes, food trucks, repostería, dark kitchens, talleres.
+          </p>
           <div class="plan-price">
-            <div class="plan-price-main">$399 setup</div>
-            <div class="plan-price-sub">$59 / mes – pedidos claros y pagos adelantados.</div>
+            <div class="plan-price-main" data-i18n="plans.orders.setup">$399 setup</div>
+            <div class="plan-price-sub" data-i18n="plans.orders.month">
+              $59 / mes – pedidos claros y pagos adelantados.
+            </div>
           </div>
           <div class="plan-separator"></div>
           <ul class="plan-list">
-            <li>Menú / catálogo digital en una sola página.</li>
-            <li>Botón de “Hacer pedido” con mensaje estructurado.</li>
-            <li>Opción de recogida o delivery en el mismo flujo.</li>
-            <li>Pagos rápidos (Stripe / PayPal) antes de iniciar el pedido.</li>
-            <li>Integración opcional con Square para quien ya lo usa.</li>
-            <li>Soporte prioritario y ajustes según la demanda.</li>
+            <li data-i18n="plans.orders.li1">Menú / catálogo digital en una sola página.</li>
+            <li data-i18n="plans.orders.li2">Botón de “Hacer pedido” con mensaje estructurado.</li>
+            <li data-i18n="plans.orders.li3">Opción de recogida o delivery en el mismo flujo.</li>
+            <li data-i18n="plans.orders.li4">Pagos rápidos (Stripe / PayPal) antes de iniciar el pedido.</li>
+            <li data-i18n="plans.orders.li5">Integración opcional con Square para quien ya lo usa.</li>
+            <li data-i18n="plans.orders.li6">Soporte prioritario y ajustes según la demanda.</li>
           </ul>
-          <a href="https://tidycal.com/add-systems/add-orders" class="btn btn-primary" target="_blank" rel="noopener">
+          <a href="https://tidycal.com/add-systems/add-orders"
+             class="btn btn-primary"
+             target="_blank"
+             rel="noopener"
+             data-i18n="plans.orders.cta">
             Activa ADD Orders
           </a>
-          <p class="plan-footer-note">
+          <p class="plan-footer-note" data-i18n="plans.orders.note">
             Recomendado si <span>pierdes tiempo explicando el menú</span> o confirmando cada pedido.
           </p>
         </article>
 
         <!-- ADD Automations -->
         <article class="plan-card">
-          <h3 class="plan-name">ADD Automations</h3>
-          <p class="plan-for">Para negocios con volumen que quieren que el sistema trabaje solo.</p>
+          <h3 class="plan-name" data-i18n="plans.automations.name">ADD Automations</h3>
+          <p class="plan-for" data-i18n="plans.automations.for">
+            Para negocios con volumen que quieren que el sistema trabaje solo.
+          </p>
           <div class="plan-price">
-            <div class="plan-price-main">$699 setup</div>
-            <div class="plan-price-sub">$149 / mes – automatizaciones completas y reportes.</div>
+            <div class="plan-price-main" data-i18n="plans.automations.setup">$699 setup</div>
+            <div class="plan-price-sub" data-i18n="plans.automations.month">
+              $149 / mes – automatizaciones completas y reportes.
+            </div>
           </div>
           <div class="plan-separator"></div>
           <ul class="plan-list">
-            <li>Incluye todo lo de ADD Bookings u ADD Orders (según el caso).</li>
-            <li>Recordatorios automáticos antes de la cita o entrega.</li>
-            <li>Mensajes post-venta para reseñas y próximas reservas.</li>
-            <li>Integraciones avanzadas con Square y otras herramientas.</li>
-            <li>Reportes mensuales básicos de uso y rendimiento.</li>
-            <li>Soporte premium y mejoras constantes del flujo.</li>
+            <li data-i18n="plans.automations.li1">
+              Incluye todo lo de ADD Bookings u ADD Orders (según el caso).
+            </li>
+            <li data-i18n="plans.automations.li2">
+              Recordatorios automáticos antes de la cita o entrega.
+            </li>
+            <li data-i18n="plans.automations.li3">
+              Mensajes post-venta para reseñas y próximas reservas.
+            </li>
+            <li data-i18n="plans.automations.li4">
+              Integraciones avanzadas con Square y otras herramientas.
+            </li>
+            <li data-i18n="plans.automations.li5">
+              Reportes mensuales básicos de uso y rendimiento.
+            </li>
+            <li data-i18n="plans.automations.li6">
+              Soporte premium y mejoras constantes del flujo.
+            </li>
           </ul>
-          <a href="https://tidycal.com/add-systems/add-automations" class="btn btn-primary" target="_blank" rel="noopener">
+          <a href="https://tidycal.com/add-systems/add-automations"
+             class="btn btn-primary"
+             target="_blank"
+             rel="noopener"
+             data-i18n="plans.automations.cta">
             Potencia tu negocio con ADD Automations
           </a>
-          <p class="plan-footer-note">
+          <p class="plan-footer-note" data-i18n="plans.automations.note">
             Pensado para <span>quien ya factura bien</span> pero quiere orden, datos y automatización.
           </p>
         </article>
@@ -864,9 +285,11 @@
 
     <!-- TABLA COMPARATIVA -->
     <section id="comparativa">
-      <div class="section-label">Detalle de funciones</div>
-      <h2 class="section-title">Comparativa rápida entre ADD Bookings, Orders y Automations.</h2>
-      <p class="section-subtitle">
+      <div class="section-label" data-i18n="compare.label">Detalle de funciones</div>
+      <h2 class="section-title" data-i18n="compare.title">
+        Comparativa rápida entre ADD Bookings, Orders y Automations.
+      </h2>
+      <p class="section-subtitle" data-i18n="compare.subtitle">
         Mismo enfoque: menos desorden, más control. Cada plan suma una capa nueva: primero reservas,
         luego pedidos, luego automatizaciones.
       </p>
@@ -875,84 +298,62 @@
         <table aria-label="Tabla comparativa de planes ADD Systems">
           <thead>
             <tr>
-              <th>Función</th>
-              <th>ADD Bookings</th>
-              <th>ADD Orders</th>
-              <th>ADD Automations</th>
+              <th data-i18n="compare.colFeature">Función</th>
+              <th data-i18n="compare.colBookings">ADD Bookings</th>
+              <th data-i18n="compare.colOrders">ADD Orders</th>
+              <th data-i18n="compare.colAutomations">ADD Automations</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Página personalizada</td>
-              <td>✓</td>
-              <td>✓</td>
-              <td>✓</td>
+              <td data-i18n="compare.row1">Página personalizada</td>
+              <td>✓</td><td>✓</td><td>✓</td>
             </tr>
             <tr>
-              <td>Reservas online</td>
-              <td>✓</td>
-              <td>—</td>
-              <td>✓</td>
+              <td data-i18n="compare.row2">Reservas online</td>
+              <td>✓</td><td>—</td><td>✓</td>
             </tr>
             <tr>
-              <td>Catálogo / Menú</td>
-              <td>—</td>
-              <td>✓</td>
-              <td>✓</td>
+              <td data-i18n="compare.row3">Catálogo / Menú</td>
+              <td>—</td><td>✓</td><td>✓</td>
             </tr>
             <tr>
-              <td>Pagos rápidos</td>
+              <td data-i18n="compare.row4">Pagos rápidos</td>
               <td>Stripe / PayPal</td>
               <td>Stripe / PayPal</td>
               <td>Stripe / PayPal / Square</td>
             </tr>
             <tr>
-              <td>Botón WhatsApp optimizado</td>
-              <td>✓</td>
-              <td>✓</td>
-              <td>✓</td>
+              <td data-i18n="compare.row5">Botón WhatsApp optimizado</td>
+              <td>✓</td><td>✓</td><td>✓</td>
             </tr>
             <tr>
-              <td>Pedido estructurado</td>
-              <td>—</td>
-              <td>✓</td>
-              <td>✓</td>
+              <td data-i18n="compare.row6">Pedido estructurado</td>
+              <td>—</td><td>✓</td><td>✓</td>
             </tr>
             <tr>
-              <td>Recordatorios automáticos</td>
-              <td>—</td>
-              <td>—</td>
-              <td>✓</td>
+              <td data-i18n="compare.row7">Recordatorios automáticos</td>
+              <td>—</td><td>—</td><td>✓</td>
             </tr>
             <tr>
-              <td>Seguimiento post-venta</td>
-              <td>—</td>
-              <td>—</td>
-              <td>✓</td>
+              <td data-i18n="compare.row8">Seguimiento post-venta</td>
+              <td>—</td><td>—</td><td>✓</td>
             </tr>
             <tr>
-              <td>Integración Square</td>
-              <td>—</td>
-              <td>Opcional</td>
-              <td>Avanzada</td>
+              <td data-i18n="compare.row9">Integración Square</td>
+              <td>—</td><td>Opcional</td><td>Avanzada</td>
             </tr>
             <tr>
-              <td>Reportes mensuales</td>
-              <td>—</td>
-              <td>—</td>
-              <td>✓</td>
+              <td data-i18n="compare.row10">Reportes mensuales</td>
+              <td>—</td><td>—</td><td>✓</td>
             </tr>
             <tr>
-              <td>Setup</td>
-              <td>$199</td>
-              <td>$399</td>
-              <td>$699</td>
+              <td data-i18n="compare.row11">Setup</td>
+              <td>$199</td><td>$399</td><td>$699</td>
             </tr>
             <tr>
-              <td>Mensualidad</td>
-              <td>$39</td>
-              <td>$59</td>
-              <td>$149</td>
+              <td data-i18n="compare.row12">Mensualidad</td>
+              <td>$39</td><td>$59</td><td>$149</td>
             </tr>
           </tbody>
         </table>
@@ -961,26 +362,30 @@
 
     <!-- DEMO -->
     <section id="demo">
-      <div class="section-label">Próximo paso</div>
-      <h2 class="section-title">Ve una demo o agenda una llamada rápida.</h2>
-      <p class="section-subtitle">
+      <div class="section-label" data-i18n="demo.label">Próximo paso</div>
+      <h2 class="section-title" data-i18n="demo.title">Ve una demo o agenda una llamada rápida.</h2>
+      <p class="section-subtitle" data-i18n="demo.subtitle">
         Lo más eficiente: ver el flujo en vivo aplicado a un negocio real como el tuyo.
       </p>
 
       <div class="demo-box">
-        <p class="demo-text">
+        <p class="demo-text" data-i18n="demo.text">
           <strong>¿Qué quieres ver primero?</strong><br />
           Puedes probar cómo se ve un sistema de reservas tipo barbería (ADD Bookings) o un
           flujo de pedidos tipo restaurante / dark kitchen (ADD Orders).
         </p>
         <div style="display:flex; flex-direction:column; gap:8px;">
-          <a href="demo-bookings.html" class="btn btn-primary">
+          <a href="demo-bookings.html" class="btn btn-primary" data-i18n="demo.ctaBookings">
             Ver demo ADD Bookings (barbería)
           </a>
-          <a href="demo-orders.html" class="btn btn-primary">
+          <a href="demo-orders.html" class="btn btn-primary" data-i18n="demo.ctaOrders">
             Ver demo ADD Orders (restaurante)
           </a>
-          <button type="button" class="btn btn-outline" id="btn-agendar" style="margin-top:4px;">
+          <button type="button"
+                  class="btn btn-outline"
+                  id="btn-agendar"
+                  style="margin-top:4px;"
+                  data-i18n="demo.ctaCall">
             Agendar llamada directa
           </button>
         </div>
@@ -989,33 +394,37 @@
 
     <!-- FAQ RESUMIDO -->
     <section id="faq">
-      <div class="section-label">Preguntas frecuentes</div>
-      <h2 class="section-title">Dudas típicas antes de activar ADD Systems.</h2>
+      <div class="section-label" data-i18n="faq.label">Preguntas frecuentes</div>
+      <h2 class="section-title" data-i18n="faq.title">
+        Dudas típicas antes de activar ADD Systems.
+      </h2>
 
       <div class="faq-grid">
         <article class="faq-item">
-          <div class="faq-q">¿Tengo que cambiar todo lo que ya uso?</div>
-          <div class="faq-a">
+          <div class="faq-q" data-i18n="faq.q1">¿Tengo que cambiar todo lo que ya uso?</div>
+          <div class="faq-a" data-i18n="faq.a1">
             No. ADD Systems se monta encima de lo que ya tienes. Si ya usas WhatsApp, Instagram
             o Square, simplemente los conectamos al flujo y los usamos a tu favor.
           </div>
         </article>
         <article class="faq-item">
-          <div class="faq-q">¿Qué incluye cada plan de forma práctica?</div>
-          <div class="faq-a">
+          <div class="faq-q" data-i18n="faq.q2">¿Qué incluye cada plan de forma práctica?</div>
+          <div class="faq-a" data-i18n="faq.a2">
             Bookings se enfoca en agenda y depósitos; Orders en menú, tickets altos y delivery;
             Automations suma recordatorios, mensajes post-venta e integraciones avanzadas.
           </div>
         </article>
         <article class="faq-item">
-          <div class="faq-q">¿En cuánto tiempo queda listo el sistema?</div>
-          <div class="faq-a">
+          <div class="faq-q" data-i18n="faq.q3">¿En cuánto tiempo queda listo el sistema?</div>
+          <div class="faq-a" data-i18n="faq.a3">
             Bookings: 3–7 días; Orders: 5–10 días; Automations: por fases según volumen.
           </div>
         </article>
         <article class="faq-item">
-          <div class="faq-q">¿Qué no hacemos para no generar falsas expectativas?</div>
-          <div class="faq-a">
+          <div class="faq-q" data-i18n="faq.q4">
+            ¿Qué no hacemos para no generar falsas expectativas?
+          </div>
+          <div class="faq-a" data-i18n="faq.a4">
             No llevamos tus redes, no respondemos mensajes por ti y no prometemos ventas
             garantizadas. Nuestro enfoque es el sistema, no el marketing externo.
           </div>
@@ -1023,47 +432,33 @@
       </div>
 
       <div style="margin-top:14px;">
-        <a href="faq.html" class="btn btn-outline">Ver FAQ completo →</a>
+        <a href="faq.html" class="btn btn-outline" data-i18n="faq.ctaFull">
+          Ver FAQ completo →
+        </a>
       </div>
     </section>
 
     <!-- CTA FINAL -->
     <section class="cta-final">
-      <h2 class="section-title">Tu negocio ya genera interés. Falta que ese interés se convierta en sistema.</h2>
-      <p>
+      <h2 class="section-title" data-i18n="ctaFinal.title">
+        Tu negocio ya genera interés. Falta que ese interés se convierta en sistema.
+      </h2>
+      <p data-i18n="ctaFinal.text">
         Elige un plan, mira una demo rápida o revisa el FAQ completo y vemos si ADD Systems encaja en tu negocio.
       </p>
       <div style="margin-top: 14px;">
-        <button type="button" class="btn btn-primary" data-scroll="#planes">
+        <button type="button"
+                class="btn btn-primary"
+                data-scroll="#planes"
+                data-i18n="ctaFinal.cta">
           Ver planes ADD de nuevo
         </button>
       </div>
     </section>
   </main>
 
-  <script>
-    // Scroll suave por data-scroll
-    document.querySelectorAll("[data-scroll]").forEach(function (el) {
-      el.addEventListener("click", function () {
-        var target = el.getAttribute("data-scroll");
-        if (!target) return;
-        var node = document.querySelector(target);
-        if (!node) return;
-        window.scrollTo({
-          top: node.offsetTop - 20,
-          behavior: "smooth",
-        });
-      });
-    });
-
-    // Hook Tidycal / llamada directa (Diagnóstico ADD)
-    var btnAgendar = document.getElementById("btn-agendar");
-    if (btnAgendar) {
-      btnAgendar.addEventListener("click", function () {
-        var tidycalUrl = "https://tidycal.com/add-systems/diagnostico-add";
-        window.open(tidycalUrl, "_blank");
-      });
-    }
-  </script>
+  <!-- JS -->
+  <script src="js/i18n.js" defer></script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>
