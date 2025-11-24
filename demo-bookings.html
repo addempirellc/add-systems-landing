@@ -2,1147 +2,191 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Demo ADD Bookings – Barbería</title>
+  <title>Demo ADD Bookings – Sistema de reservas</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    :root {
-      --bg: #050509;
-      --bg-alt: #0b0b12;
-      --card: #11111a;
-      --accent: #fbbf24;
-      --accent-strong: #f59e0b;
-      --text: #f9fafb;
-      --text-soft: #9ca3af;
-      --border-subtle: #1f2933;
-      --danger: #f97373;
-      --success: #22c55e;
-      --radius-xl: 24px;
-      --radius-lg: 18px;
-      --radius-pill: 999px;
-      --shadow-soft: 0 18px 40px rgba(0,0,0,0.55);
-      --transition-fast: 0.18s ease-out;
-    }
-
-    * { box-sizing:border-box; margin:0; padding:0; }
-
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #111827 0, #02030a 45%, #02030a 100%);
-      color: var(--text);
-      line-height: 1.6;
-      font-size: 15px;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    .page {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 24px 16px 64px;
-    }
-
-    /* HEADER DEMO */
-    .demo-header {
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      margin-bottom:24px;
-      gap:12px;
-    }
-
-    .demo-logo {
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-
-    .logo-mark {
-      width:34px;
-      height:34px;
-      border-radius:16px;
-      background: radial-gradient(circle at 30% 0%, #facc15, #f97316 40%, #111827 100%);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      box-shadow:var(--shadow-soft);
-      overflow:hidden;
-    }
-
-    .logo-mark img {
-      width:72%;
-      height:72%;
-      border-radius:999px;
-      object-fit:cover;
-      display:block;
-    }
-
-    .demo-logo-text-title {
-      font-size:15px;
-      font-weight:650;
-      letter-spacing:.04em;
-      text-transform:uppercase;
-    }
-
-    .demo-logo-text-sub {
-      font-size:11px;
-      color:var(--text-soft);
-      text-transform:uppercase;
-      letter-spacing:.12em;
-    }
-
-    .demo-header-right {
-      display:flex;
-      align-items:center;
-      gap:8px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-
-    .demo-tag {
-      font-size:11px;
-      padding:4px 10px;
-      border-radius:999px;
-      border:1px solid rgba(249,250,251,0.18);
-      color:var(--text-soft);
-      white-space:nowrap;
-    }
-
-    .btn {
-      border-radius: var(--radius-pill);
-      border: none;
-      font-size:13px;
-      padding: 8px 16px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-weight: 500;
-      white-space: nowrap;
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
-      color:#020617;
-      box-shadow:0 14px 30px rgba(248,181,26,0.4);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow:0 20px 40px rgba(248,181,26,0.45);
-    }
-
-    .btn-outline {
-      background:transparent;
-      color:var(--text-soft);
-      border:1px solid rgba(148,163,184,0.4);
-    }
-
-    .btn-outline:hover {
-      border-color:var(--accent);
-      color:var(--accent);
-      transform:translateY(-1px);
-    }
-
-    .btn-back span {
-      font-size:14px;
-      margin-right:2px;
-    }
-
-    /* HERO */
-    .demo-hero {
-      margin-bottom:24px;
-    }
-
-    .demo-title {
-      font-size:26px;
-      margin-bottom:8px;
-      letter-spacing:-0.02em;
-    }
-
-    .demo-title strong {
-      background: linear-gradient(to right, #facc15, #fb923c);
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-    }
-
-    .demo-sub {
-      font-size:14px;
-      color:var(--text-soft);
-      max-width:620px;
-    }
-
-    .demo-sub strong {
-      color:var(--accent);
-      font-weight:500;
-    }
-
-    /* PASOS CHECKLIST */
-    .steps {
-      display:flex;
-      gap:10px;
-      margin-top:16px;
-      margin-bottom:6px;
-      flex-wrap:wrap;
-    }
-
-    .step {
-      display:flex;
-      align-items:center;
-      gap:8px;
-      font-size:12px;
-      color:var(--text-soft);
-      padding:6px 16px;
-      border-radius:999px;
-      border:1px solid rgba(31,41,55,0.9);
-      background:rgba(15,23,42,0.9);
-      transition:background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
-    }
-
-    .step-badge {
-      width:20px;
-      height:20px;
-      border-radius:999px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:12px;
-      font-weight:600;
-      background:#020617;
-      color:var(--text-soft);
-      transition:background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
-    }
-
-    .step.active {
-      border-color:var(--accent);
-      color:var(--accent);
-      background:radial-gradient(circle at top, rgba(248,181,26,0.12), #020617);
-      transform:translateY(-1px);
-    }
-
-    .step.active .step-badge {
-      background:var(--accent);
-      color:#020617;
-    }
-
-    .step.completed {
-      border-color:rgba(34,197,94,0.9);
-      color:#bbf7d0;
-      background:radial-gradient(circle at top, rgba(22,163,74,0.18), #020617);
-    }
-
-    .step.completed .step-badge {
-      background:var(--success);
-      color:#020617;
-    }
-
-    /* LAYOUT PRINCIPAL */
-    .demo-grid {
-      display:grid;
-      grid-template-columns: minmax(0,1.2fr) minmax(0,1fr);
-      gap:16px;
-      margin-top:18px;
-    }
-
-    .card {
-      background:var(--bg-alt);
-      border-radius:var(--radius-xl);
-      border:1px solid var(--border-subtle);
-      padding:16px 18px;
-      box-shadow:var(--shadow-soft);
-    }
-
-    .card-title {
-      font-size:15px;
-      font-weight:600;
-      margin-bottom:8px;
-    }
-
-    .card-sub {
-      font-size:13px;
-      color:var(--text-soft);
-      margin-bottom:10px;
-    }
-
-    .card-sub strong {
-      color:var(--accent);
-      font-weight:500;
-    }
-
-    .field-group {
-      display:flex;
-      flex-direction:column;
-      gap:9px;
-      font-size:13px;
-      color:var(--text-soft);
-    }
-
-    .field-group label {
-      display:flex;
-      flex-direction:column;
-      gap:3px;
-    }
-
-    .field-group input,
-    .field-group select,
-    .field-group textarea {
-      padding:7px 10px;
-      border-radius:10px;
-      border:1px solid var(--border-subtle);
-      background:#020617;
-      color:var(--text);
-      font-size:13px;
-      resize:vertical;
-      min-height:34px;
-    }
-
-    .field-inline {
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-    }
-
-    .field-inline > label {
-      flex:1 1 140px;
-    }
-
-    /* WRAPPERS FECHA / HORA TIPO APP */
-    .input-shell {
-      position:relative;
-      display:flex;
-      align-items:center;
-      background:linear-gradient(135deg, rgba(15,23,42,0.95), #020617);
-      border-radius:12px;
-      border:1px solid var(--border-subtle);
-      padding:2px 10px;
-    }
-
-    .input-shell-icon {
-      font-size:14px;
-      margin-right:6px;
-      color:var(--text-soft);
-    }
-
-    .input-shell input {
-      border:none;
-      background:transparent;
-      padding:6px 2px;
-      width:100%;
-      color:var(--text);
-      font-size:13px;
-      outline:none;
-    }
-
-    .input-shell input[type="date"]::-webkit-calendar-picker-indicator,
-    .input-shell input[type="time"]::-webkit-calendar-picker-indicator {
-      filter: invert(0.8);
-      opacity:0.8;
-      cursor:pointer;
-    }
-
-    .service-meta {
-      font-size:12px;
-      color:var(--text-soft);
-      margin-top:4px;
-    }
-
-    .service-meta strong {
-      color:var(--accent);
-      font-weight:500;
-    }
-
-    .chip-row {
-      display:flex;
-      flex-wrap:wrap;
-      gap:6px;
-      margin-top:4px;
-      font-size:11px;
-    }
-
-    .chip {
-      padding:3px 8px;
-      border-radius:999px;
-      border:1px solid rgba(148,163,184,0.5);
-      color:var(--text-soft);
-    }
-
-    .chip.urban {
-      border-color:rgba(248,181,26,0.7);
-      color:var(--accent);
-    }
-
-    .status {
-      font-size:11px;
-      margin-top:6px;
-      color:var(--text-soft);
-    }
-
-    /* COLUMNA DERECHA */
-    .side-column {
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-    }
-
-    .summary-row {
-      display:flex;
-      justify-content:space-between;
-      font-size:13px;
-      margin-bottom:4px;
-    }
-
-    .summary-row span:last-child {
-      font-weight:600;
-    }
-
-    .summary-row-muted {
-      font-size:11px;
-      color:var(--text-soft);
-    }
-
-    .price-highlight {
-      font-size:20px;
-      font-weight:700;
-    }
-
-    .deposit-text {
-      font-size:11px;
-      color:var(--accent);
-      margin-top:2px;
-    }
-
-    .payment-methods {
-      margin-top:10px;
-      font-size:11px;
-      color:var(--text-soft);
-    }
-
-    .payment-tags {
-      display:flex;
-      flex-wrap:wrap;
-      gap:6px;
-      margin-top:4px;
-    }
-
-    .payment-tag {
-      padding:3px 8px;
-      border-radius:999px;
-      border:1px solid rgba(148,163,184,0.5);
-      font-size:10px;
-    }
-
-    .whatsapp-preview {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-size:12px;
-      background:#020617;
-      border-radius:12px;
-      padding:10px;
-      border:1px solid var(--border-subtle);
-      color:var(--text-soft);
-      white-space:pre-wrap;
-    }
-
-    .badge-demo {
-      display:inline-flex;
-      align-items:center;
-      gap:4px;
-      font-size:10px;
-      color:var(--text-soft);
-      margin-bottom:6px;
-    }
-
-    .badge-demo span {
-      width:8px;
-      height:8px;
-      border-radius:999px;
-      background:var(--accent);
-    }
-
-    /* CTA FINAL TIPO ANUNCIO */
-    .cta-final {
-      margin-top:32px;
-      padding:20px 22px 18px;
-      border-radius:26px;
-      border:1px solid rgba(248,181,26,0.65);
-      background:
-        radial-gradient(circle at top, rgba(248,181,26,0.2), rgba(15,23,42,0.98)),
-        linear-gradient(135deg, #020617, #02030a);
-      display:flex;
-      flex-wrap:wrap;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      box-shadow:0 26px 60px rgba(0,0,0,0.7);
-    }
-
-    .cta-left {
-      max-width:520px;
-    }
-
-    .cta-badge {
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      font-size:11px;
-      padding:4px 10px;
-      border-radius:999px;
-      background:rgba(15,23,42,0.9);
-      border:1px solid rgba(248,181,26,0.8);
-      color:var(--accent);
-      text-transform:uppercase;
-      letter-spacing:.14em;
-      margin-bottom:8px;
-    }
-
-    .cta-badge span {
-      width:8px;
-      height:8px;
-      border-radius:999px;
-      background:var(--accent);
-      box-shadow:0 0 10px rgba(248,181,26,0.9);
-    }
-
-    .cta-title {
-      font-size:20px;
-      font-weight:650;
-      letter-spacing:-0.02em;
-      margin-bottom:6px;
-    }
-
-    .cta-title strong {
-      color:var(--accent);
-    }
-
-    .cta-copy {
-      font-size:13px;
-      color:var(--text-soft);
-      margin-bottom:8px;
-    }
-
-    .cta-copy strong {
-      color:var(--text);
-      font-weight:500;
-    }
-
-    .cta-bullets {
-      list-style:none;
-      padding:0;
-      margin:0;
-      font-size:12px;
-      color:var(--text-soft);
-    }
-
-    .cta-bullets li {
-      margin-bottom:4px;
-      display:flex;
-      align-items:flex-start;
-      gap:6px;
-    }
-
-    .cta-bullets li::before {
-      content:"●";
-      font-size:10px;
-      margin-top:2px;
-      color:var(--accent);
-    }
-
-    .cta-right {
-      display:flex;
-      flex-direction:column;
-      align-items:flex-end;
-      gap:6px;
-      min-width:200px;
-    }
-
-    .cta-price-tag {
-      font-size:11px;
-      padding:4px 10px;
-      border-radius:999px;
-      background:rgba(15,23,42,0.9);
-      border:1px solid rgba(148,163,184,0.6);
-      color:var(--text-soft);
-    }
-
-    .btn-cta-primary {
-      background:linear-gradient(135deg, #facc15, #fb923c);
-      color:#020617;
-      box-shadow:0 18px 40px rgba(248,181,26,0.6);
-      font-size:14px;
-      padding:9px 20px;
-    }
-
-    .btn-cta-primary:hover {
-      transform:translateY(-1px) scale(1.01);
-      box-shadow:0 26px 60px rgba(248,181,26,0.7);
-    }
-
-    @media (max-width:840px){
-      .demo-header{flex-direction:column; align-items:flex-start;}
-      .demo-header-right{justify-content:flex-start;}
-      .demo-grid{grid-template-columns:minmax(0,1fr);}
-      .cta-final{flex-direction:column; align-items:flex-start;}
-      .cta-right{align-items:flex-start;}
-    }
-  </style>
+  <meta name="description" content="Demo ADD Bookings: así se ve un sistema de reservas simple para barberías, uñas, spa y servicios similares." />
+  <link rel="stylesheet" href="css/main.css" />
 </head>
 <body>
   <main class="page">
-    <!-- HEADER DEMO -->
-    <header class="demo-header">
-      <div class="demo-logo">
-        <div class="logo-mark">
-          <!-- Logo circular -->
-          <img src="https://github.com/addempirellc/add-systems-landing/raw/main/%F0%9F%A7%8A%20Estilo%20fri%CC%81o%20y%20digital%20(tech%3Afuturista)%20.png" alt="ADD Systems" />
-        </div>
-        <div>
-          <div class="demo-logo-text-title">ADD Systems</div>
-          <div class="demo-logo-text-sub">Demo ADD Bookings – Barbería</div>
+    <!-- HEADER -->
+    <header class="header">
+      <div class="logo">
+        <div class="logo-mark"></div>
+        <div class="logo-text">
+          <div class="logo-title">ADD Systems</div>
+          <div class="logo-sub">Demo ADD Bookings</div>
         </div>
       </div>
-      <div class="demo-header-right">
-        <div class="demo-tag">Simulación real de reserva + pago (modo demo)</div>
-        <a href="index.html" class="btn btn-outline btn-back">
-          <span>←</span> Volver a la página anterior
+
+      <div class="header-cta">
+        <a href="index.html" class="btn btn-outline">← Volver a la página principal</a>
+        <a href="https://tidycal.com/add-systems/add-bookings"
+           class="btn btn-primary"
+           target="_blank"
+           rel="noopener">
+          Quiero esto en mi negocio
         </a>
       </div>
     </header>
 
-    <!-- HERO / PASOS -->
-    <section class="demo-hero">
-      <h1 class="demo-title">
-        Así se vería tu <strong>sistema de reservas</strong> para barbería con ADD Bookings.
-      </h1>
-      <p class="demo-sub">
-        Desde el punto de vista del cliente: elige un estilo de corte profesional, fecha, horario y método de pago.
-        <strong>Desde tu lado:</strong> todo entra ordenado, con depósito y sin mensajes sueltos en WhatsApp.
-      </p>
+    <!-- HERO DEMO -->
+    <section class="hero">
+      <div>
+        <div class="section-label">Demo en vivo</div>
+        <h1 class="section-title">
+          Cómo se ve un sistema de reservas simple para barberías, uñas y spa.
+        </h1>
+        <p class="section-subtitle">
+          Esta demo simula lo que vería tu cliente: escanea un QR, abre la página de reservas,
+          elige servicio, horario y paga depósito. A ti te llega todo ordenado al panel.
+        </p>
 
-      <div class="steps" id="steps">
-        <div class="step active" data-step="1">
-          <div class="step-badge" data-index="1">1</div>
-          Servicio y estilo
-        </div>
-        <div class="step" data-step="2">
-          <div class="step-badge" data-index="2">2</div>
-          Fecha y horario
-        </div>
-        <div class="step" data-step="3">
-          <div class="step-badge" data-index="3">3</div>
-          Pago confirmado
-        </div>
-      </div>
-
-      <div class="demo-grid">
-        <!-- LADO IZQUIERDO: FORMULARIO COMPLETO -->
-        <article class="card">
-          <h2 class="card-title">Configura una reserva demo</h2>
-          <p class="card-sub">
-            Completa los datos como si fueras un cliente real. El sistema calcula el depósito,
-            genera el resumen y crea un mensaje listo para enviar por WhatsApp.
-          </p>
-
-          <form id="demo-booking-form" class="field-group" novalidate>
-            <label>
-              Nombre del cliente
-              <input name="nombre" required placeholder="Ej: Kevin Torres" />
-            </label>
-
-            <label>
-              Estilo de corte
-              <select name="servicio" id="servicio-select" required>
-                <option value="classic">Corte clásico ejecutivo</option>
-                <option value="midfade">Mid Fade + Textured Crop</option>
-                <option value="highfade">High Fade + Pompadour</option>
-                <option value="taperbeard">Taper Fade + Beard Sculpt</option>
-                <option value="buzz">Buzz Cut 0.5 / Skin Fade</option>
-                <option value="artist">Artist Session – Corte urbano artista</option>
-              </select>
-            </label>
-
-            <div id="service-meta" class="service-meta">
-              Duración aprox.: <strong>45 min</strong> · Nivel: Clásico / Ejecutivo ·
-              Ideal para: reuniones, oficina, eventos formales.
-            </div>
-
-            <div class="chip-row">
-              <div class="chip">Degradado limpio</div>
-              <div class="chip">Acabado tijera + máquina</div>
-              <div class="chip urban">Apto cámara / foto</div>
-            </div>
-
-            <div class="field-inline">
-              <label>
-                Día
-                <div class="input-shell">
-                  <span class="input-shell-icon">📅</span>
-                  <input type="date" name="fecha" id="fecha-input" required />
-                </div>
-              </label>
-              <label>
-                Hora
-                <div class="input-shell">
-                  <span class="input-shell-icon">🕒</span>
-                  <input type="time" name="hora" id="hora-input" required />
-                </div>
-              </label>
-            </div>
-
-            <div class="field-inline">
-              <label>
-                Barber seleccionado (opcional)
-                <input name="barbero" placeholder="Ej: Mike, FadeMaster, etc." />
-              </label>
-              <label>
-                WhatsApp de contacto
-                <input name="whatsapp" placeholder="+1 ..." required />
-              </label>
-            </div>
-
-            <label>
-              Comentarios adicionales (diseños, referencia, longitud, etc.)
-              <textarea name="nota" rows="2" placeholder="Ej: Quiero un mid fade con la parte de arriba texturizada, sin línea dura."></textarea>
-            </label>
-
-            <div class="field-inline">
-              <label>
-                Método de pago preferido (demo)
-                <select name="pago" id="pago-select" required>
-                  <option value="tarjeta">Tarjeta / pago online</option>
-                  <option value="cashapp">Cash App / Zelle</option>
-                  <option value="efectivo">Pago en efectivo en la barbería</option>
-                </select>
-              </label>
-              <label>
-                ¿Depósito adelantado?
-                <select name="deposito" id="deposito-select">
-                  <option value="30">30% (recomendado)</option>
-                  <option value="50">50%</option>
-                  <option value="0">Sin depósito (no recomendado)</option>
-                </select>
-              </label>
-            </div>
-
-            <!-- ÚNICO BOTÓN: genera reserva + simula pago -->
-            <button type="submit" class="btn btn-primary" style="align-self:flex-start; margin-top:6px;">
-              Confirmar reserva demo + pago
-            </button>
-            <p id="demo-status" class="status"></p>
-          </form>
-        </article>
-
-        <!-- LADO DERECHO: RESUMEN + WHATSAPP -->
-        <div class="side-column">
-          <article class="card">
-            <h2 class="card-title">Resumen y pago (modo demo)</h2>
-            <p class="card-sub">
-              Así verías tú la cita en tu panel: servicio, horario, depósito y saldo pendiente.
-              <strong>En la versión real se conecta al proveedor de pago que ya uses.</strong>
-            </p>
-
-            <div class="summary-row">
-              <span>Servicio:</span>
-              <span id="summary-service">Corte clásico ejecutivo</span>
-            </div>
-            <div class="summary-row">
-              <span>Duración aprox.:</span>
-              <span id="summary-duration">45 min</span>
-            </div>
-            <div class="summary-row">
-              <span>Fecha y hora:</span>
-              <span id="summary-datetime">—</span>
-            </div>
-            <div class="summary-row">
-              <span>Barber:</span>
-              <span id="summary-barber">Asignado automáticamente</span>
-            </div>
-
-            <hr style="border:none; border-top:1px dashed rgba(55,65,81,0.8); margin:10px 0;" />
-
-            <div class="summary-row">
-              <span>Total servicio:</span>
-              <span class="price-highlight" id="summary-price">$45</span>
-            </div>
-            <div class="summary-row">
-              <span>Depósito (demo):</span>
-              <span id="summary-deposit">$13.50</span>
-            </div>
-            <div class="summary-row">
-              <span>Resto al llegar:</span>
-              <span id="summary-rest">$31.50</span>
-            </div>
-            <div class="deposit-text" id="deposit-text">
-              Depósito del 30% para bloquear la hora. Si no llegas, el depósito no es reembolsable.
-            </div>
-
-            <div class="payment-methods">
-              Método de pago seleccionado:
-              <div class="summary-row summary-row-muted">
-                <span id="summary-payment">Tarjeta / pago online</span>
-                <span style="font-size:10px;">Vista demo</span>
-              </div>
-              <div class="payment-tags">
-                <div class="payment-tag">Tarjeta</div>
-                <div class="payment-tag">Online</div>
-                <div class="payment-tag">Cash App</div>
-                <div class="payment-tag">Zelle</div>
-                <div class="payment-tag">Efectivo</div>
-              </div>
-            </div>
-          </article>
-
-          <article class="card">
-            <h2 class="card-title">Cómo le llega al cliente por WhatsApp</h2>
-            <p class="card-sub">
-              Esto es lo que tu cliente vería para confirmar: ordenado, claro y sin confusiones.
-            </p>
-            <div class="badge-demo">
-              <span></span> Mensaje generado automáticamente por ADD Bookings (demo)
-            </div>
-            <div id="whatsapp-preview" class="whatsapp-preview">
-Cliente: (aquí verás el mensaje listo para enviar por WhatsApp cuando generes la reserva demo).
-            </div>
-          </article>
-        </div>
-      </div>
-
-      <!-- CTA FINAL TIPO ANUNCIO -->
-      <div class="cta-final">
-        <div class="cta-left">
-          <div class="cta-badge">
-            <span></span> Edición piloto 2026 · Cupos limitados
-          </div>
-          <h3 class="cta-title">
-            Convierte tu barbería en una <strong>máquina de reservas 24/7</strong>.
-          </h3>
-          <p class="cta-copy">
-            Mientras tú cortas (o duermes), el sistema:
-            <strong>agenda, cobra depósitos y filtra a los que solo preguntan por preguntar</strong>.
-          </p>
-          <ul class="cta-bullets">
-            <li>Bloqueo automático de horarios con depósito confirmado.</li>
-            <li>Recordatorios y mensajes listos para WhatsApp sin que tu equipo escriba nada.</li>
-            <li>Historial de clientes para saber quién realmente deja dinero en la silla.</li>
-          </ul>
-        </div>
-        <div class="cta-right">
-          <div class="cta-price-tag">Desde $199 setup + mensualidad</div>
-          <a
-            href="https://tidycal.com/tu-enlace-de-demo?notes=Interesado%20en%20ADD%20Bookings%20(barber%C3%ADa)"
-            target="_blank"
-            rel="noopener"
-            class="btn btn-cta-primary btn"
-          >
-            Quiero esto en mi negocio
+        <div class="hero-actions">
+          <a href="https://tidycal.com/add-systems/add-bookings"
+             class="btn btn-primary"
+             target="_blank"
+             rel="noopener">
+            Quiero un sistema como este
+          </a>
+          <a href="index.html#planes" class="btn btn-outline">
+            Ver planes ADD completos
           </a>
         </div>
+
+        <div class="hero-note">
+          <span>Importante:</span> el diseño final se ajusta a tu marca, servicios y horarios reales.
+        </div>
+      </div>
+
+      <!-- “Simulación” del lado del cliente -->
+      <aside class="hero-right" aria-label="Vista de reservas">
+        <div class="hero-panel-header">
+          <div class="hero-panel-title">Demo · Barbería El Corte Fino</div>
+          <div class="hero-panel-pill">Vista cliente</div>
+        </div>
+
+        <div class="sim-card" style="margin-bottom:10px;">
+          <div class="sim-title">Selecciona tu servicio</div>
+          <div class="pain-list" style="margin-top:6px;">
+            <div class="sim-row">
+              <span>Corte clásico · 30 min</span>
+              <span>$25</span>
+            </div>
+            <div class="sim-row">
+              <span>Fade + Barba · 45 min</span>
+              <span>$40</span>
+            </div>
+            <div class="sim-row">
+              <span>Afeitado con toalla caliente · 20 min</span>
+              <span>$18</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sim-card" style="margin-bottom:10px;">
+          <div class="sim-title">Elige día y hora</div>
+          <div class="sim-row">
+            <span>Hoy · 4:30 PM</span>
+            <span>Disponible</span>
+          </div>
+          <div class="sim-row">
+            <span>Hoy · 5:00 PM</span>
+            <span>No disponible</span>
+          </div>
+          <div class="sim-row">
+            <span>Mañana · 10:00 AM</span>
+            <span>Disponible</span>
+          </div>
+        </div>
+
+        <div class="sim-card">
+          <div class="sim-title">Confirmación y pago</div>
+          <div class="sim-row">
+            <span>Servicio</span>
+            <span>Fade + Barba</span>
+          </div>
+          <div class="sim-row">
+            <span>Depósito</span>
+            <span>$10</span>
+          </div>
+          <div class="sim-row">
+            <span>Método</span>
+            <span>Stripe / PayPal</span>
+          </div>
+          <div style="margin-top:8px; font-size:11px; color:var(--text-soft);">
+            El cliente paga el depósito ahora. Si no llega, no pierdes el hueco completo.
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- FLUJO RESUMIDO -->
+    <section>
+      <div class="section-label">Cómo funciona para ti</div>
+      <h2 class="section-title">Flujo básico de ADD Bookings.</h2>
+      <p class="section-subtitle">
+        No tienes que volverte loco con tecnología. Te entregamos el sistema armado,
+        con tu logo, servicios y horarios. Tú sigues trabajando, pero con orden.
+      </p>
+
+      <div class="pain-grid">
+        <article class="pain-card">
+          <div class="pain-title">1. Cliente entra al link o QR</div>
+          <p class="faq-a">
+            Publicas el link en Instagram, WhatsApp, Google o un QR en tu local.
+            El cliente entra directo a la página de reservas en vez de escribirte “¿tienes algo para hoy?”.
+          </p>
+        </article>
+        <article class="pain-card">
+          <div class="pain-title">2. Elige servicio, día y hora</div>
+          <p class="faq-a">
+            El sistema muestra solo horarios disponibles. Se evitan choques, doble reservas
+            y clientes molestos porque “alguien más tenía la misma hora”.
+          </p>
+        </article>
+        <article class="pain-card">
+          <div class="pain-title">3. Paga depósito o reserva</div>
+          <p class="faq-a">
+            El cliente paga un depósito rápido (Stripe / PayPal) o deja la reserva registrada.
+            Tú decides la política: con depósito obligatorio, recomendado o solo recordatorio.
+          </p>
+        </article>
+        <article class="pain-card">
+          <div class="pain-title">4. A ti te llega todo ordenado</div>
+          <p class="faq-a">
+            Ves nombre, servicio, día, hora y estado de pago desde un panel simple.
+            No tienes que buscar conversaciones antiguas ni notas perdidas.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CTA FINAL DEMO -->
+    <section class="cta-final">
+      <h2 class="section-title">
+        Si tu agenda ya está llena de mensajes, es momento de ponerle sistema.
+      </h2>
+      <p>
+        Haz una llamada rápida o agenda ADD Bookings y adaptamos este flujo a tu barbería, spa o estudio.
+      </p>
+      <div style="margin-top:14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+        <a href="https://tidycal.com/add-systems/add-bookings"
+           class="btn btn-primary"
+           target="_blank"
+           rel="noopener">
+          Quiero ADD Bookings para mi negocio
+        </a>
+        <a href="https://tidycal.com/add-systems/diagnostico-add"
+           class="btn btn-outline"
+           target="_blank"
+           rel="noopener">
+          Prefiero una llamada de diagnóstico
+        </a>
       </div>
     </section>
   </main>
 
-  <script>
-    // --------- DATOS DE SERVICIOS ----------
-    var serviciosData = {
-      classic: {
-        nombre: "Corte clásico ejecutivo",
-        duracion: 45,
-        precio: 40,
-        meta: "Duración aprox.: <strong>45 min</strong> · Nivel: Clásico / Ejecutivo · Ideal para: oficina, reuniones, eventos formales.",
-        chips: ["Perfil limpio", "Acabado tijera + máquina", "Apto foto profesional"]
-      },
-      midfade: {
-        nombre: "Mid Fade + Textured Crop",
-        duracion: 50,
-        precio: 45,
-        meta: "Duración aprox.: <strong>50 min</strong> · Nivel: Urbano / Actual · Ideal para: uso diario, redes y contenido.",
-        chips: ["Degradado medio", "Textura en la parte superior", "Look moderno para cámara"]
-      },
-      highfade: {
-        nombre: "High Fade + Pompadour",
-        duracion: 55,
-        precio: 50,
-        meta: "Duración aprox.: <strong>55 min</strong> · Nivel: Escenario / Evento · Ideal para: conciertos, presentaciones, fiestas.",
-        chips: ["Fade alto", "Volumen controlado", "Pulido con producto profesional"]
-      },
-      taperbeard: {
-        nombre: "Taper Fade + Beard Sculpt",
-        duracion: 60,
-        precio: 55,
-        meta: "Duración aprox.: <strong>60 min</strong> · Nivel: Imagen completa · Incluye: contorno barba + definición.",
-        chips: ["Taper en nuca y patillas", "Barba line up", "Acabado caliente / toalla"]
-      },
-      buzz: {
-        nombre: "Buzz Cut 0.5 / Skin Fade",
-        duracion: 35,
-        precio: 35,
-        meta: "Duración aprox.: <strong>35 min</strong> · Nivel: Minimal / Práctico · Ideal para: mantenimiento rápido, deportistas.",
-        chips: ["Máquina a una medida", "Opcional skin fade", "Mantenimiento sencillo"]
-      },
-      artist: {
-        nombre: "Artist Session – Corte urbano artista",
-        duracion: 75,
-        precio: 80,
-        meta: "Duración aprox.: <strong>75 min</strong> · Nivel: Escena / Video / Portada · Pensado para artistas y creadores.",
-        chips: ["Fade personalizado", "Detalles/diseños a medida", "Enfoque en cámara, luces y foto"]
-      }
-    };
-
-    var form = document.getElementById("demo-booking-form");
-    var statusEl = document.getElementById("demo-status");
-    var preview = document.getElementById("whatsapp-preview");
-
-    var servicioSelect = document.getElementById("servicio-select");
-    var pagoSelect = document.getElementById("pago-select");
-    var depositoSelect = document.getElementById("deposito-select");
-
-    var serviceMetaEl = document.getElementById("service-meta");
-    var chipsRow = document.querySelector(".chip-row");
-
-    var summaryService = document.getElementById("summary-service");
-    var summaryDuration = document.getElementById("summary-duration");
-    var summaryDatetime = document.getElementById("summary-datetime");
-    var summaryBarber = document.getElementById("summary-barber");
-    var summaryPrice = document.getElementById("summary-price");
-    var summaryDeposit = document.getElementById("summary-deposit");
-    var summaryRest = document.getElementById("summary-rest");
-    var depositText = document.getElementById("deposit-text");
-    var summaryPayment = document.getElementById("summary-payment");
-
-    var fechaInput = document.getElementById("fecha-input");
-
-    // indicador de pago confirmado (Paso 3)
-    var pagoConfirmado = false;
-
-    // --------- INICIALIZAR FECHA (bloquear pasadas) ----------
-    if (fechaInput) {
-      var hoy = new Date();
-      var yyyy = hoy.getFullYear();
-      var mm = String(hoy.getMonth() + 1).padStart(2, "0");
-      var dd = String(hoy.getDate()).padStart(2, "0");
-      var hoyStr = yyyy + "-" + mm + "-" + dd;
-      fechaInput.min = hoyStr;
-      fechaInput.value = hoyStr;
-    }
-
-    // --------- CHECKLIST DE PASOS ----------
-    var stepsContainer = document.getElementById("steps");
-    var steps = stepsContainer ? stepsContainer.querySelectorAll(".step") : [];
-
-    function setStepState(stepNumber, state) {
-      steps.forEach(function(step) {
-        if (step.dataset.step === String(stepNumber)) {
-          var badge = step.querySelector(".step-badge");
-          var index = badge ? badge.getAttribute("data-index") : "";
-          step.classList.remove("active", "completed");
-          if (state === "active") {
-            step.classList.add("active");
-            if (badge) badge.textContent = index;
-          } else if (state === "completed") {
-            step.classList.add("completed");
-            if (badge) badge.textContent = "✓";
-          } else {
-            if (badge) badge.textContent = index;
-          }
-        }
-      });
-    }
-
-    function updateStepsFromForm() {
-      if (!form) return;
-      var data = Object.fromEntries(new FormData(form).entries());
-
-      var step1Complete =
-        (data.nombre || "").trim() !== "" &&
-        (data.servicio || "").trim() !== "";
-
-      var step2Complete =
-        step1Complete &&
-        (data.fecha || "").trim() !== "" &&
-        (data.hora || "").trim() !== "";
-
-      var step3Complete = step2Complete && pagoConfirmado;
-
-      [1,2,3].forEach(function(n){
-        setStepState(n, "inactive");
-      });
-
-      var activeSet = false;
-
-      if (step1Complete) {
-        setStepState(1, "completed");
-      } else {
-        setStepState(1, "active");
-        activeSet = true;
-      }
-
-      if (step2Complete) {
-        setStepState(2, "completed");
-      } else if (!activeSet && step1Complete) {
-        setStepState(2, "active");
-        activeSet = true;
-      }
-
-      if (step3Complete) {
-        setStepState(3, "completed");
-      } else if (!activeSet && step2Complete) {
-        setStepState(3, "active");
-        activeSet = true;
-      }
-    }
-
-    if (form) {
-      form.addEventListener("input", function () {
-        pagoConfirmado = false;
-        statusEl.textContent = "";
-        updateStepsFromForm();
-      });
-      form.addEventListener("change", function () {
-        pagoConfirmado = false;
-        statusEl.textContent = "";
-        updateStepsFromForm();
-      });
-    }
-
-    // --------- LÓGICA SERVICIOS / PAGO ----------
-    function actualizarServicio() {
-      var key = servicioSelect.value;
-      var data = serviciosData[key] || serviciosData["classic"];
-
-      serviceMetaEl.innerHTML = data.meta;
-      summaryService.textContent = data.nombre;
-      summaryDuration.textContent = data.duracion + " min";
-      summaryPrice.textContent = "$" + data.precio;
-
-      chipsRow.innerHTML = "";
-      (data.chips || []).forEach(function(ch, idx) {
-        var div = document.createElement("div");
-        div.className = "chip" + (idx === data.chips.length - 1 ? " urban" : "");
-        div.textContent = ch;
-        chipsRow.appendChild(div);
-      });
-
-      actualizarDepositoYRestante();
-    }
-
-    function actualizarDepositoYRestante() {
-      var key = servicioSelect.value;
-      var data = serviciosData[key] || serviciosData["classic"];
-      var precio = data.precio;
-      var porcentaje = parseInt(depositoSelect.value || "30", 10);
-
-      if (isNaN(porcentaje)) porcentaje = 30;
-
-      var deposito = (precio * porcentaje) / 100;
-      var resto = precio - deposito;
-
-      summaryDeposit.textContent = "$" + deposito.toFixed(2);
-      summaryRest.textContent = "$" + resto.toFixed(2);
-
-      if (porcentaje === 0) {
-        depositText.textContent =
-          "Reserva sin depósito (no recomendado): mayor riesgo de no-shows.";
-        depositText.style.color = "#f97373";
-      } else {
-        depositText.textContent =
-          "Depósito del " + porcentaje + "% para bloquear la hora. Política de cancelación según tu barbería.";
-        depositText.style.color = "#fbbf24";
-      }
-    }
-
-    function actualizarPago() {
-      var value = pagoSelect.value;
-      var text = "Tarjeta / pago online";
-      if (value === "cashapp") text = "Cash App / Zelle";
-      if (value === "efectivo") text = "Pago en efectivo en la barbería";
-      summaryPayment.textContent = text;
-    }
-
-    if (servicioSelect) {
-      servicioSelect.addEventListener("change", actualizarServicio);
-    }
-    if (depositoSelect) {
-      depositoSelect.addEventListener("change", actualizarDepositoYRestante);
-    }
-    if (pagoSelect) {
-      pagoSelect.addEventListener("change", actualizarPago);
-    }
-
-    if (form && statusEl && preview) {
-      form.addEventListener("submit", function(e){
-        e.preventDefault();
-
-        // Validación HTML5
-        if (!form.checkValidity()) {
-          form.reportValidity();
-          return;
-        }
-
-        var data = Object.fromEntries(new FormData(form).entries());
-
-        var key = data.servicio || "classic";
-        var sData = serviciosData[key] || serviciosData["classic"];
-        var porcentaje = parseInt(data.deposito || "30", 10);
-        if (isNaN(porcentaje)) porcentaje = 30;
-        var deposito = (sData.precio * porcentaje) / 100;
-        var resto = sData.precio - deposito;
-
-        summaryDatetime.textContent =
-          (data.fecha || "—") + " · " + (data.hora || "—");
-        summaryBarber.textContent =
-          data.barbero && data.barbero.trim()
-            ? data.barbero
-            : "Asignado automáticamente";
-
-        actualizarServicio();
-        actualizarPago();
-        actualizarDepositoYRestante();
-
-        // marcamos pago confirmado (paso 3)
-        pagoConfirmado = true;
-        updateStepsFromForm();
-
-        statusEl.style.color = "#22c55e";
-        statusEl.textContent =
-          "Reserva demo generada y pago de depósito simulado. Mira el resumen y el mensaje de WhatsApp de ejemplo.";
-
-        var pagoTxt = summaryPayment.textContent || "";
-        var nombre = data.nombre || "cliente";
-
-        var text =
-          "✅ *Reserva confirmada – BARBERÍA DEMO*\n\n" +
-          "Hola " + nombre + ", tu cita ha quedado agendada.\n\n" +
-          "💇 Estilo: " + sData.nombre + "\n" +
-          "⏱ Duración aprox.: " + sData.duracion + " min\n" +
-          "📅 Día: " + (data.fecha || "por definir") + "\n" +
-          "🕒 Hora: " + (data.hora || "por definir") + "\n" +
-          "💈 Barber: " +
-          (data.barbero && data.barbero.trim()
-            ? data.barbero
-            : "Asignado según disponibilidad") +
-          "\n\n" +
-          "💵 Total: $" + sData.precio.toFixed(2) + "\n" +
-          (porcentaje > 0
-            ? "🔐 Depósito (" + porcentaje + "%): $" + deposito.toFixed(2) + " (" + pagoTxt + ")\n" +
-              "💳 Resto al llegar: $" + resto.toFixed(2) + "\n"
-            : "⚠️ Sin depósito seleccionado (puede incrementar no-shows).\n") +
-          "\n" +
-          "📎 Nota: " +
-          (data.nota && data.nota.trim()
-            ? data.nota.trim()
-            : "Sin comentarios adicionales.") +
-          "\n\n" +
-          "Si necesitas mover la cita, responde este mensaje con al menos 4 horas de anticipación.\n" +
-          "Gracias por reservar con *ADD Bookings – Barbería Demo*.";
-
-        preview.textContent = text;
-      });
-    }
-
-    // Inicializar con valores por defecto
-    actualizarServicio();
-    actualizarPago();
-    actualizarDepositoYRestante();
-    updateStepsFromForm();
-  </script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>
