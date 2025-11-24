@@ -2,135 +2,10 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Demo ADD Store – Tienda online simple</title>
+  <title>Demo ADD Store – Tienda online con Square</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Demo ADD Store: simulación visual de una tienda online simple usando Square Online como base." />
+  <meta name="description" content="Demo visual de ADD Store: tienda online montada sobre Square Online, con productos, inventario y carrito listo para cobrar." />
   <link rel="stylesheet" href="css/main.css" />
-  <style>
-    .store-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
-      gap: 14px;
-    }
-
-    .store-products-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .store-product-card {
-      background: var(--bg-alt);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-subtle);
-      padding: 10px 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .store-product-image {
-      border-radius: 12px;
-      background: radial-gradient(circle at top, rgba(148,163,184,0.4), rgba(15,23,42,1));
-      height: 90px;
-      margin-bottom: 4px;
-    }
-
-    .store-product-name {
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .store-product-desc {
-      font-size: 11px;
-      color: var(--text-soft);
-    }
-
-    .store-product-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 4px;
-    }
-
-    .store-product-price {
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .store-tag {
-      font-size: 10px;
-      padding: 2px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.5);
-      color: var(--text-soft);
-    }
-
-    .store-cart {
-      background: radial-gradient(circle at top, rgba(15,23,42,0.9), #020617);
-      border-radius: var(--radius-xl);
-      border: 1px solid var(--border-subtle);
-      padding: 14px;
-      box-shadow: var(--shadow-soft);
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      font-size: 12px;
-    }
-
-    .store-cart-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 4px;
-    }
-
-    .store-cart-title {
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .store-cart-pill {
-      font-size: 11px;
-      padding: 3px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.5);
-      color: var(--text-soft);
-    }
-
-    .store-cart-line {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 4px;
-      color: var(--text-soft);
-    }
-
-    .store-cart-line strong {
-      color: var(--text);
-    }
-
-    .store-cart-total {
-      border-top: 1px dashed rgba(75,85,99,0.9);
-      padding-top: 6px;
-      margin-top: 6px;
-    }
-
-    .store-cart-note {
-      font-size: 11px;
-      color: var(--text-soft);
-      margin-top: 4px;
-    }
-
-    @media (max-width: 840px) {
-      .store-layout {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      .store-products-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-  </style>
 </head>
 <body>
   <main class="page">
@@ -140,152 +15,254 @@
         <div class="logo-mark"></div>
         <div class="logo-text">
           <div class="logo-title">ADD Systems</div>
-          <div class="logo-sub">Demo ADD Store</div>
+          <div class="logo-sub">Demo ADD Store · Square Online</div>
         </div>
       </div>
 
       <div class="header-cta">
-        <a href="index.html" class="btn btn-outline">← Volver a la página principal</a>
-        <a href="https://tidycal.com/add-systems/add-automations"
+        <a href="index.html" class="btn btn-outline">
+          ← Volver a la página principal
+        </a>
+        <a href="https://tidycal.com/add-systems/diagnostico-add"
            class="btn btn-primary"
            target="_blank"
            rel="noopener">
-          Quiero esta tienda en mi negocio
+          Quiero esto en mi negocio
         </a>
       </div>
     </header>
 
-    <!-- HERO DEMO STORE -->
+    <!-- HERO STORE -->
     <section class="hero">
+      <!-- LADO IZQUIERDO: EXPLICACIÓN -->
       <div>
-        <div class="section-label">Demo en vivo</div>
-        <h1 class="section-title">
-          Cómo se vería una tienda online simple usando Square Online como base.
+        <div class="hero-eyebrow">
+          <span>●</span>
+          Demo visual de cómo se ve una tienda ADD Store montada sobre Square Online.
+        </div>
+
+        <h1 class="hero-title">
+          ADD <strong>Store</strong> · Tu tienda online lista para cobrar con Square.
         </h1>
-        <p class="section-subtitle">
-          Esta demo es solo visual: simula una tienda típica de Square Online con productos,
-          carrito y resumen de pedido. El diseño final se adapta a tu marca, fotos reales y reglas de envío.
+
+        <p class="hero-subtitle">
+          Aquí ves una simulación: catálogo, variantes, stock, carrito y resumen de compra,
+          todo sobre Square Online. Nosotros nos encargamos del montaje, tú solo vendes.
         </p>
 
         <div class="hero-actions">
-          <a href="https://tidycal.com/add-systems/add-automations"
+          <a href="https://tidycal.com/add-systems/diagnostico-add"
              class="btn btn-primary"
              target="_blank"
              rel="noopener">
-            Quiero un sistema de tienda como este
+            Quiero una tienda como esta
           </a>
           <a href="index.html#planes" class="btn btn-outline">
-            Ver planes ADD completos
+            Ver planes ADD
           </a>
         </div>
 
         <div class="hero-note">
-          <span>Importante:</span> aquí no hay pagos reales. Es una maqueta para que veas el flujo
-          que tus clientes tendrían antes de pasar al checkout de Square.
+          <span>Sin dramas técnicos.</span> Usamos Square Online para catálogo, pagos y envíos;
+          ADD Systems se encarga del diseño, estructura y automatizaciones alrededor.
         </div>
       </div>
 
-      <!-- Simulación visual estilo Square Online -->
-      <aside class="hero-right" aria-label="Vista demo tienda online">
+      <!-- LADO DERECHO: SIMULACIÓN TIENDA -->
+      <aside class="hero-right" aria-label="Simulación ADD Store sobre Square Online">
         <div class="hero-panel-header">
-          <div class="hero-panel-title">Demo · Tienda La Esquina Market</div>
-          <div class="hero-panel-pill">Vista cliente</div>
+          <div class="hero-panel-title">
+            Vista cliente · Tienda online
+          </div>
+          <div class="hero-panel-pill">
+            Ejemplo: tienda de productos físicos
+          </div>
         </div>
 
-        <div class="store-layout">
-          <!-- Productos -->
-          <div class="store-products-grid">
-            <article class="store-product-card">
-              <div class="store-product-image"></div>
-              <div class="store-product-name">Pack Desayuno Local</div>
-              <div class="store-product-desc">
-                Café + pan artesanal + mermelada casera. Ideal para recoger por la mañana.
-              </div>
-              <div class="store-product-footer">
-                <span class="store-product-price">$19.90</span>
-                <span class="store-tag">Más vendido</span>
-              </div>
-            </article>
+        <div class="hero-sim-grid">
+          <!-- COLUMNA IZQUIERDA: PRODUCTOS -->
+          <div class="sim-card">
+            <div class="sim-title">Catálogo</div>
 
-            <article class="store-product-card">
-              <div class="store-product-image"></div>
-              <div class="store-product-name">Caja Snacks de la Casa</div>
-              <div class="store-product-desc">
-                Selección de snacks locales para reuniones pequeñas o regalo rápido.
-              </div>
-              <div class="store-product-footer">
-                <span class="store-product-price">$29.50</span>
-                <span class="store-tag">Nuevo</span>
-              </div>
-            </article>
+            <!-- Filtros / categorías -->
+            <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px; font-size:11px;">
+              <span style="padding:4px 8px; border-radius:999px; border:1px solid rgba(148,163,184,0.6);">
+                Todos
+              </span>
+              <span style="padding:4px 8px; border-radius:999px; border:1px solid rgba(148,163,184,0.3); color:#9ca3af;">
+                Promos
+              </span>
+              <span style="padding:4px 8px; border-radius:999px; border:1px solid rgba(148,163,184,0.3); color:#9ca3af;">
+                Más vendidos
+              </span>
+              <span style="padding:4px 8px; border-radius:999px; border:1px solid rgba(148,163,184,0.3); color:#9ca3af;">
+                Nuevos
+              </span>
+            </div>
 
-            <article class="store-product-card">
-              <div class="store-product-image"></div>
-              <div class="store-product-name">Combo Almuerzo Express</div>
-              <div class="store-product-desc">
-                Plato principal + bebida. Pedido pensado para recogida o delivery cercano.
+            <!-- Producto 1 -->
+            <div style="display:flex; gap:8px; margin-bottom:8px; font-size:11px;">
+              <div style="width:46px; height:46px; border-radius:10px; background:linear-gradient(135deg,#4f46e5,#0ea5e9); flex-shrink:0;"></div>
+              <div style="flex:1; min-width:0;">
+                <div style="font-weight:600; font-size:12px;">
+                  Pack Inicio – 3 productos estrella
+                </div>
+                <div style="color:#9ca3af; font-size:11px;">
+                  Ideal para lanzar tu tienda con ticket promedio sólido.
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:4px;">
+                  <span style="font-weight:600;">$49.00</span>
+                  <span style="font-size:11px; color:#9ca3af;">Stock: 12</span>
+                </div>
               </div>
-              <div class="store-product-footer">
-                <span class="store-product-price">$14.90</span>
-                <span class="store-tag">Recogida</span>
-              </div>
-            </article>
+            </div>
 
-            <article class="store-product-card">
-              <div class="store-product-image"></div>
-              <div class="store-product-name">Suscripción Mensual Café</div>
-              <div class="store-product-desc">
-                Bolsa de café cada semana, cobro automático y pick-up en tienda.
+            <!-- Producto 2 -->
+            <div style="display:flex; gap:8px; margin-bottom:8px; font-size:11px;">
+              <div style="width:46px; height:46px; border-radius:10px; background:linear-gradient(135deg,#22c55e,#16a34a); flex-shrink:0;"></div>
+              <div style="flex:1; min-width:0;">
+                <div style="font-weight:600; font-size:12px;">
+                  Suscripción mensual VIP
+                </div>
+                <div style="color:#9ca3af; font-size:11px;">
+                  Acceso recurrente a productos o servicios exclusivos.
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:4px;">
+                  <span style="font-weight:600;">$29.99</span>
+                  <span style="font-size:11px; color:#9ca3af;">Stock: ilimitado</span>
+                </div>
               </div>
-              <div class="store-product-footer">
-                <span class="store-product-price">$39.00</span>
-                <span class="store-tag">Suscripción</span>
+            </div>
+
+            <!-- Producto 3 -->
+            <div style="display:flex; gap:8px; margin-bottom:4px; font-size:11px;">
+              <div style="width:46px; height:46px; border-radius:10px; background:linear-gradient(135deg,#f97316,#fb7185); flex-shrink:0;"></div>
+              <div style="flex:1; min-width:0;">
+                <div style="font-weight:600; font-size:12px;">
+                  Bundle temporada (edición limitada)
+                </div>
+                <div style="color:#9ca3af; font-size:11px;">
+                  Ideal para campañas puntuales: San Valentín, Navidad, etc.
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:4px;">
+                  <span style="font-weight:600;">$79.00</span>
+                  <span style="font-size:11px; color:#9ca3af;">Stock: 5</span>
+                </div>
               </div>
-            </article>
+            </div>
+
+            <div style="margin-top:6px; font-size:10px; color:#9ca3af;">
+              *Square Online gestiona fotos, variantes, impuestos, inventario y envíos.
+            </div>
           </div>
 
-          <!-- Carrito / Resumen -->
-          <aside class="store-cart">
-            <div class="store-cart-header">
-              <div class="store-cart-title">Tu carrito</div>
-              <div class="store-cart-pill">2 artículos</div>
+          <!-- COLUMNA DERECHA: CARRITO -->
+          <div class="sim-card">
+            <div class="sim-title">Carrito &amp; resumen</div>
+
+            <!-- Línea 1 carrito -->
+            <div class="sim-row" style="margin-bottom:6px;">
+              <span>Pack Inicio × 1</span>
+              <span>$49.00</span>
             </div>
 
-            <div class="store-cart-line">
-              <span>1× Pack Desayuno Local</span>
-              <span>$19.90</span>
-            </div>
-            <div class="store-cart-line">
-              <span>1× Caja Snacks de la Casa</span>
-              <span>$29.50</span>
+            <!-- Línea 2 carrito -->
+            <div class="sim-row" style="margin-bottom:6px;">
+              <span>Suscripción VIP × 1</span>
+              <span>$29.99</span>
             </div>
 
-            <div class="store-cart-total">
-              <div class="store-cart-line">
-                <span>Subtotal</span>
-                <span>$49.40</span>
-              </div>
-              <div class="store-cart-line">
-                <span>Envío estimado</span>
-                <span>$4.99</span>
-              </div>
-              <div class="store-cart-line">
-                <strong>Total estimado</strong>
-                <strong>$54.39</strong>
-              </div>
+            <div style="border-top:1px dashed rgba(75,85,99,0.8); margin:8px 0;"></div>
+
+            <div class="sim-row">
+              <span>Subtotal</span>
+              <span>$78.99</span>
+            </div>
+            <div class="sim-row">
+              <span>Envío estimado</span>
+              <span>$4.99</span>
+            </div>
+            <div class="sim-row" style="font-weight:700; font-size:12px;">
+              <span>Total</span>
+              <span>$83.98</span>
             </div>
 
-            <button class="btn btn-primary" type="button" style="width:100%; justify-content:center; margin-top:4px;">
-              Proceder al pago (simulado)
-            </button>
+            <div style="margin-top:10px;">
+              <button type="button"
+                      class="btn btn-primary"
+                      style="width:100%; justify-content:center; font-size:12px;">
+                Pagar ahora con tarjeta / wallet
+              </button>
+            </div>
 
-            <p class="store-cart-note">
-              En la versión real, este botón lleva al checkout de Square Online con tus propias
-              opciones de envío, impuestos y métodos de pago.
-            </p>
-          </aside>
+            <div style="margin-top:8px; font-size:10px; color:#9ca3af;">
+              Pagos procesados por Square: tarjetas, wallets y más.
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-panel-footer">
+          <span>Square Online maneja el “motor” de tienda.</span>
+          <span>ADD Store se encarga del diseño, la estrategia y la implementación.</span>
         </div>
       </aside>
+    </section>
+
+    <!-- BLOQUE ACLARATORIO -->
+    <section>
+      <div class="section-label">Cómo funciona ADD Store</div>
+      <h2 class="section-title">
+        Tú eres dueño de tu tienda, nosotros somos dueños del sistema que la hace funcionar.
+      </h2>
+      <p class="section-subtitle">
+        La tienda se monta sobre tu cuenta de Square Online (tuya, a tu nombre). ADD Systems se encarga
+        de estructurar el catálogo, configurar envíos y pagos, y conectar automatizaciones alrededor:
+        recordatorios, correos, mensajes, reportes básicos y panel de control.
+      </p>
+
+      <div class="pain-grid">
+        <article class="pain-card">
+          <div class="pain-title">Sin ADD Store</div>
+          <ul class="pain-list">
+            <li>❌ Tienes cuentas sueltas (Instagram, WhatsApp, punto de venta) sin una tienda central.</li>
+            <li>❌ Los clientes no saben dónde ver todo tu catálogo junto.</li>
+            <li>❌ Inventario desordenado: vendes productos que ya no tienes.</li>
+            <li>❌ Cobros manuales por Zelle, CashApp, etc. sin registro ordenado.</li>
+          </ul>
+        </article>
+
+        <article class="pain-card">
+          <div class="pain-title">Con ADD Store + Square Online</div>
+          <ul class="pain-list">
+            <li>✅ Tienda única donde envías a todos tus clientes.</li>
+            <li>✅ Catálogo organizado, fotos, variantes y stock en tiempo real.</li>
+            <li>✅ Pagos procesados por Square con comprobantes y reportes.</li>
+            <li>✅ Integración natural con tus otros sistemas ADD (Bookings / Orders).</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta-final">
+      <h2 class="section-title">
+        ¿Quieres que tu tienda se vea así (o mejor) y empiece a cobrar en serio?
+      </h2>
+      <p>
+        Hagamos primero un diagnóstico rápido de tu negocio y vemos si ADD Store encaja.
+        Si calificas, te montamos la tienda sobre Square Online y la conectamos al resto del sistema.
+      </p>
+      <div style="margin-top:14px; display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
+        <a href="https://tidycal.com/add-systems/diagnostico-add"
+           class="btn btn-primary"
+           target="_blank"
+           rel="noopener">
+          Agendar diagnóstico ADD Store
+        </a>
+        <a href="index.html#planes" class="btn btn-outline">
+          Ver planes ADD
+        </a>
+      </div>
     </section>
   </main>
 </body>
